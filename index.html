@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIRECTED BY JPEG — Lab & Garage</title>
+  <title>DIRECTED BY JPEG — Portfolio & Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --bg-dark: #090a0f;
       --accent-color: #6366f1;
-      --accent-glow: rgba(99, 102, 241, 0.3);
+      --accent-glow: rgba(99, 102, 241, 0.35);
       --card-bg: rgba(18, 20, 29, 0.75);
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
       --border-color: rgba(255, 255, 255, 0.08);
+      --header-bg: rgba(9, 10, 15, 0.85);
+      --strip-gradient-1: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, rgba(9, 10, 15, 0.85) 70%);
+      --strip-gradient-2: radial-gradient(circle at center, rgba(236, 72, 153, 0.12) 0%, rgba(9, 10, 15, 0.85) 70%);
+      --strip-gradient-3: radial-gradient(circle at center, rgba(6, 182, 212, 0.12) 0%, rgba(9, 10, 15, 0.85) 70%);
+      --btn-bg: #ffffff;
+      --btn-text: #000000;
+      --footer-bg: #06070a;
+      --footer-muted: #4b5563;
+    }
+
+    body.light-theme {
+      --bg-dark: #f8fafc;
+      --accent-color: #4f46e5;
+      --accent-glow: rgba(79, 70, 229, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --header-bg: rgba(255, 255, 255, 0.85);
+      --strip-gradient-1: radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, rgba(248, 250, 252, 0.9) 70%);
+      --strip-gradient-2: radial-gradient(circle at center, rgba(236, 72, 153, 0.08) 0%, rgba(248, 250, 252, 0.9) 70%);
+      --strip-gradient-3: radial-gradient(circle at center, rgba(6, 182, 212, 0.08) 0%, rgba(248, 250, 252, 0.9) 70%);
+      --btn-bg: #0f172a;
+      --btn-text: #ffffff;
+      --footer-bg: #f1f5f9;
+      --footer-muted: #64748b;
     }
 
     * {
@@ -24,6 +50,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
     }
 
     body {
@@ -35,7 +62,6 @@
       flex-direction: column;
     }
 
-    /* CANVAS DE FONDO INTERACTIVO */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -46,16 +72,15 @@
       pointer-events: none;
     }
 
-    /* HEADER FIJO */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9, 10, 15, 0.85);
+      background: var(--header-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
-      padding: 20px 6%;
+      padding: 16px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -70,52 +95,88 @@
 
     .brand {
       font-weight: 900;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       letter-spacing: -0.5px;
       text-transform: uppercase;
-      background: linear-gradient(90deg, #ffffff 0%, #a5b4fc 100%);
+      background: linear-gradient(90deg, #6366f1 0%, #ec4899 50%, #06b6d4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .tagline {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       letter-spacing: 1.5px;
       text-transform: uppercase;
       margin-top: 2px;
+      font-family: 'Fira Code', monospace;
     }
 
-    /* NAVEGACIÓN */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     nav {
       display: flex;
-      gap: 10px;
+      gap: 6px;
     }
 
     .nav-btn {
       background: transparent;
       border: 1px solid transparent;
       color: var(--text-muted);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: 500;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.82rem;
+      transition: all 0.25s ease;
     }
 
     .nav-btn:hover, .nav-btn.active {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      background: rgba(99, 102, 241, 0.1);
       border-color: var(--border-color);
     }
 
     .nav-btn.active {
       border-color: var(--accent-color);
-      box-shadow: 0 0 15px var(--accent-glow);
+      box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    /* CONTENEDOR PRINCIPAL DE SECCIONES */
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 1px solid var(--border-color);
+      padding-left: 12px;
+    }
+
+    .ctrl-btn {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-color);
+      background: rgba(99, 102, 241, 0.18);
+      transform: translateY(-1px);
+    }
+
     main {
       flex: 1;
       width: 100%;
@@ -123,7 +184,7 @@
 
     .tab-content {
       display: none;
-      animation: fadeIn 0.4s ease forwards;
+      animation: fadeIn 0.35s ease forwards;
     }
 
     .tab-content.active {
@@ -131,124 +192,118 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* SECCIÓN PROYECTOS (FRANJAS) */
     .project-strip {
       position: relative;
       width: 100%;
-      height: 380px;
+      height: 360px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--border-color);
-      transition: all 0.5s ease;
+      transition: all 0.4s ease;
     }
 
-    .project-strip.active-strip {
-      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, rgba(9, 10, 15, 0.8) 70%);
+    .strip-nexus {
+      background: var(--strip-gradient-2);
     }
 
-    .project-strip.in-progress {
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(9, 10, 15, 0.9) 70%);
+    .strip-hackacademy {
+      background: var(--strip-gradient-1);
+    }
+
+    .strip-jpegstore {
+      background: var(--strip-gradient-3);
     }
 
     .strip-content {
       text-align: center;
       z-index: 2;
       padding: 20px;
+      max-width: 750px;
     }
 
     .project-title {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 900;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.5px;
     }
 
     .project-desc {
       color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto 20px auto;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      max-width: 600px;
+      margin: 0 auto 24px auto;
+      font-size: 0.98rem;
+      line-height: 1.6;
     }
 
     .btn-action {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
-      background: #ffffff;
-      color: #000000;
+      padding: 12px 30px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       border-radius: 100px;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 
     .btn-action:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-    }
-
-    .btn-disabled {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      border: 1px solid var(--border-color);
-      font-weight: 700;
-      font-size: 0.9rem;
-      border-radius: 100px;
-      opacity: 0.6;
-      cursor: not-allowed;
-      transition: all 0.3s ease;
-    }
-
-    .btn-disabled:hover {
-      cursor: not-allowed;
-      border-color: rgba(239, 68, 68, 0.4);
-      color: #ef4444;
-      background: rgba(239, 68, 68, 0.05);
+      box-shadow: 0 6px 25px var(--accent-glow);
     }
 
     .badge-status {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 50px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      font-family: 'Fira Code', monospace;
     }
 
-    .badge-live { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .badge-dev { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+    .badge-live { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
 
-    /* SECCIÓN GENERAL CONTAINER */
     .section-container {
       max-width: 1200px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 24px;
     }
 
-    /* SECCIÓN CERTIFICACIONES (DOS COLUMNAS) */
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
     .cert-columns-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 820px) {
       .cert-columns-layout {
         grid-template-columns: 1fr;
       }
@@ -257,18 +312,22 @@
     .cert-category-box {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 24px;
       margin-bottom: 24px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
     .cert-category-box h3 {
       font-size: 1.15rem;
       margin-bottom: 16px;
-      color: #fff;
+      color: var(--text-main);
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 8px;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .cert-list {
@@ -276,7 +335,7 @@
     }
 
     .cert-list li {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .cert-list li:last-child {
@@ -290,35 +349,45 @@
     }
 
     .cert-issuer-sub {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--accent-color);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-top: 2px;
+      font-family: 'Fira Code', monospace;
     }
 
     .cert-desc {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
+      line-height: 1.4;
     }
 
-    /* SECCIÓN CONTACTO */
     .contact-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 40px;
+      border-radius: 20px;
+      padding: 48px 24px;
       text-align: center;
-      max-width: 650px;
+      max-width: 680px;
       margin: 40px auto;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .contact-card h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
     .contact-links {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 30px;
       flex-wrap: wrap;
     }
 
@@ -326,39 +395,40 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: rgba(99, 102, 241, 0.08);
       border: 1px solid var(--border-color);
-      color: #fff;
+      color: var(--text-main);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
     }
 
     .contact-btn:hover {
       background: var(--accent-color);
       border-color: var(--accent-color);
-      box-shadow: 0 0 15px var(--accent-glow);
+      color: #ffffff;
+      box-shadow: 0 0 16px var(--accent-glow);
       transform: translateY(-2px);
     }
 
-    /* FOOTER */
     footer {
       padding: 30px 6%;
       border-top: 1px solid var(--border-color);
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: #06070a;
+      font-size: 0.82rem;
+      color: var(--footer-muted);
+      background: var(--footer-bg);
       margin-top: auto;
+      font-family: 'Fira Code', monospace;
     }
 
     .footer-credits {
       margin-top: 6px;
       font-size: 0.75rem;
-      color: #4b5563;
+      opacity: 0.85;
     }
   </style>
 </head>
@@ -368,53 +438,70 @@
 
   <header>
     <div class="brand-container">
-      <div class="brand">Directed by JPEG</div>
-      <div class="tagline">Lab & Garage — Selected Works by Juan Pablo Espinel Galvis</div>
+      <div class="brand" id="brand-title">DIRECTED BY JPEG</div>
+      <div class="tagline" id="brand-tagline">JPEG PORTFOLIO • LAB & GARAGE</div>
     </div>
-    <nav>
-      <button class="nav-btn active" onclick="switchTab('inicio')">Inicio</button>
-      <button class="nav-btn" onclick="switchTab('certificaciones')">Certificaciones</button>
-      <button class="nav-btn" onclick="switchTab('contacto')">Contacto</button>
-    </nav>
+
+    <div class="header-right">
+      <nav>
+        <button class="nav-btn active" onclick="switchTab('inicio')" id="nav-inicio">Inicio</button>
+        <button class="nav-btn" onclick="switchTab('inicio')" id="nav-proyectos">Proyectos</button>
+        <button class="nav-btn" onclick="switchTab('certificaciones')" id="nav-cert">Certificaciones</button>
+        <button class="nav-btn" onclick="switchTab('contacto')" id="nav-contact">Contacto</button>
+      </nav>
+
+      <div class="controls-group">
+        <button class="ctrl-btn" id="lang-btn" onclick="toggleLanguage()" title="Cambiar Idioma / Change Language">
+          <span id="lang-icon">🇨🇴</span>
+          <span id="lang-text">ESP</span>
+        </button>
+        <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" title="Modo Claro/Oscuro / Light/Dark Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
   </header>
 
   <main>
     
     <div id="tab-inicio" class="tab-content active">
       
-      <section class="project-strip active-strip">
+      <!-- 1. NEXUS -->
+      <section class="project-strip strip-nexus">
         <div class="strip-content">
-          <span class="badge-status badge-live">Live Deployment</span>
-          <h2 class="project-title">Hack Academy</h2>
-          <p class="project-desc">Plataforma educativa con enfoque en mentorías personalizadas y programas intensivos de aprendizaje disruptivo.</p>
-          <a href="https://hackacademy.vercel.app/" target="_blank" class="btn-action">
-            <span>Visitar Proyecto</span>
+          <span class="badge-status badge-live" id="badge-nexus">LIVE DEPLOYMENT</span>
+          <h2 class="project-title" id="title-nexus">NEXUS // Nexo Tecnológico</h2>
+          <p class="project-desc" id="desc-nexus">Radar diario de inteligencia artificial, finanzas, herramientas web interactivas y snippets de código listos para producción bajo arquitectura SPA.</p>
+          <a href="https://nexus.vercel.app/" target="_blank" rel="noopener" class="btn-action" id="btn-nexus">
+            <span id="btn-nexus-text">Explorar Nexus</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
         </div>
       </section>
 
-      <section class="project-strip active-strip">
+      <!-- 2. HACK ACADEMY -->
+      <section class="project-strip strip-hackacademy">
         <div class="strip-content">
-          <span class="badge-status badge-live">Live Deployment</span>
-          <h2 class="project-title">JPEG Store</h2>
-          <p class="project-desc">Plataforma interactiva de comercio y soluciones digitales implementada en el ecosistema del Garage.</p>
-          <a href="https://jpeg-store.vercel.app/" target="_blank" class="btn-action">
-            <span>Visitar Proyecto</span>
+          <span class="badge-status badge-live" id="badge-hack">LIVE DEPLOYMENT</span>
+          <h2 class="project-title" id="title-hack">Hack Academy // Hackea tu aprendizaje</h2>
+          <p class="project-desc" id="desc-hack">Plataforma educativa con enfoque en mentorías personalizadas, fluidez en inglés práctico, conexión con el ritmo y herramientas de IA aplicada.</p>
+          <a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener" class="btn-action" id="btn-hack">
+            <span id="btn-hack-text">Visitar Hack Academy</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
         </div>
       </section>
 
-      <section class="project-strip in-progress">
+      <!-- 3. JPEG STORE / BAÚL DIGITAL -->
+      <section class="project-strip strip-jpegstore">
         <div class="strip-content">
-          <span class="badge-status badge-dev">Coming Soon</span>
-          <h2 class="project-title">Proyecto 03 — Data & Systems</h2>
-          <p class="project-desc">Módulo de análisis de datos y arquitectura web en fase de construcción interna.</p>
-          <div class="btn-disabled" title="Acceso restringido / En construcción">
-            <span>En Construcción</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
-          </div>
+          <span class="badge-status badge-live" id="badge-store">LIVE DEPLOYMENT</span>
+          <h2 class="project-title" id="title-store">Baúl Digital // JPEG Store</h2>
+          <p class="project-desc" id="desc-store">Bóveda digital de recursos de alto impacto, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas sin servidor.</p>
+          <a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener" class="btn-action" id="btn-store">
+            <span id="btn-store-text">Acceder al Baúl</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
         </div>
       </section>
 
@@ -422,81 +509,77 @@
 
     <div id="tab-certificaciones" class="tab-content">
       <div class="section-container">
-        <h2 style="margin-bottom: 8px;">Credenciales y Certificaciones</h2>
-        <p style="color: var(--text-muted); margin-bottom: 24px;">Validación de competencias técnicas, cumplimiento y desarrollo.</p>
+        <div class="section-header">
+          <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
+          <p class="section-subtitle" id="cert-main-desc">Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.</p>
+        </div>
         
         <div class="cert-columns-layout">
           <div>
             <div class="cert-category-box">
-              <h3>🏦 Cumplimiento y Delitos Financieros</h3>
+              <h3 id="cat-title-aml">🏦 Cumplimiento y Delitos Financieros</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">AML in Practice</div>
                   <div class="cert-issuer-sub">Antiga Compliance</div>
-                  <div class="cert-desc">Marcos operativos y prevención de lavado de activos.</div>
+                  <div class="cert-desc" id="desc-aml-1">Marcos operativos y prevención de lavado de activos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
                   <div class="cert-issuer-sub">AC30</div>
-                  <div class="cert-desc">Tipologías de trata y monitoreo transaccional.</div>
+                  <div class="cert-desc" id="desc-aml-2">Tipologías de trata y monitoreo transaccional.</div>
                 </li>
               </ul>
             </div>
 
             <div class="cert-category-box">
-              <h3>🛡️ Ciberseguridad</h3>
+              <h3 id="cat-title-sec">🛡️ Ciberseguridad & Infraestructura</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">IT Security: Defense against the digital dark arts</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Criptografía y mitigación de riesgos digitales.</div>
+                  <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
                 </li>
                 <li>
                   <div class="cert-title">Cybersecurity for Managers</div>
                   <div class="cert-issuer-sub">BBVA</div>
-                  <div class="cert-desc">Gestión estratégica de la seguridad de la información.</div>
+                  <div class="cert-desc" id="desc-sec-2">Gestión estratégica de la seguridad de la información.</div>
                 </li>
                 <li>
                   <div class="cert-title">Hacking Ético Gamificado</div>
                   <div class="cert-issuer-sub">HackerMentor</div>
-                  <div class="cert-desc">Evaluación de vulnerabilidades y pentesting.</div>
+                  <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pentesting.</div>
                 </li>
-              </ul>
-            </div>
-
-            <div class="cert-category-box">
-              <h3>⚙️ Soporte IT e Infraestructura</h3>
-              <ul class="cert-list">
                 <li>
                   <div class="cert-title">Google IT Support</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Soporte técnico, sistemas operativos y redes.</div>
+                  <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
                 </li>
                 <li>
                   <div class="cert-title">The Bits and Bytes of Computer Networking</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Protocolos de red y arquitectura web.</div>
+                  <div class="cert-desc" id="desc-sec-5">Protocolos de red y arquitectura web.</div>
                 </li>
                 <li>
-                  <div class="cert-title">System Administration and IT Infrastructure Services</div>
+                  <div class="cert-title">System Administration & IT Infrastructure</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Administración de infraestructura IT y servidores.</div>
+                  <div class="cert-desc" id="desc-sec-6">Administración de infraestructura IT y servidores.</div>
                 </li>
               </ul>
             </div>
 
             <div class="cert-category-box">
-              <h3>🧠 Inteligencia Artificial</h3>
+              <h3 id="cat-title-ai">🧠 Inteligencia Artificial & Ética</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">AI Policy</div>
                   <div class="cert-issuer-sub">Fred Hutch</div>
-                  <div class="cert-desc">Gobernanza, marcos operativos y ética algorítmica.</div>
+                  <div class="cert-desc" id="desc-ai-1">Gobernanza, marcos operativos y ética algorítmica.</div>
                 </li>
                 <li>
                   <div class="cert-title">AI for Everyone</div>
                   <div class="cert-issuer-sub">DeepLearning.AI</div>
-                  <div class="cert-desc">Fundamentos de IA y conceptos de machine learning.</div>
+                  <div class="cert-desc" id="desc-ai-2">Fundamentos de IA y conceptos de machine learning.</div>
                 </li>
               </ul>
             </div>
@@ -504,100 +587,94 @@
 
           <div>
             <div class="cert-category-box">
-              <h3>📊 Datos y Analítica</h3>
+              <h3 id="cat-title-data">📊 Datos y Analítica</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">Microsoft Certified: Power BI Data Analyst Associate</div>
                   <div class="cert-issuer-sub">Datax, Latam</div>
-                  <div class="cert-desc">Modelado avanzado con DAX y visualización.</div>
+                  <div class="cert-desc" id="desc-data-1">Modelado avanzado con DAX y visualización de datos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Analítica de Datos</div>
                   <div class="cert-issuer-sub">IBM</div>
-                  <div class="cert-desc">Análisis estratégico e inteligencia de negocio.</div>
+                  <div class="cert-desc" id="desc-data-2">Análisis estratégico e inteligencia de negocio.</div>
                 </li>
                 <li>
                   <div class="cert-title">Big Data V3.5</div>
                   <div class="cert-issuer-sub">Huawei</div>
-                  <div class="cert-desc">Procesamiento masivo, MapReduce y ecosistemas distribuidos.</div>
+                  <div class="cert-desc" id="desc-data-3">Procesamiento masivo, MapReduce y ecosistemas distribuidos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Power BI</div>
                   <div class="cert-issuer-sub">Platzi</div>
-                  <div class="cert-desc">Transformación de datos y paneles empresariales.</div>
+                  <div class="cert-desc" id="desc-data-4">Transformación de datos y paneles empresariales.</div>
                 </li>
                 <li>
                   <div class="cert-title">Google Analytics</div>
                   <div class="cert-issuer-sub">Google Digital Academy</div>
-                  <div class="cert-desc">Marketing digital analítico y métricas.</div>
+                  <div class="cert-desc" id="desc-data-5">Marketing digital analítico y métricas de conversión.</div>
                 </li>
                 <li>
                   <div class="cert-title">Analiza datos web y toma decisiones estratégicas</div>
                   <div class="cert-issuer-sub">Cámara de Comercio de Bogotá</div>
-                  <div class="cert-desc">Pruebas unitarias y optimización de plataformas web.</div>
+                  <div class="cert-desc" id="desc-data-6">Pruebas analíticas y optimización de plataformas web.</div>
                 </li>
               </ul>
             </div>
 
             <div class="cert-category-box">
-              <h3>💻 Desarrollo y Arquitectura</h3>
+              <h3 id="cat-title-dev">💻 Desarrollo & Arquitectura</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">Profesional de Arquitectura de Software</div>
                   <div class="cert-issuer-sub">Platzi</div>
-                  <div class="cert-desc">Patrones de diseño, escalabilidad y código limpio.</div>
+                  <div class="cert-desc" id="desc-dev-1">Patrones de diseño, escalabilidad y código limpio.</div>
                 </li>
                 <li>
                   <div class="cert-title">Java</div>
                   <div class="cert-issuer-sub">UNAM</div>
-                  <div class="cert-desc">Programación orientada a objetos y lógica.</div>
+                  <div class="cert-desc" id="desc-dev-2">Programación orientada a objetos y algoritmos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Lovable - No-Code Web Development</div>
                   <div class="cert-issuer-sub">Platzi</div>
-                  <div class="cert-desc">Desarrollo ágil de productos digitales asistido por IA.</div>
+                  <div class="cert-desc" id="desc-dev-3">Desarrollo ágil de productos digitales asistido por IA.</div>
                 </li>
                 <li>
                   <div class="cert-title">N8N Automation</div>
                   <div class="cert-issuer-sub">Platzi</div>
-                  <div class="cert-desc">Automatizaciones low-code e integración de procesos.</div>
+                  <div class="cert-desc" id="desc-dev-4">Automatizaciones low-code e integración de procesos.</div>
                 </li>
               </ul>
             </div>
 
             <div class="cert-category-box">
-              <h3>🗂️ Gestión de Proyectos</h3>
+              <h3 id="cat-title-mgmt">🗂️ Gestión, Marketing & Idiomas</h3>
               <ul class="cert-list">
                 <li>
                   <div class="cert-title">Foundations of Project Management</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Ciclo de vida y metodologías de gestión.</div>
+                  <div class="cert-desc" id="desc-mgmt-1">Ciclo de vida y metodologías de gestión de proyectos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Project Initiation / Planning</div>
                   <div class="cert-issuer-sub">Google</div>
-                  <div class="cert-desc">Arranque, alcance, control de tiempos y presupuestos.</div>
+                  <div class="cert-desc" id="desc-mgmt-2">Arranque, alcance, control de tiempos y presupuestos.</div>
                 </li>
                 <li>
                   <div class="cert-title">Sistematización de procesos</div>
                   <div class="cert-issuer-sub">Cámara de Comercio de Bogotá</div>
-                  <div class="cert-desc">Mejora continua operativa y automatización empresarial.</div>
+                  <div class="cert-desc" id="desc-mgmt-3">Mejora continua operativa y automatización empresarial.</div>
                 </li>
-              </ul>
-            </div>
-
-            <div class="cert-category-box">
-              <h3>📈 Marketing, Ventas e Idiomas</h3>
-              <ul class="cert-list">
                 <li>
                   <div class="cert-title">Growth Marketing with AI</div>
                   <div class="cert-issuer-sub">Platzi</div>
-                  <div class="cert-desc">IA conversacional aplicada a la retención de clientes.</div>
+                  <div class="cert-desc" id="desc-mgmt-4">IA conversacional aplicada a la retención de usuarios.</div>
                 </li>
                 <li>
                   <div class="cert-title">Proficient English C2</div>
                   <div class="cert-issuer-sub">EF SET</div>
-                  <div class="cert-desc">Dominio bilingüe nativo avanzado.</div>
+                  <div class="cert-desc" id="desc-mgmt-5">Dominio bilingüe nativo avanzado.</div>
                 </li>
               </ul>
             </div>
@@ -609,23 +686,23 @@
     <div id="tab-contacto" class="tab-content">
       <div class="section-container">
         <div class="contact-card">
-          <h2>Conectemos</h2>
-          <p style="color: var(--text-muted); margin-top: 10px;">Disponible para proyectos, desarrollo web e iniciativas tecnológicas.</p>
+          <h2 id="contact-title">Conectemos</h2>
+          <p id="contact-desc" style="color: var(--text-muted); margin-top: 10px;">Disponible para consultoría, desarrollo de software, automatización e iniciativas tecnológicas.</p>
           
           <div class="contact-links">
-            <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-" target="_blank" class="contact-btn">
+            <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-" target="_blank" rel="noopener" class="contact-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               <span>LinkedIn</span>
             </a>
             <a href="mailto:espinelgalvisjuanpablo@gmail.com" class="contact-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span>Correo</span>
+              <span id="txt-contact-email">Correo</span>
             </a>
-            <a href="https://wa.me/573156771482" target="_blank" class="contact-btn">
+            <a href="https://wa.me/573156771482" target="_blank" rel="noopener" class="contact-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
               <span>WhatsApp</span>
             </a>
-            <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" class="contact-btn">
+            <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               <span>Instagram</span>
             </a>
@@ -637,21 +714,256 @@
   </main>
 
   <footer>
-    <div>DIRECTED BY JPEG &copy; 2026 — All Rights Reserved</div>
-    <div class="footer-credits">Designed & Developed by Juan Pablo Espinel Galvis</div>
+    <div id="footer-text">DIRECTED BY JPEG &copy; 2026 — Todos los derechos reservados</div>
+    <div class="footer-credits" id="footer-author">Diseñado y Desarrollado por Juan Pablo Espinel Galvis</div>
   </footer>
 
   <script>
-    // CAMBIO DE PESTAÑAS (SPA)
+    let currentLang = localStorage.getItem('jpeg_portfolio_lang') || 'es';
+    let currentTheme = localStorage.getItem('jpeg_portfolio_theme') || 'dark';
+
+    const i18n = {
+      es: {
+        pageTitle: "DIRECTED BY JPEG — Portafolio & Laboratorio",
+        tagline: "JPEG PORTFOLIO • LAB & GARAGE",
+        navInicio: "Inicio",
+        navProyectos: "Proyectos",
+        navCert: "Certificaciones",
+        navContact: "Contacto",
+        langIcon: "🇨🇴",
+        langText: "ESP",
+        
+        titleNexus: "NEXUS // Nexo Tecnológico",
+        descNexus: "Radar diario de inteligencia artificial, finanzas, herramientas web interactivas y snippets de código listos para producción bajo arquitectura SPA.",
+        btnNexusText: "Explorar Nexus",
+
+        titleHack: "Hack Academy // Hackea tu aprendizaje",
+        descHack: "Plataforma educativa con enfoque en mentorías personalizadas, fluidez en inglés práctico, conexión con el ritmo y herramientas de IA aplicada.",
+        btnHackText: "Visitar Hack Academy",
+
+        titleStore: "Baúl Digital // JPEG Store",
+        descStore: "Bóveda digital de recursos de alto impacto, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas sin servidor.",
+        btnStoreText: "Acceder al Baúl",
+
+        certMainTitle: "Credenciales y Certificaciones",
+        certMainDesc: "Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.",
+        catTitleAml: "🏦 Cumplimiento y Delitos Financieros",
+        descAml1: "Marcos operativos y prevención de lavado de activos.",
+        descAml2: "Tipologías de trata y monitoreo transaccional.",
+        catTitleSec: "🛡️ Ciberseguridad & Infraestructura",
+        descSec1: "Criptografía y mitigación de riesgos digitales.",
+        descSec2: "Gestión estratégica de la seguridad de la información.",
+        descSec3: "Evaluación de vulnerabilidades y pentesting.",
+        descSec4: "Soporte técnico, sistemas operativos y redes.",
+        descSec5: "Protocolos de red y arquitectura web.",
+        descSec6: "Administración de infraestructura IT y servidores.",
+        catTitleAi: "🧠 Inteligencia Artificial & Ética",
+        descAi1: "Gobernanza, marcos operativos y ética algorítmica.",
+        descAi2: "Fundamentos de IA y conceptos de machine learning.",
+        catTitleData: "📊 Datos y Analítica",
+        descData1: "Modelado avanzado con DAX y visualización de datos.",
+        descData2: "Análisis estratégico e inteligencia de negocio.",
+        descData3: "Procesamiento masivo, MapReduce y ecosistemas distribuidos.",
+        descData4: "Transformación de datos y paneles empresariales.",
+        descData5: "Marketing digital analítico y métricas de conversión.",
+        descData6: "Pruebas analíticas y optimización de plataformas web.",
+        catTitleDev: "💻 Desarrollo & Arquitectura",
+        descDev1: "Patrones de diseño, escalabilidad y código limpio.",
+        descDev2: "Programación orientada a objetos y algoritmos.",
+        descDev3: "Desarrollo ágil de productos digitales asistido por IA.",
+        descDev4: "Automatizaciones low-code e integración de procesos.",
+        catTitleMgmt: "🗂️ Gestión, Marketing & Idiomas",
+        descMgmt1: "Ciclo de vida y metodologías de gestión de proyectos.",
+        descMgmt2: "Arranque, alcance, control de tiempos y presupuestos.",
+        descMgmt3: "Mejora continua operativa y automatización empresarial.",
+        descMgmt4: "IA conversacional aplicada a la retención de usuarios.",
+        descMgmt5: "Dominio bilingüe nativo avanzado.",
+
+        contactTitle: "Conectemos",
+        contactDesc: "Disponible para consultoría, desarrollo de software, automatización e iniciativas tecnológicas.",
+        contactEmail: "Correo",
+
+        footerText: "DIRECTED BY JPEG &copy; 2026 — Todos los derechos reservados",
+        footerAuthor: "Diseñado y Desarrollado por Juan Pablo Espinel Galvis"
+      },
+      en: {
+        pageTitle: "DIRECTED BY JPEG — Portfolio & Lab",
+        tagline: "JPEG PORTFOLIO • LAB & GARAGE",
+        navInicio: "Home",
+        navProyectos: "Projects",
+        navCert: "Certifications",
+        navContact: "Contact",
+        langIcon: "🇺🇸",
+        langText: "ENG",
+
+        titleNexus: "NEXUS // Tech Radar",
+        descNexus: "Daily interactive radar for artificial intelligence, financial tools, curated web utilities, and production-ready snippets on SPA architecture.",
+        btnNexusText: "Explore Nexus",
+
+        titleHack: "Hack Academy // Hack Your Learning",
+        descHack: "Educational platform focused on personalized mentoring, conversational English fluency, rhythm connection, and applied AI tools.",
+        btnHackText: "Visit Hack Academy",
+
+        titleStore: "Digital Vault // JPEG Store",
+        descStore: "Centralized digital vault for high-impact resources, prompt engineering guides, AI workflow optimization, and clean serverless architectures.",
+        btnStoreText: "Open Vault",
+
+        certMainTitle: "Credentials & Certifications",
+        certMainDesc: "Validated technical competencies across regulatory compliance, software development, data analytics, and artificial intelligence.",
+        catTitleAml: "🏦 Compliance & Financial Crimes",
+        descAml1: "Operational frameworks and anti-money laundering prevention.",
+        descAml2: "Human trafficking typologies and transaction monitoring.",
+        catTitleSec: "🛡️ Cybersecurity & Infrastructure",
+        descSec1: "Cryptography and digital risk mitigation.",
+        descSec2: "Strategic information security management.",
+        descSec3: "Vulnerability assessment and hands-on pentesting.",
+        descSec4: "Technical IT support, operating systems, and networking.",
+        descSec5: "Network protocols and client-server architecture.",
+        descSec6: "IT infrastructure services and systems administration.",
+        catTitleAi: "🧠 Artificial Intelligence & Ethics",
+        descAi1: "Algorithmic governance, policy frameworks, and AI ethics.",
+        descAi2: "AI fundamentals and core machine learning concepts.",
+        catTitleData: "📊 Data & Analytics",
+        descData1: "Advanced DAX data modeling and business visual dashboards.",
+        descData2: "Strategic business analytics and business intelligence.",
+        descData3: "Massive big data processing, MapReduce, and distributed ecosystems.",
+        descData4: "Data transformation and enterprise Power BI reporting.",
+        descData5: "Digital analytics marketing and conversion metrics.",
+        descData6: "Web data analysis and strategic decision making.",
+        catTitleDev: "💻 Development & Architecture",
+        descDev1: "Software design patterns, scalability, and clean code architecture.",
+        descDev2: "Object-oriented programming and algorithmic logic.",
+        descDev3: "Agile AI-assisted digital product development.",
+        descDev4: "Low-code workflow automations and API integrations.",
+        catTitleMgmt: "🗂️ Management, Marketing & Languages",
+        descMgmt1: "Project management lifecycles and modern methodologies.",
+        descMgmt2: "Initiation, project chartering, scheduling, and budget controls.",
+        descMgmt3: "Operational process optimization and workflow systematization.",
+        descMgmt4: "Conversational AI applied to growth and user retention.",
+        descMgmt5: "Advanced bilingual C2 native proficiency.",
+
+        contactTitle: "Let's Connect",
+        contactDesc: "Available for consulting, software development, workflow automation, and tech initiatives.",
+        contactEmail: "Email",
+
+        footerText: "DIRECTED BY JPEG &copy; 2026 — All rights reserved",
+        footerAuthor: "Designed & Developed by Juan Pablo Espinel Galvis"
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('jpeg_portfolio_lang', lang);
+      const t = i18n[lang];
+
+      document.title = t.pageTitle;
+      document.getElementById('html-root').lang = lang;
+      document.getElementById('brand-tagline').textContent = t.tagline;
+
+      document.getElementById('nav-inicio').textContent = t.navInicio;
+      document.getElementById('nav-proyectos').textContent = t.navProyectos;
+      document.getElementById('nav-cert').textContent = t.navCert;
+      document.getElementById('nav-contact').textContent = t.navContact;
+
+      document.getElementById('lang-icon').textContent = t.langIcon;
+      document.getElementById('lang-text').textContent = t.langText;
+
+      document.getElementById('title-nexus').textContent = t.titleNexus;
+      document.getElementById('desc-nexus').textContent = t.descNexus;
+      document.getElementById('btn-nexus-text').textContent = t.btnNexusText;
+
+      document.getElementById('title-hack').textContent = t.titleHack;
+      document.getElementById('desc-hack').textContent = t.descHack;
+      document.getElementById('btn-hack-text').textContent = t.btnHackText;
+
+      document.getElementById('title-store').textContent = t.titleStore;
+      document.getElementById('desc-store').textContent = t.descStore;
+      document.getElementById('btn-store-text').textContent = t.btnStoreText;
+
+      document.getElementById('cert-main-title').textContent = t.certMainTitle;
+      document.getElementById('cert-main-desc').textContent = t.certMainDesc;
+      document.getElementById('cat-title-aml').textContent = t.catTitleAml;
+      document.getElementById('desc-aml-1').textContent = t.descAml1;
+      document.getElementById('desc-aml-2').textContent = t.descAml2;
+
+      document.getElementById('cat-title-sec').textContent = t.catTitleSec;
+      document.getElementById('desc-sec-1').textContent = t.descSec1;
+      document.getElementById('desc-sec-2').textContent = t.descSec2;
+      document.getElementById('desc-sec-3').textContent = t.descSec3;
+      document.getElementById('desc-sec-4').textContent = t.descSec4;
+      document.getElementById('desc-sec-5').textContent = t.descSec5;
+      document.getElementById('desc-sec-6').textContent = t.descSec6;
+
+      document.getElementById('cat-title-ai').textContent = t.catTitleAi;
+      document.getElementById('desc-ai-1').textContent = t.descAi1;
+      document.getElementById('desc-ai-2').textContent = t.descAi2;
+
+      document.getElementById('cat-title-data').textContent = t.catTitleData;
+      document.getElementById('desc-data-1').textContent = t.descData1;
+      document.getElementById('desc-data-2').textContent = t.descData2;
+      document.getElementById('desc-data-3').textContent = t.descData3;
+      document.getElementById('desc-data-4').textContent = t.descData4;
+      document.getElementById('desc-data-5').textContent = t.descData5;
+      document.getElementById('desc-data-6').textContent = t.descData6;
+
+      document.getElementById('cat-title-dev').textContent = t.catTitleDev;
+      document.getElementById('desc-dev-1').textContent = t.descDev1;
+      document.getElementById('desc-dev-2').textContent = t.descDev2;
+      document.getElementById('desc-dev-3').textContent = t.descDev3;
+      document.getElementById('desc-dev-4').textContent = t.descDev4;
+
+      document.getElementById('cat-title-mgmt').textContent = t.catTitleMgmt;
+      document.getElementById('desc-mgmt-1').textContent = t.descMgmt1;
+      document.getElementById('desc-mgmt-2').textContent = t.descMgmt2;
+      document.getElementById('desc-mgmt-3').textContent = t.descMgmt3;
+      document.getElementById('desc-mgmt-4').textContent = t.descMgmt4;
+      document.getElementById('desc-mgmt-5').textContent = t.descMgmt5;
+
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('contact-desc').textContent = t.contactDesc;
+      document.getElementById('txt-contact-email').textContent = t.contactEmail;
+
+      document.getElementById('footer-text').innerHTML = t.footerText;
+      document.getElementById('footer-author').textContent = t.footerAuthor;
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'es' ? 'en' : 'es');
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('jpeg_portfolio_theme', theme);
+      if (theme === 'light') {
+        document.body.classList.add('light-theme');
+        document.getElementById('theme-icon').textContent = '☀️';
+      } else {
+        document.body.classList.remove('light-theme');
+        document.getElementById('theme-icon').textContent = '🌙';
+      }
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
       
-      document.getElementById('tab-' + tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
+      
+      if (tabId === 'inicio') {
+        document.getElementById('nav-inicio').classList.add('active');
+      } else if (tabId === 'certificaciones') {
+        document.getElementById('nav-cert').classList.add('active');
+      } else if (tabId === 'contacto') {
+        document.getElementById('nav-contact').classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // FONDO INTERACTIVO CON CANVAS
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -682,14 +994,14 @@
         if (this.y > height) this.y = 0;
       }
       draw() {
-        ctx.fillStyle = `rgba(99, 102, 241, ${this.opacity})`;
+        ctx.fillStyle = currentTheme === 'light' ? `rgba(79, 70, 229, ${this.opacity * 0.7})` : `rgba(99, 102, 241, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    centerParticles = [];
+    particles = [];
     for (let i = 0; i < 50; i++) {
       particles.push(new Particle());
     }
@@ -703,7 +1015,9 @@
       requestAnimationFrame(animate);
     }
     animate();
-  </script>
 
+    applyLanguage(currentLang);
+    applyTheme(currentTheme);
+  </script>
 </body>
 </html>
