@@ -19,7 +19,7 @@
       --text-main: #f8fafc;
       --text-muted: #a6adbb;
       --border-color: rgba(255, 255, 255, 0.10);
-      --header-bg: rgba(7, 7, 11, 0.82);
+      --header-bg: rgba(7, 7, 11, 0.85);
       --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.30), transparent 50%), radial-gradient(circle at 80% 30%, rgba(34, 211, 238, 0.18), transparent 40%), #090810;
       --btn-bg: #ffffff;
       --btn-text: #000000;
@@ -28,13 +28,12 @@
     }
 
     body.light-theme {
-      /* MODO CLARO ELEGANTE (COLOR HUESO / MARFIL + DETALLES VIBRANTES) */
       --bg-dark: #f8f6f0;
       --accent-color: #6d28d9;
       --accent-secondary: #0284c7;
       --accent-pink: #be185d;
       --accent-glow: rgba(109, 40, 217, 0.15);
-      --card-bg: rgba(241, 238, 230, 0.85);
+      --card-bg: rgba(241, 238, 230, 0.88);
       --text-main: #1c1917;
       --text-muted: #57534e;
       --border-color: rgba(28, 25, 23, 0.12);
@@ -77,7 +76,7 @@
       pointer-events: none;
     }
 
-    /* ENCABEZADO Y BARRA CENTRADA FIJA */
+    /* BARRA DE NAVEGACIÓN FIJA Y CENTRADA */
     .site-header {
       position: sticky;
       top: 0;
@@ -94,7 +93,7 @@
       width: min(100%, 1440px);
       min-height: 54px;
       margin: 0 auto;
-      padding: 7px 12px;
+      padding: 7px 14px;
       display: grid !important;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
       align-items: center;
@@ -125,7 +124,7 @@
       display: flex !important;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
     }
 
     .main-nav .nav-btn {
@@ -134,7 +133,7 @@
       align-items: center;
       justify-content: center;
       min-height: 36px;
-      padding: 8px 11px;
+      padding: 8px 12px;
       border: 1px solid transparent;
       border-radius: 10px;
       color: var(--text-muted);
@@ -237,7 +236,7 @@
     }
 
     .hero-subtitle { color: var(--text-muted); font: 600 0.8rem 'Fira Code', monospace; letter-spacing: 2px; }
-    .hero-intro { max-width: 620px; margin: 18px auto 26px; color: var(--text-muted); font-size: 0.98rem; line-height: 1.65; }
+    .hero-intro { max-width: 620px; margin: 18px auto 26px; color: var(--text-muted); font-size: 0.98rem; line-height: 1.65; text-wrap: balance; }
     .hero-cta { display: inline-flex; gap: 10px; align-items: center; padding: 12px 22px; border: 1px solid var(--border-color); border-radius: 999px; color: var(--text-main); text-decoration: none; font-weight: 800; font-size: 0.8rem; background: rgba(139, 92, 246, 0.09); }
 
     body.light-theme .hero-cta {
@@ -245,15 +244,16 @@
     }
 
     /* PROYECTOS */
+    .section-container { max-width: 1220px; margin: 0 auto; padding: 65px 24px; }
     .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 60px; padding-bottom: 30px; }
     .section-kicker { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2px; color: var(--accent-secondary); text-transform: uppercase; }
     .section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-family: 'Manrope', sans-serif; font-weight: 800; margin-top: 4px; }
-    .section-subtitle { color: var(--text-muted); font-size: 0.92rem; max-width: 650px; }
+    .section-subtitle { color: var(--text-muted); font-size: 0.92rem; max-width: 650px; line-height: 1.6; }
 
     .project-v2 {
       position: relative;
       min-height: 360px;
-      padding: 46px 24px;
+      padding: 50px 24px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -267,8 +267,8 @@
     .project-title a { color: var(--text-main); text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.3em; }
     .project-title a::after { content: '↗'; font: 600 0.45em 'Fira Code', monospace; color: var(--accent-secondary); }
     .project-title a:hover { color: var(--accent-secondary); }
-    .project-kicker { color: var(--accent-secondary); font: 700 0.75rem 'Fira Code', monospace; text-transform: uppercase; margin-bottom: 12px; }
-    .project-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    .project-kicker { color: var(--accent-secondary); font: 700 0.75rem 'Fira Code', monospace; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+    .project-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 18px; text-wrap: pretty; }
     
     .badge-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-color); border-radius: 999px; padding: 5px 12px; font: 700 0.6rem 'Fira Code', monospace; color: var(--text-muted); background: rgba(255, 255, 255, 0.025); margin-bottom: 10px; }
     body.light-theme .badge-status { background: rgba(28, 25, 23, 0.03); }
@@ -279,7 +279,7 @@
     .capabilities span { border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 999px; color: var(--text-muted); font: 600 0.58rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.025); }
     body.light-theme .capabilities span { background: rgba(28, 25, 23, 0.03); }
 
-    /* ESTILOS DE FONDOS POR PROYECTO */
+    /* FONDOS */
     .strip-prisma { background: var(--strip-gradient-prisma); }
     .strip-nexus { background: radial-gradient(circle at 35% 40%, rgba(34, 211, 238, 0.16), transparent 35%), var(--bg-dark); }
     .strip-hackacademy { background: radial-gradient(circle at 70% 50%, rgba(244, 114, 182, 0.13), transparent 35%), var(--bg-dark); }
@@ -288,8 +288,7 @@
     .strip-parroquia { background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.10), transparent 35%), var(--bg-dark); }
 
     /* CONTACTO */
-    .section-container { max-width: 1220px; margin: 0 auto; padding: 60px 24px; }
-    .contact-card-v2 { border: 1px solid var(--border-color); border-radius: 24px; padding: 32px; background: var(--card-bg); backdrop-filter: blur(16px); max-width: 880px; margin: 0 auto; }
+    .contact-card-v2 { border: 1px solid var(--border-color); border-radius: 24px; padding: 36px; background: var(--card-bg); backdrop-filter: blur(16px); max-width: 880px; margin: 0 auto; }
     .contact-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .contact-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none; color: var(--text-main); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.025); font-weight: 700; font-size: 0.88rem; }
     body.light-theme .contact-btn { background: rgba(28, 25, 23, 0.03); }
@@ -297,34 +296,35 @@
     .contact-icon { width: 22px; height: 22px; display: grid; place-items: center; flex-shrink: 0; }
     .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
 
-    .human-notice { margin-top: 24px; padding: 22px; border: 1px dashed var(--border-color); border-radius: 18px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(34, 211, 238, 0.035)); }
+    .human-notice { margin-top: 28px; padding: 24px; border: 1px dashed var(--border-color); border-radius: 18px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(34, 211, 238, 0.035)); }
     body.light-theme .human-notice { background: linear-gradient(135deg, rgba(109, 40, 217, 0.05), rgba(2, 132, 199, 0.03)); }
     .human-notice h3 { font-family: 'Manrope', sans-serif; font-size: 1.1rem; margin: 4px 0 8px; }
-    .human-notice p { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+    .human-notice p { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; text-wrap: pretty; }
 
-    /* DETALLES DE PÁGINA (BAJO EL CAPÓ) */
-    .site-details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
-    .site-detail-card { padding: 22px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--card-bg); backdrop-filter: blur(14px); }
-    .site-detail-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; margin-bottom: 14px; color: var(--accent-secondary); border: 1px solid var(--border-color); font: 800 1rem 'Fira Code', monospace; }
-    .site-detail-card h3 { font-size: 1rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 8px; }
-    .site-detail-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
-    .detail-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-color); }
-    .detail-tags span { font: 700 0.55rem 'Fira Code', monospace; color: var(--text-muted); border: 1px solid var(--border-color); border-radius: 999px; padding: 4px 7px; }
+    /* BAJO EL CAPÓ - DETALLES TÉCNICOS */
+    .site-details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .site-detail-card { padding: 24px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--card-bg); backdrop-filter: blur(14px); display: flex; flex-direction: column; }
+    .site-detail-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; margin-bottom: 16px; color: var(--accent-secondary); border: 1px solid var(--border-color); font: 800 1rem 'Fira Code', monospace; }
+    .site-detail-card h3 { font-size: 1.05rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 10px; }
+    .site-detail-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.65; flex-grow: 1; text-wrap: pretty; }
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-color); }
+    .detail-tags span { font: 700 0.58rem 'Fira Code', monospace; color: var(--text-muted); border: 1px solid var(--border-color); border-radius: 999px; padding: 4px 8px; background: rgba(255, 255, 255, 0.02); }
+    body.light-theme .detail-tags span { background: rgba(28, 25, 23, 0.03); }
 
-    /* CERTIFICACIONES OPTIMIZADAS COMPACTAS (AL FINAL) */
-    .cert-columns-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .cert-category-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; backdrop-filter: blur(14px); }
-    .cert-category-box h3 { font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
-    .cert-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
-    .cert-list li { padding: 4px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    /* CERTIFICACIONES */
+    .cert-columns-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .cert-category-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; backdrop-filter: blur(14px); }
+    .cert-category-box h3 { font-family: 'Manrope', sans-serif; font-size: 0.98rem; font-weight: 800; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+    .cert-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+    .cert-list li { padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
     body.light-theme .cert-list li { border-bottom-color: rgba(28, 25, 23, 0.06); }
     .cert-list li:last-child { border-bottom: 0; }
-    .cert-title { font-weight: 700; font-size: 0.8rem; color: var(--text-main); line-height: 1.3; }
-    .cert-issuer-sub { font-size: 0.62rem; color: var(--accent-color); font-family: 'Fira Code', monospace; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
-    .cert-desc { font-size: 0.7rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px; }
+    .cert-title { font-weight: 700; font-size: 0.82rem; color: var(--text-main); line-height: 1.35; }
+    .cert-issuer-sub { font-size: 0.64rem; color: var(--accent-color); font-family: 'Fira Code', monospace; font-weight: 700; text-transform: uppercase; margin-top: 3px; }
+    .cert-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin-top: 3px; }
 
-    footer { padding: 24px 6%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--footer-muted); background: var(--footer-bg); margin-top: auto; font-family: 'Fira Code', monospace; }
-    .footer-credits { margin-top: 6px; font-size: 0.72rem; opacity: 0.85; }
+    footer { padding: 28px 6%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--footer-muted); background: var(--footer-bg); margin-top: auto; font-family: 'Fira Code', monospace; }
+    .footer-credits { margin-top: 6px; font-size: 0.74rem; opacity: 0.85; }
 
     @media (max-width: 960px) {
       .site-header .main-nav { display: none !important; }
@@ -346,10 +346,10 @@
 
   <canvas id="bg-canvas"></canvas>
 
-  <!-- ENCABEZADO CON NAVEGACIÓN REORDENADA -->
+  <!-- ENCABEZADO -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#home" class="brand-mini" id="brand-title">DIRECTED BY JPEG</a>
+      <a href="#home" class="brand-mini" id="brand-title">DIRIGIDO POR JPEG</a>
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#home" class="nav-btn active" id="nav-inicio">Inicio</a>
         <a href="#proyectos" class="nav-btn" id="nav-projects">Proyectos</a>
@@ -377,10 +377,10 @@
   </header>
 
   <main>
-    <!-- 1. HERO SECTION -->
+    <!-- 1. HERO -->
     <section class="hero-v2" id="home">
       <div class="hero-content">
-        <div class="eyebrow" id="hero-eyebrow">DIGITAL EXPERIENCES · WEB · AI · SYSTEMS</div>
+        <div class="eyebrow" id="hero-eyebrow">EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS</div>
         <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR</span><strong id="hero-title-brand">JPEG</strong></h1>
         <p class="hero-subtitle" id="hero-tagline">JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE</p>
         <p class="hero-intro" id="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en cosas que se pueden usar.</p>
@@ -388,11 +388,11 @@
       </div>
     </section>
 
-    <!-- 2. SECCIÓN DE PROYECTOS -->
+    <!-- 2. PROYECTOS -->
     <section id="proyectos" class="projects-section">
       <div class="section-container projects-heading">
         <div>
-          <div class="section-kicker">SELECTED WORK</div>
+          <div class="section-kicker" id="projects-kicker">TRABAJO SELECCIONADO</div>
           <h2 class="section-title" id="projects-title">Proyectos</h2>
           <p class="section-subtitle" id="projects-desc">Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.</p>
         </div>
@@ -404,7 +404,7 @@
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
-          <p class="project-kicker">Interactive Self-Discovery &amp; Career Exploration</p>
+          <p class="project-kicker" id="kicker-prisma">Autoconocimiento Interactivo &amp; Exploración Profesional</p>
           <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
           <div class="capabilities"><span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span><span id="cap-prisma-2">MEDICIÓN INDIRECTA</span><span id="cap-prisma-3">UX INTERACTIVA</span></div>
         </div>
@@ -416,7 +416,7 @@
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
-          <p class="project-kicker">AI Intelligence &amp; Interactive Web Systems</p>
+          <p class="project-kicker" id="kicker-nexus">Inteligencia Artificial &amp; Sistemas Web Interactivos</p>
           <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
           <div class="capabilities"><span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span><span id="cap-nexus-2">ARQUITECTURA SPA</span><span id="cap-nexus-3">CONTENIDO CON IA</span></div>
         </div>
@@ -428,7 +428,7 @@
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
-          <p class="project-kicker">Learning Experience &amp; AI-Assisted Education</p>
+          <p class="project-kicker" id="kicker-hack">Experiencia de Aprendizaje &amp; Educación Asistida por IA</p>
           <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
           <div class="capabilities"><span id="cap-hack-1">UX EDUCATIVA</span><span id="cap-hack-2">FLUJOS DE MENTORÍA</span><span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></div>
         </div>
@@ -440,7 +440,7 @@
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-store">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-store"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener">DIGITAL VAULT</a></h2>
-          <p class="project-kicker">AI Resources, Prompt Engineering &amp; Workflow Systems</p>
+          <p class="project-kicker" id="kicker-store">Recursos de IA, Ingeniería de Prompts &amp; Automatizaciones</p>
           <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
           <div class="capabilities"><span id="cap-store-1">INGENIERÍA DE PROMPTS</span><span id="cap-store-2">FLUJOS CON IA</span><span id="cap-store-3">ARQUITECTURA DIGITAL</span></div>
         </div>
@@ -452,7 +452,7 @@
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-cv">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-cv"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener">CURRICULUM VITAE</a></h2>
-          <p class="project-kicker">Professional Profile &amp; Technical Portfolio</p>
+          <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
           <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
           <div class="capabilities"><span id="cap-cv-1">MARCA PERSONAL</span><span id="cap-cv-2">UI RESPONSIVA</span><span id="cap-cv-3">NARRATIVA TÉCNICA</span></div>
         </div>
@@ -462,16 +462,16 @@
       <article class="project-v2 strip-parroquia">
         <div class="project-index"><span aria-hidden="true">✦</span> 06</div>
         <div class="strip-content">
-          <span class="badge-status badge-project" id="badge-parroquia">NON-PROFIT PROJECT</span>
+          <span class="badge-status badge-project" id="badge-parroquia">PROYECTO SIN FINES DE LUCRO</span>
           <h2 class="project-title" id="title-parroquia"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener">NUESTRA SEÑORA DE LA MEDALLA MILAGROSA</a></h2>
-          <p class="project-kicker">Institutional Web Project · Accessibility &amp; Community</p>
+          <p class="project-kicker" id="kicker-parroquia">Proyecto Web Institucional · Accesibilidad &amp; Comunidad</p>
           <p class="project-desc" id="desc-parroquia">Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni la identidad personal de DIRECTED BY JPEG.</p>
           <div class="capabilities"><span id="cap-parish-1">UX ACCESIBLE</span><span id="cap-parish-2">UI MULTILINGÜE</span><span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></div>
         </div>
       </article>
     </section>
 
-    <!-- 3. SECCIÓN DE CONTACTO -->
+    <!-- 3. CONTACTO -->
     <div id="contacto" class="section-container contact-section-v2">
       <div class="section-header">
         <div class="section-kicker" id="contact-kicker">CANAL ABIERTO</div>
@@ -520,14 +520,34 @@
         <p class="section-subtitle" id="site-desc">Una mirada rápida a la estructura, tecnologías, experiencias y rutas que forman este sitio.</p>
       </div>
       <div class="site-details-grid">
-        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">⌘</span><h3 id="site-card-1-title">Arquitectura</h3><p id="site-card-1-desc">SPA ligera en HTML, CSS y JavaScript puro. Un solo documento lo resuelve todo: anclas internas para las secciones, enlaces externos para cada proyecto y un sistema de idioma que no duplica páginas.</p><div class="detail-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></article>
-        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">✦</span><h3 id="site-card-2-title">Interacción</h3><p id="site-card-2-desc">Tema claro/oscuro persistente, cambio de idioma completo, scroll suave y un menú que se adapta a cada tamaño de pantalla. El movimiento ambiental respeta prefers-reduced-motion cuando el dispositivo lo pide.</p><div class="detail-tags"><span>UI / UX</span><span>ADAPTABLE</span><span>ACCESIBILIDAD</span></div></article>
-        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">↗</span><h3 id="site-card-3-title">Rutas</h3><p id="site-card-3-desc">Las anclas internas llevan a cada sección sin recargar la página, y el nombre de cada proyecto enlaza directo a su despliegue. El encabezado y el menú móvil comparten la misma jerarquía.</p><div class="detail-tags"><span id="route-tag-1">PROYECTOS</span><span id="route-tag-2">ENLACES ACTIVOS</span></div></article>
-        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">◎</span><h3 id="site-card-4-title">Propósito</h3><p id="site-card-4-desc">El punto de entrada a mis proyectos: portafolio, laboratorio y garaje digital, donde conviven trabajos publicados y experimentos en evolución.</p><div class="detail-tags"><span id="purpose-tag-1">PORTAFOLIO</span><span id="purpose-tag-2">LABORATORIO</span><span id="purpose-tag-3">GARAJE</span></div></article>
+        <article class="site-detail-card">
+          <span class="site-detail-icon" aria-hidden="true">⌘</span>
+          <h3 id="site-card-1-title">Arquitectura</h3>
+          <p id="site-card-1-desc">SPA ligera construida con HTML semántico, CSS3 avanzado y JavaScript nativo en un solo archivo. Sin dependencias externas pesadas para garantizar máxima velocidad de carga.</p>
+          <div class="detail-tags"><span>HTML5</span><span>CSS GRID</span><span>ES6+ JS</span></div>
+        </article>
+        <article class="site-detail-card">
+          <span class="site-detail-icon" aria-hidden="true">✦</span>
+          <h3 id="site-card-2-title">Interacción</h3>
+          <p id="site-card-2-desc">Sistema de tema claro/oscuro persistente en LocalStorage, alternancia dinámica de idioma sin recargar la página y renderizado de partículas mediante Canvas 2D.</p>
+          <div class="detail-tags"><span>CANVAS API</span><span>LOCALSTORAGE</span><span>UI ACCESIBLE</span></div>
+        </article>
+        <article class="site-detail-card">
+          <span class="site-detail-icon" aria-hidden="true">↗</span>
+          <h3 id="site-card-3-title">Rutas &amp; Layout</h3>
+          <p id="site-card-3-desc">Navegación por anclas internas con scroll suave y encabezado inteligente con CSS Grid que mantiene el menú perfectamente centrado en cualquier resolución.</p>
+          <div class="detail-tags"><span id="route-tag-1">PROYECTOS</span><span id="route-tag-2">ENLACES ACTIVOS</span></div>
+        </article>
+        <article class="site-detail-card">
+          <span class="site-detail-icon" aria-hidden="true">◎</span>
+          <h3 id="site-card-4-title">Propósito</h3>
+          <p id="site-card-4-desc">Bóveda digital unificada que conecta todos mis proyectos activos, laboratorios interactivos y canal de comunicación directa en un entorno limpio.</p>
+          <div class="detail-tags"><span id="purpose-tag-1">PORTAFOLIO</span><span id="purpose-tag-2">LABORATORIO</span><span id="purpose-tag-3">GARAJE</span></div>
+        </article>
       </div>
     </section>
 
-    <!-- 5. SECCIÓN DE CERTIFICACIONES (AHORA AL FINAL) -->
+    <!-- 5. CERTIFICACIONES -->
     <div id="certificaciones" class="section-container">
       <div class="section-header">
         <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
@@ -710,7 +730,7 @@
   </main>
 
   <footer>
-    <div id="footer-text">DIRECTED BY JPEG &copy; 2026 — Todos los derechos reservados</div>
+    <div id="footer-text">DIRIGIDO POR JPEG &copy; 2026 — Todos los derechos reservados</div>
     <div class="footer-credits" id="footer-author">Diseñado y Desarrollado por Juan Pablo Espinel Galvis</div>
   </footer>
 
@@ -725,10 +745,10 @@
       const translations = {
         es: {
           pageTitle: 'DIRIGIDO POR JPEG — Portafolio, Laboratorio y Garaje',
-          brandTitle: 'DIRECTED BY JPEG',
+          brandTitle: 'DIRIGIDO POR JPEG',
           heroTitlePrefix: 'DIRIGIDO POR',
           heroTitleBrand: 'JPEG',
-          heroEyebrow: 'DIGITAL EXPERIENCES · WEB · AI · SYSTEMS',
+          heroEyebrow: 'EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS',
           heroTagline: 'JPEG PORTAFOLIO • LABORATORIO & GARAJE',
           heroIntro: 'Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en cosas que se pueden usar.',
           heroCta: 'Explorar proyectos',
@@ -737,14 +757,22 @@
           navContact: 'Contacto',
           navSite: 'Bajo el capó',
           navCert: 'Certificaciones',
+          projectsKicker: 'TRABAJO SELECCIONADO',
           projectsTitle: 'Proyectos',
           projectsDesc: 'Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.',
           badgeLive: 'DESPLIEGUE ACTIVO',
+          badgeProject: 'PROYECTO SIN FINES DE LUCRO',
+          kickerPrisma: 'Autoconocimiento Interactivo & Exploración Profesional',
           descPrisma: 'Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.',
+          kickerNexus: 'Inteligencia Artificial & Sistemas Web Interactivos',
           descNexus: 'Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.',
+          kickerHack: 'Experiencia de Aprendizaje & Educación Asistida por IA',
           descHack: 'Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.',
+          kickerStore: 'Recursos de IA, Ingeniería de Prompts & Automatizaciones',
           descStore: 'Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.',
+          kickerCv: 'Perfil Profesional & Portafolio Técnico',
           descCv: 'Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.',
+          kickerParroquia: 'Proyecto Web Institucional · Accesibilidad & Comunidad',
           descParroquia: 'Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni la identidad personal de DIRECTED BY JPEG.',
           capPrisma1: 'EVALUACIÓN ADAPTATIVA', capPrisma2: 'MEDICIÓN INDIRECTA', capPrisma3: 'UX INTERACTIVA',
           capNexus1: 'SISTEMAS INTERACTIVOS', capNexus2: 'ARQUITECTURA SPA', capNexus3: 'CONTENIDO CON IA',
@@ -762,10 +790,10 @@
           siteKicker: 'DETRÁS DE LA PÁGINA',
           siteTitle: 'Cómo está construida',
           siteDesc: 'Una mirada rápida a la estructura, tecnologías, experiencias y rutas que forman este sitio.',
-          site1Title: 'Arquitectura', site1Desc: 'SPA ligera en HTML, CSS y JavaScript puro. Un solo documento lo resuelve todo: anclas internas para las secciones, enlaces externos para cada proyecto y un sistema de idioma que no duplica páginas.',
-          site2Title: 'Interacción', site2Desc: 'Tema claro/oscuro persistente, cambio de idioma completo, scroll suave y un menú que se adapta a cada tamaño de pantalla. El movimiento ambiental respeta prefers-reduced-motion cuando el dispositivo lo pide.',
-          site3Title: 'Rutas', site3Desc: 'Las anclas internas llevan a cada sección sin recargar la página, y el nombre de cada proyecto enlaza directo a su despliegue. El encabezado y el menú móvil comparten la misma jerarquía.',
-          site4Title: 'Propósito', site4Desc: 'El punto de entrada a mis proyectos: portafolio, laboratorio y garaje digital, donde conviven trabajos publicados y experimentos en evolución.',
+          site1Title: 'Arquitectura', site1Desc: 'SPA ligera construida con HTML semántico, CSS3 avanzado y JavaScript nativo en un solo archivo. Sin dependencias externas pesadas para garantizar máxima velocidad de carga.',
+          site2Title: 'Interacción', site2Desc: 'Sistema de tema claro/oscuro persistente en LocalStorage, alternancia dinámica de idioma sin recargar la página y renderizado de partículas mediante Canvas 2D.',
+          site3Title: 'Rutas & Layout', site3Desc: 'Navegación por anclas internas con scroll suave y encabezado inteligente con CSS Grid que mantiene el menú perfectamente centrado en cualquier resolución.',
+          site4Title: 'Propósito', site4Desc: 'Bóveda digital unificada que conecta todos mis proyectos activos, laboratorios interactivos y canal de comunicación directa en un entorno limpio.',
           routeTag1: 'PROYECTOS', routeTag2: 'ENLACES ACTIVOS',
           purposeTag1: 'PORTAFOLIO', purposeTag2: 'LABORATORIO', purposeTag3: 'GARAJE',
           certTitle: 'Credenciales y Certificaciones',
@@ -776,7 +804,7 @@
           catData: '▦ Datos y Analítica', data1: 'Modelado avanzado con DAX y visualización de datos.', data2: 'Análisis estratégico e inteligencia de negocio.', data3: 'Procesamiento masivo, MapReduce y ecosistemas distribuidos.', data4: 'Transformación de datos y paneles empresariales.', data5: 'Marketing digital analítico y métricas de conversión.', data6: 'Pruebas analíticas y optimización de plataformas web.',
           catDev: '⌘ Desarrollo & Arquitectura', dev1: 'Patrones de diseño, escalabilidad y código limpio.', dev2: 'Programación orientada a objetos y algoritmos.', dev3: 'Desarrollo ágil de productos digitales asistido por IA.', dev4: 'Automatizaciones low-code e integración de procesos.',
           catMgmt: '≋ Gestión, Marketing & Idiomas', mgmt1: 'Ciclo de vida y metodologías de gestión de proyectos.', mgmt2: 'Arranque, alcance, control de tiempos y presupuestos.', mgmt3: 'Sistematización de procesos y mejora continua.', mgmt4: 'Growth Marketing con IA e IA conversacional.', mgmt5: 'Dominio de inglés C2 avanzado.',
-          footer: 'DIRECTED BY JPEG © 2026 — Todos los derechos reservados',
+          footer: 'DIRIGIDO POR JPEG © 2026 — Todos los derechos reservados',
           author: 'Diseñado y Desarrollado por Juan Pablo Espinel Galvis'
         },
         en: {
@@ -793,14 +821,22 @@
           navContact: 'Contact',
           navSite: 'Under the Hood',
           navCert: 'Certifications',
+          projectsKicker: 'SELECTED WORK',
           projectsTitle: 'Projects',
           projectsDesc: 'Six digital pieces exploring different ways to build, experiment and solve problems.',
           badgeLive: 'LIVE DEPLOYMENT',
+          badgeProject: 'NON-PROFIT PROJECT',
+          kickerPrisma: 'Interactive Self-Discovery & Career Exploration',
           descPrisma: 'An interactive self-discovery and career exploration experience built around indirect decisions, crossed evidence and adaptive assessment.',
+          kickerNexus: 'AI Intelligence & Interactive Web Systems',
           descNexus: 'A radar for artificial intelligence, finance, interactive web tools and technical resources brought together in a focused SPA experience.',
+          kickerHack: 'Learning Experience & AI-Assisted Education',
           descHack: 'An educational platform focused on personalized mentoring, practical English, learning pace and AI-assisted tools.',
+          kickerStore: 'AI Resources, Prompt Engineering & Workflow Systems',
           descStore: 'A digital vault of resources, prompt engineering guides, AI workflow optimization and automation-oriented architectures.',
+          kickerCv: 'Professional Profile & Technical Portfolio',
           descCv: 'An interactive CV bringing together professional experience, skills, credentials and selected work in a direct web experience.',
+          kickerParroquia: 'Institutional Web Project · Accessibility & Community',
           descParroquia: 'An institutional web project developed for a parish in Bogotá. It is independent work for a religious organization and does not represent personal beliefs.',
           capPrisma1: 'ADAPTIVE ASSESSMENT', capPrisma2: 'INDIRECT MEASUREMENT', capPrisma3: 'INTERACTIVE UX',
           capNexus1: 'INTERACTIVE SYSTEMS', capNexus2: 'SPA ARCHITECTURE', capNexus3: 'AI CONTENT',
@@ -818,10 +854,10 @@
           siteKicker: 'UNDER THE HOOD',
           siteTitle: 'How this site works',
           siteDesc: 'A concise look at the architecture, technologies, interactions and routes connecting this experience to each project.',
-          site1Title: 'Architecture', site1Desc: 'A lightweight SPA in HTML, CSS and vanilla JavaScript. One document handles it all: internal anchors for sections, external links for each project, and a language system that never duplicates pages.',
-          site2Title: 'Interaction', site2Desc: 'A persistent light/dark theme, full language switching, smooth scroll and a menu that adapts to every screen size.',
-          site3Title: 'Routes', site3Desc: 'Internal anchors jump between sections without reloading the page, and each project name links straight to its live deployment.',
-          site4Title: 'Purpose', site4Desc: 'The entry point to my projects: portfolio, lab and digital garage.',
+          site1Title: 'Architecture', site1Desc: 'Lightweight SPA built with semantic HTML, advanced CSS3 and vanilla JavaScript in a single file. No heavy external dependencies to ensure maximum loading speed.',
+          site2Title: 'Interaction', site2Desc: 'Persistent light/dark theme system in LocalStorage, dynamic language switching without page reloads, and Canvas 2D particle rendering.',
+          site3Title: 'Routes & Layout', site3Desc: 'Internal anchor navigation with smooth scrolling and smart header using CSS Grid that keeps the menu perfectly centered at any resolution.',
+          site4Title: 'Purpose', site4Desc: 'Unified digital vault connecting all my active projects, interactive labs, and direct communication channel in a clean environment.',
           routeTag1: 'PROJECTS', routeTag2: 'LIVE LINKS',
           purposeTag1: 'PORTFOLIO', purposeTag2: 'LAB', purposeTag3: 'GARAGE',
           certTitle: 'Credentials & Certifications',
@@ -854,8 +890,13 @@
         const map = {
           'hero-title-prefix':'heroTitlePrefix','hero-title-brand':'heroTitleBrand','hero-eyebrow':'heroEyebrow','hero-tagline':'heroTagline','hero-intro':'heroIntro','hero-cta-text':'heroCta',
           'nav-inicio':'navHome','nav-projects':'navProjects','nav-contact':'navContact','nav-site':'navSite','nav-cert':'navCert',
-          'projects-title':'projectsTitle','projects-desc':'projectsDesc',
-          'desc-prisma':'descPrisma','desc-nexus':'descNexus','desc-hack':'descHack','desc-store':'descStore','desc-cv':'descCv','desc-parroquia':'descParroquia',
+          'projects-kicker':'projectsKicker','projects-title':'projectsTitle','projects-desc':'projectsDesc',
+          'kicker-prisma':'kickerPrisma','desc-prisma':'descPrisma',
+          'kicker-nexus':'kickerNexus','desc-nexus':'descNexus',
+          'kicker-hack':'kickerHack','desc-hack':'descHack',
+          'kicker-store':'kickerStore','desc-store':'descStore',
+          'kicker-cv':'kickerCv','desc-cv':'descCv',
+          'kicker-parroquia':'kickerParroquia','desc-parroquia':'descParroquia',
           'cap-prisma-1':'capPrisma1','cap-prisma-2':'capPrisma2','cap-prisma-3':'capPrisma3',
           'cap-nexus-1':'capNexus1','cap-nexus-2':'capNexus2','cap-nexus-3':'capNexus3',
           'cap-hack-1':'capHack1','cap-hack-2':'capHack2','cap-hack-3':'capHack3',
@@ -880,6 +921,9 @@
 
         Object.entries(map).forEach(([id,key]) => set(id, t[key], id === 'footer-text'));
         document.querySelectorAll('.badge-live').forEach(el => { el.textContent = t.badgeLive; });
+        const badgeParroquia = document.getElementById('badge-parroquia');
+        if (badgeParroquia) badgeParroquia.textContent = t.badgeProject;
+
         document.querySelectorAll('#mobile-nav .nav-btn').forEach((el, i) => { el.textContent = [t.navHome, t.navProjects, t.navContact, t.navSite, t.navCert][i]; });
         document.getElementById('lang-es')?.classList.toggle('lang-active', currentLang === 'es');
         document.getElementById('lang-en')?.classList.toggle('lang-active', currentLang === 'en');
