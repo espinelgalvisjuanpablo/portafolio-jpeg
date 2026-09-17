@@ -1,369 +1,716 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="DIRECTED BY JPEG — Portafolio, laboratorio y garaje digital.">
-  <meta name="theme-color" content="#07070b">
-  <title>DIRECTED BY JPEG — Portafolio, Laboratorio y Garaje</title>
+  <title>DIRIGIDO POR JPEG — Portafolio</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<canvas id="bg-canvas"></canvas>
 
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#home" class="brand-mini" id="brand-title" aria-label="DIRECTED BY JPEG — Home">DIRECTED BY JPEG</a>
+
+      <a href="#home" class="brand-mini" data-i18n="brand">
+        DIRECTED BY JPEG
+      </a>
+
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#home" class="nav-btn active" id="nav-inicio">Inicio</a>
-        <a href="#proyectos" class="nav-btn" id="nav-projects">Proyectos</a>
-        <a href="#certificaciones" class="nav-btn" id="nav-cert">Certificaciones</a>
-        <a href="#contacto" class="nav-btn" id="nav-contact">Contacto</a>
-        <a href="#sobre-el-sitio" class="nav-btn" id="nav-site">Bajo el capó</a>
+        <a href="#home" class="nav-btn active" data-i18n="nav_home">Inicio</a>
+        <a href="#proyectos" class="nav-btn" data-i18n="nav_projects">Proyectos</a>
+        <a href="#certificaciones" class="nav-btn" data-i18n="nav_cert">Certificaciones</a>
+        <a href="#contacto" class="nav-btn" data-i18n="nav_contact">Contacto</a>
+        <a href="#sobre-el-sitio" class="nav-btn" data-i18n="nav_site">Bajo el capó</a>
       </nav>
+
       <div class="header-controls">
-        <button class="ctrl-btn theme-control" id="theme-btn"  title="Cambiar tema" aria-label="Cambiar tema">
-          <span id="theme-icon">◑</span>
+        <button
+          class="ctrl-btn"
+          id="theme-btn"
+          type="button"
+          aria-label="Cambiar tema"
+          title="Cambiar tema">
+          <span id="theme-icon">◐</span>
         </button>
-        <button class="lang-switch" id="lang-btn"  title="Cambiar idioma" aria-label="Cambiar idioma">
-          <span id="lang-es" class="lang-active">ES</span><span class="lang-divider">/</span><span id="lang-en">EN</span>
+
+        <button
+          class="lang-switch"
+          id="lang-btn"
+          type="button"
+          aria-label="Cambiar idioma"
+          title="Cambiar idioma">
+          <span id="lang-es" class="lang-active">ES</span>
+          <span class="lang-divider">/</span>
+          <span id="lang-en">EN</span>
         </button>
-        <button class="mobile-menu-btn" id="mobile-menu-btn"  aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú" title="Abrir menú">≡</button>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobile-menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Abrir menú">
+          ☰
+        </button>
       </div>
     </div>
+
     <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
-      <a href="#home" class="nav-btn active" >Inicio</a>
-      <a href="#proyectos" class="nav-btn" >Proyectos</a>
-      <a href="#certificaciones" class="nav-btn" >Certificaciones</a>
-      <a href="#contacto" class="nav-btn" >Contacto</a>
-      <a href="#sobre-el-sitio" class="nav-btn" >Bajo el capó</a>
+      <a href="#home" class="nav-btn active" data-i18n="nav_home">Inicio</a>
+      <a href="#proyectos" class="nav-btn" data-i18n="nav_projects">Proyectos</a>
+      <a href="#certificaciones" class="nav-btn" data-i18n="nav_cert">Certificaciones</a>
+      <a href="#contacto" class="nav-btn" data-i18n="nav_contact">Contacto</a>
+      <a href="#sobre-el-sitio" class="nav-btn" data-i18n="nav_site">Bajo el capó</a>
     </nav>
   </header>
 
   <main>
-    
-    <!-- HERO SECTION -->
-    <section class="hero-section hero-v2" id="home">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero-section" id="home">
+
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-band hero-band-a" aria-hidden="true"></div>
       <div class="hero-band hero-band-b" aria-hidden="true"></div>
       <div class="hero-band hero-band-c" aria-hidden="true"></div>
+
       <div class="hero-orbit hero-orbit-a" aria-hidden="true"></div>
       <div class="hero-orbit hero-orbit-b" aria-hidden="true"></div>
+
       <div class="hero-content">
-        <div class="eyebrow" id="hero-eyebrow">EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS</div>
-        <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR</span><strong id="hero-title-brand">JPEG</strong></h1>
-        <p class="hero-subtitle" id="hero-tagline">JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE</p>
-        <p class="hero-intro" id="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.</p>
-        <a class="hero-cta" href="#proyectos"><span id="hero-cta-text">Explorar proyectos</span><span aria-hidden="true">↓</span></a>
+
+        <div class="eyebrow" data-i18n="hero_eyebrow">
+          EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS
+        </div>
+
+        <h1 class="hero-title">
+          <span data-i18n="hero_prefix">DIRIGIDO POR</span>
+          <strong>JPEG</strong>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="hero_tagline">
+          JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE
+        </p>
+
+        <p class="hero-intro" data-i18n="hero_intro">
+          Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.
+        </p>
+
+        <a href="#proyectos" class="hero-cta">
+          <span data-i18n="hero_cta">Explorar proyectos</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+
       </div>
-      <div class="hero-meta hero-meta-left" id="hero-meta-left" aria-hidden="true">V2.6 / TRABAJO SELECCIONADO</div>
-      <div class="hero-meta hero-meta-right" id="hero-meta-right" aria-hidden="true">BOGOTÁ · CO</div>
-      <div class="scroll-cue" aria-hidden="true"><span></span><small id="scroll-text">DESLIZA PARA EXPLORAR</small></div>
+
+      <div class="hero-meta hero-meta-left">V2.6 / SELECTED WORK</div>
+      <div class="hero-meta hero-meta-right">BOGOTÁ · CO</div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span></span>
+        <small data-i18n="scroll">DESLIZA PARA EXPLORAR</small>
+      </div>
+
     </section>
 
-    <!-- PROJECTS SECTION -->
+
+    <!-- ================= PROJECTS ================= -->
     <section id="proyectos" class="projects-section">
+
       <div class="section-container projects-heading">
         <div>
-          <div class="section-kicker" id="projects-kicker">TRABAJO SELECCIONADO</div>
-          <h2 class="section-title" id="projects-title">Proyectos</h2>
-          <p class="section-subtitle" id="projects-desc">Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.</p>
+          <div class="section-kicker" data-i18n="projects_kicker">
+            TRABAJO SELECCIONADO
+          </div>
+
+          <h2 class="section-title" data-i18n="projects_title">
+            Proyectos
+          </h2>
+
+          <p class="section-subtitle" data-i18n="projects_desc">
+            Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.
+          </p>
         </div>
-        <div class="project-count" id="projects-count-display">1 de 6</div>
+
+        <div class="project-count">
+          06 <span>PROJECTS</span>
+        </div>
       </div>
 
-      <!-- 01. PRISMA -->
-      <article class="project-strip project-v2 strip-prisma">
-        <div class="project-index"><span aria-hidden="true">◈</span> 1 de 6</div>
+
+      <!-- PRISMA -->
+      <article class="project-strip strip-prisma">
+        <div class="project-index">◈ 01</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
-          <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir PRISMA">PRISMA</a></h2>
-          <p class="project-kicker" id="kicker-prisma">Exploración Profesional & Autodescubrimiento Interactivo</p>
-          <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
-          <div class="capabilities" id="caps-prisma"><span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span><span id="cap-prisma-2">MEDICIÓN INDIRECTA</span><span id="cap-prisma-3">DISEÑO DE EXPERIENCIA</span></div>
+          <span class="badge-status">
+            <i></i>
+            <span data-i18n="badge_live">DESPLIEGUE ACTIVO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://prisma-green-zeta.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              PRISMA
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="prisma_kicker">
+            Exploración Profesional &amp; Autodescubrimiento Interactivo
+          </p>
+
+          <p class="project-desc" data-i18n="prisma_desc">
+            Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="prisma_cap1">EVALUACIÓN ADAPTATIVA</span>
+            <span data-i18n="prisma_cap2">MEDICIÓN INDIRECTA</span>
+            <span data-i18n="prisma_cap3">DISEÑO DE EXPERIENCIA</span>
+          </div>
         </div>
       </article>
 
-      <!-- 02. NEXUS -->
-      <article class="project-strip project-v2 strip-nexus">
-        <div class="project-index"><span aria-hidden="true">◇</span> 2 de 6</div>
+
+      <!-- NEXUS -->
+      <article class="project-strip strip-nexus">
+        <div class="project-index">◇ 02</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
-          <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir NEXUS">NEXUS</a></h2>
-          <p class="project-kicker" id="kicker-nexus">Inteligencia Artificial & Sistemas Web Interactivos</p>
-          <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
-          <div class="capabilities"><span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span><span id="cap-nexus-2">ARQUITECTURA SPA</span><span id="cap-nexus-3">CONTENIDO CON IA</span></div>
+          <span class="badge-status">
+            <i></i>
+            <span data-i18n="badge_live">DESPLIEGUE ACTIVO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://nexus-hazel-kappa.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              NEXUS
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="nexus_kicker">
+            Inteligencia Artificial &amp; Sistemas Web Interactivos
+          </p>
+
+          <p class="project-desc" data-i18n="nexus_desc">
+            Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="nexus_cap1">SISTEMAS INTERACTIVOS</span>
+            <span data-i18n="nexus_cap2">ARQUITECTURA SPA</span>
+            <span data-i18n="nexus_cap3">CONTENIDO CON IA</span>
+          </div>
         </div>
       </article>
 
-      <!-- 03. HACK ACADEMY -->
-      <article class="project-strip project-v2 strip-hackacademy">
-        <div class="project-index"><span aria-hidden="true">≋</span> 3 de 6</div>
+
+      <!-- HACK ACADEMY -->
+      <article class="project-strip strip-hack">
+        <div class="project-index">≋ 03</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
-          <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir HACK ACADEMY">HACK ACADEMY</a></h2>
-          <p class="project-kicker" id="kicker-hack">Experiencia de Aprendizaje & Educación Asistida por IA</p>
-          <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
-          <div class="capabilities"><span id="cap-hack-1">DISEÑO EDUCATIVO</span><span id="cap-hack-2">FLUJOS DE MENTORÍA</span><span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></div>
+          <span class="badge-status">
+            <i></i>
+            <span data-i18n="badge_live">DESPLIEGUE ACTIVO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://hackacademy.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              HACK ACADEMY
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="hack_kicker">
+            Experiencia de Aprendizaje &amp; Educación Asistida por IA
+          </p>
+
+          <p class="project-desc" data-i18n="hack_desc">
+            Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="hack_cap1">DISEÑO EDUCATIVO</span>
+            <span data-i18n="hack_cap2">FLUJOS DE MENTORÍA</span>
+            <span data-i18n="hack_cap3">APRENDIZAJE ASISTIDO POR IA</span>
+          </div>
         </div>
       </article>
 
-      <!-- 04. DIGITAL VAULT -->
-      <article class="project-strip project-v2 strip-jpegstore">
-        <div class="project-index"><span aria-hidden="true">▣</span> 4 de 6</div>
+
+      <!-- DIGITAL VAULT -->
+      <article class="project-strip strip-vault">
+        <div class="project-index">▣ 04</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-live" id="badge-store">DESPLIEGUE ACTIVO</span>
-          <h2 class="project-title" id="title-store"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir DIGITAL VAULT">DIGITAL VAULT</a></h2>
-          <p class="project-kicker" id="kicker-store">Recursos de IA, Ingeniería de Prompts & Flujos de Trabajo</p>
-          <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
-          <div class="capabilities"><span id="cap-store-1">INGENIERÍA DE PROMPTS</span><span id="cap-store-2">FLUJOS CON IA</span><span id="cap-store-3">ARQUITECTURA DIGITAL</span></div>
+          <span class="badge-status">
+            <i></i>
+            <span data-i18n="badge_live">DESPLIEGUE ACTIVO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://jpeg-store.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              DIGITAL VAULT
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="vault_kicker">
+            Recursos de IA, Ingeniería de Prompts &amp; Flujos de Trabajo
+          </p>
+
+          <p class="project-desc" data-i18n="vault_desc">
+            Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="vault_cap1">INGENIERÍA DE PROMPTS</span>
+            <span data-i18n="vault_cap2">FLUJOS CON IA</span>
+            <span data-i18n="vault_cap3">ARQUITECTURA DIGITAL</span>
+          </div>
         </div>
       </article>
 
-      <!-- 05. CURRICULUM VITAE -->
-      <article class="project-strip project-v2 strip-cv">
-        <div class="project-index"><span aria-hidden="true">◎</span> 5 de 6</div>
+
+      <!-- CV -->
+      <article class="project-strip strip-cv">
+        <div class="project-index">◎ 05</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-live" id="badge-cv">DESPLIEGUE ACTIVO</span>
-          <h2 class="project-title" id="title-cv"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir CURRICULUM VITAE">CURRICULUM VITAE</a></h2>
-          <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
-          <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
-          <div class="capabilities"><span id="cap-cv-1">MARCA PERSONAL</span><span id="cap-cv-2">INTERFAZ RESPONSIVA</span><span id="cap-cv-3">NARRATIVA TÉCNICA</span></div>
+          <span class="badge-status">
+            <i></i>
+            <span data-i18n="badge_live">DESPLIEGUE ACTIVO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://cv-tau-gray.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              CURRICULUM VITAE
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="cv_kicker">
+            Perfil Profesional &amp; Portafolio Técnico
+          </p>
+
+          <p class="project-desc" data-i18n="cv_desc">
+            Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="cv_cap1">MARCA PERSONAL</span>
+            <span data-i18n="cv_cap2">INTERFAZ RESPONSIVA</span>
+            <span data-i18n="cv_cap3">NARRATIVA TÉCNICA</span>
+          </div>
         </div>
       </article>
 
-      <!-- 06. PARROQUIA / NON-PROFIT -->
-      <article class="project-strip project-v2 strip-parroquia">
-        <div class="project-index"><span aria-hidden="true">✦</span> 6 de 6</div>
+
+      <!-- PARROQUIA -->
+      <article class="project-strip strip-parish">
+        <div class="project-index">✦ 06</div>
+
         <div class="strip-content">
-          <span class="badge-status badge-project" id="badge-parroquia">PROYECTO SIN ÁNIMO DE LUCRO</span>
-          <h2 class="project-title" id="title-parroquia"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir NUESTRA SEÑORA DE LA MEDALLA MILAGROSA">NUESTRA SEÑORA DE LA MEDALLA MILAGROSA</a></h2>
-          <p class="project-kicker" id="kicker-parroquia">Proyecto Web Institucional · Accesibilidad & Comunidad</p>
-          <p class="project-desc" id="desc-parroquia">Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni identidad personal de DIRECTED BY JPEG.</p>
-          <div class="capabilities"><span id="cap-parish-1">DISEÑO ACCESIBLE</span><span id="cap-parish-2">INTERFAZ MULTILINGÜE</span><span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></div>
+          <span class="badge-status project-status">
+            <span data-i18n="badge_nonprofit">PROYECTO SIN ÁNIMO DE LUCRO</span>
+          </span>
+
+          <h2 class="project-title">
+            <a
+              href="https://parroquia-wheat.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer">
+              NUESTRA SEÑORA DE LA MEDALLA MILAGROSA
+            </a>
+          </h2>
+
+          <p class="project-kicker" data-i18n="parish_kicker">
+            Proyecto Web Institucional · Accesibilidad &amp; Comunidad
+          </p>
+
+          <p class="project-desc" data-i18n="parish_desc">
+            Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni identidad personal de DIRECTED BY JPEG.
+          </p>
+
+          <div class="capabilities">
+            <span data-i18n="parish_cap1">DISEÑO ACCESIBLE</span>
+            <span data-i18n="parish_cap2">INTERFAZ MULTILINGÜE</span>
+            <span data-i18n="parish_cap3">INFORMACIÓN COMUNITARIA</span>
+          </div>
         </div>
       </article>
+
     </section>
 
-    <!-- CERTIFICATIONS SECTION -->
-    <div id="certificaciones" class="section-container certifications-section">
+
+    <!-- ================= CERTIFICATIONS ================= -->
+    <section id="certificaciones" class="section-container certifications-section">
+
       <div class="section-header">
-        <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
-        <p class="section-subtitle" id="cert-main-desc">Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.</p>
+        <div class="section-kicker">CREDENTIALS</div>
+
+        <h2 class="section-title" data-i18n="cert_title">
+          Credenciales y Certificaciones
+        </h2>
+
+        <p class="section-subtitle" data-i18n="cert_desc">
+          Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.
+        </p>
       </div>
-      
-      <div class="cert-columns-layout">
-        <div class="cert-category-box">
-          <h3 id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">AML en la Práctica</div>
-              <div class="cert-issuer-sub">Antiga Compliance</div>
-              <div class="cert-desc" id="desc-aml-1">Marcos operativos y prevención de lavado de activos.</div>
-            </li>
-            <li>
-              <div class="cert-title">Inteligencia Financiera contra la Trata de Personas</div>
-              <div class="cert-issuer-sub">AC30</div>
-              <div class="cert-desc" id="desc-aml-2">Tipologías de trata y monitoreo transaccional.</div>
-            </li>
-          </ul>
-        </div>
 
-        <div class="cert-category-box">
-          <h3 id="cat-title-sec">◇ Ciberseguridad e Infraestructura</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">Seguridad TI: Defensa contra las artes oscuras digitales</div>
-              <div class="cert-issuer-sub">Google</div>
-              <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
-            </li>
-            <li>
-              <div class="cert-title">Ciberseguridad para Gerentes</div>
-              <div class="cert-issuer-sub">BBVA</div>
-              <div class="cert-desc" id="desc-sec-2">Gestión estratégica de la seguridad de la información.</div>
-            </li>
-            <li>
-              <div class="cert-title">Hacking Ético Gamificado</div>
-              <div class="cert-issuer-sub">HackerMentor</div>
-              <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pruebas de penetración.</div>
-            </li>
-            <li>
-              <div class="cert-title">Soporte Tecnológico de Google</div>
-              <div class="cert-issuer-sub">Google</div>
-              <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
-            </li>
-            <li>
-              <div class="cert-title">Bits y Bytes de las Redes de Computadores</div>
-              <div class="cert-issuer-sub">Google</div>
-              <div class="cert-desc" id="desc-sec-5">Protocolos de red y arquitectura web.</div>
-            </li>
-            <li>
-              <div class="cert-title">Administración de Sistemas e Infraestructura TI</div>
-              <div class="cert-issuer-sub">Google</div>
-              <div class="cert-desc" id="desc-sec-6">Administración de infraestructura IT y servidores.</div>
-            </li>
-          </ul>
-        </div>
 
-        <div class="cert-category-box">
-          <h3 id="cat-title-ai">◎ Inteligencia Artificial & Ética</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">Políticas de Inteligencia Artificial</div>
-              <div class="cert-issuer-sub">Fred Hutch</div>
-              <div class="cert-desc" id="desc-ai-1">Gobernanza, marcos operativos y ética algorítmica.</div>
-            </li>
-            <li>
-              <div class="cert-title">IA para Todos</div>
-              <div class="cert-issuer-sub">DeepLearning.AI</div>
-              <div class="cert-desc" id="desc-ai-2">Estrategia, capacidades y casos de uso en IA.</div>
-            </li>
-            <li>
-              <div class="cert-title">Ética de la Datos</div>
-              <div class="cert-issuer-sub">University of Michigan</div>
-              <div class="cert-desc" id="desc-ai-3">Privacidad, sesgo de datos y responsabilidad algorítmica.</div>
-            </li>
-          </ul>
-        </div>
+      <div class="cert-grid">
 
-        <div class="cert-category-box">
-          <h3 id="cat-title-dev">≋ Desarrollo Web & Operaciones</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">Fundamentos de Desarrollo Front-End</div>
-              <div class="cert-issuer-sub">Meta</div>
-              <div class="cert-desc" id="desc-dev-1">Arquitectura HTML, CSS, JavaScript y principios de UI.</div>
-            </li>
-            <li>
-              <div class="cert-title">Sistemas de Control de Versiones con Git</div>
-              <div class="cert-issuer-sub">Meta</div>
-              <div class="cert-desc" id="desc-dev-2">Flujos de trabajo colaborativos y despliegues con Git.</div>
-            </li>
-            <li>
-              <div class="cert-title">Soporte al Cliente & Operaciones Tecnológicas</div>
-              <div class="cert-issuer-sub">Teleperformance</div>
-              <div class="cert-desc" id="desc-dev-3">Resolución técnica, estándares de servicio y flujos de trabajo.</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+        <div class="cert-card">
+          <h3>◈ <span data-i18n="cert_aml">Cumplimiento y Delitos Financieros</span></h3>
 
-    <!-- CONTACT SECTION -->
-    <section id="contacto" class="contact-section-v2">
-      <div class="section-container">
-        <div class="section-header text-center contact-heading">
-          <div class="section-kicker" data-i18n="contact_kicker">CONECTEMOS</div>
-          <h2 class="section-title" id="contact-main-title">Contacto</h2>
-          <p class="section-subtitle contact-subtitle" id="contact-main-desc">Canales directos para colaboración, proyectos o consultas técnicas.</p>
-        </div>
-        <div class="contact-card-v2">
-          <div class="contact-links">
-            <a href="https://github.com/espinelgalvisjuanpablo" target="_blank" rel="noopener noreferrer" class="contact-btn" aria-label="GitHub">
-              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></span>
-              <span>GitHub</span><span class="contact-btn-arrow">↗</span>
-            </a>
-            <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-" target="_blank" rel="noopener noreferrer" class="contact-btn" aria-label="LinkedIn">
-              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zM8 19H5V9h3v10zM6.5 7.7A1.75 1.75 0 1 1 6.5 4.2a1.75 1.75 0 0 1 0 3.5zM20 19h-3v-5.2c0-3.1-4-2.87-4 0V19h-3V9h3v1.6c1.4-2.6 7-2.8 7 2.5V19z"/></svg></span>
-              <span>LinkedIn</span><span class="contact-btn-arrow">↗</span>
-            </a>
-            <a href="mailto:juanpabloespinel12@gmail.com" class="contact-btn" aria-label="Email">
-              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
-              <span>Correo</span><span class="contact-btn-arrow">↗</span>
-            </a>
-            <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener noreferrer" class="contact-btn" aria-label="Instagram">
-              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg></span>
-              <span>Instagram</span><span class="contact-btn-arrow">↗</span>
-            </a>
-            <a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener noreferrer" class="contact-btn contact-cv" aria-label="Curriculum Vitae">
-              <span class="contact-icon contact-icon-cv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 11h8v1.5H8V11zm0 3.5h8V16H8v-1.5zm0 3.5h5v1.5H8V18z"/><path d="M17.5 13.5l.8 1.6 1.7.25-1.25 1.2.3 1.7-1.55-.8-1.55.8.3-1.7-1.25-1.2 1.7-.25.8-1.6z"/></svg></span>
-              <span>Curriculum Vitae</span><span class="contact-btn-arrow">↗</span>
-            </a>
+          <div class="cert-item">
+            <strong>AML en la Práctica</strong>
+            <small>Antiga Compliance</small>
+            <p data-i18n="aml1">Marcos operativos y prevención de lavado de activos.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Inteligencia Financiera contra la Trata de Personas</strong>
+            <small>AC30</small>
+            <p data-i18n="aml2">Tipologías de trata y monitoreo transaccional.</p>
           </div>
         </div>
-        <div class="human-contact-note">
-          <span class="human-contact-mark">//</span>
-          <div>
-            <strong id="human-contact-title">Nota humana</strong>
-            <p id="human-contact-desc">Esto lo hizo un humano. Eso significa que puede haber un bug, una idea rara o algo que se pueda mejorar. Si encuentras algo, escríbeme por cualquiera de los canales de arriba.</p>
+
+
+        <div class="cert-card">
+          <h3>◇ <span data-i18n="cert_security">Ciberseguridad e Infraestructura</span></h3>
+
+          <div class="cert-item">
+            <strong>Seguridad TI: Defensa contra las artes oscuras digitales</strong>
+            <small>Google</small>
+            <p data-i18n="sec1">Criptografía y mitigación de riesgos digitales.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Ciberseguridad para Gerentes</strong>
+            <small>BBVA</small>
+            <p data-i18n="sec2">Gestión estratégica de la seguridad de la información.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Hacking Ético Gamificado</strong>
+            <small>HackerMentor</small>
+            <p data-i18n="sec3">Evaluación de vulnerabilidades y pruebas de penetración.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Soporte Tecnológico de Google</strong>
+            <small>Google</small>
+            <p data-i18n="sec4">Soporte técnico, sistemas operativos y redes.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Bits y Bytes de las Redes de Computadores</strong>
+            <small>Google</small>
+            <p data-i18n="sec5">Protocolos de red y arquitectura web.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Administración de Sistemas e Infraestructura TI</strong>
+            <small>Google</small>
+            <p data-i18n="sec6">Administración de infraestructura IT y servidores.</p>
           </div>
         </div>
+
+
+        <div class="cert-card">
+          <h3>◎ <span data-i18n="cert_ai">Inteligencia Artificial &amp; Ética</span></h3>
+
+          <div class="cert-item">
+            <strong>Políticas de Inteligencia Artificial</strong>
+            <small>Fred Hutch</small>
+            <p data-i18n="ai1">Gobernanza, marcos operativos y ética algorítmica.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>IA para Todos</strong>
+            <small>DeepLearning.AI</small>
+            <p data-i18n="ai2">Estrategia, capacidades y casos de uso en IA.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Ética de la Datos</strong>
+            <small>University of Michigan</small>
+            <p data-i18n="ai3">Privacidad, sesgo de datos y responsabilidad algorítmica.</p>
+          </div>
+        </div>
+
+
+        <div class="cert-card">
+          <h3>≋ <span data-i18n="cert_dev">Desarrollo Web &amp; Operaciones</span></h3>
+
+          <div class="cert-item">
+            <strong>Fundamentos de Desarrollo Front-End</strong>
+            <small>Meta</small>
+            <p data-i18n="dev1">Arquitectura HTML, CSS, JavaScript y principios de UI.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Sistemas de Control de Versiones con Git</strong>
+            <small>Meta</small>
+            <p data-i18n="dev2">Flujos de trabajo colaborativos y despliegues con Git.</p>
+          </div>
+
+          <div class="cert-item">
+            <strong>Soporte al Cliente &amp; Operaciones Tecnológicas</strong>
+            <small>Teleperformance</small>
+            <p data-i18n="dev3">Resolución técnica, estándares de servicio y flujos de trabajo.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- UNDER THE HOOD / BAJO EL CAPÓ SECTION -->
-    <section id="sobre-el-sitio" class="site-details-section">
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contacto" class="contact-section">
+
       <div class="section-container">
-        <div class="section-header">
-          <div class="section-kicker">ARQUITECTURA & FILOSOFÍA</div>
-          <h2 class="section-title" id="site-main-title">Bajo el capó</h2>
-          <p class="section-subtitle" id="site-main-desc">Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.</p>
-        </div>
 
-        <div class="site-details-grid">
-          <div class="site-detail-card">
-            <div class="site-detail-icon">01</div>
-            <h3 id="card-arch-title">Arquitectura</h3>
-            <p id="card-arch-desc">SPA en HTML5 semántico, CSS nativo moderno con variables personalizadas y JS vanilla ligero sin librerías pesadas.</p>
-            <div class="detail-tags"><span>HTML5</span><span>CSS3</span><span>VANILLA JS</span></div>
+        <div class="section-header centered">
+          <div class="section-kicker" data-i18n="contact_kicker">
+            CONECTEMOS
           </div>
 
-          <div class="site-detail-card">
-            <div class="site-detail-icon">02</div>
-            <h3 id="card-design-title">Diseño Visual</h3>
-            <p id="card-design-desc">Estética dark mode por defecto con tipografía Manrope e Inter, detalles en Fira Code y acentos en degradados sutiles.</p>
-            <div class="detail-tags"><span>DARK MODE</span><span>MANROPE</span><span>FIRA CODE</span></div>
-          </div>
+          <h2 class="section-title" data-i18n="contact_title">
+            Contacto
+          </h2>
 
-          <div class="site-detail-card">
-            <div class="site-detail-icon">03</div>
-            <h3 id="card-perf-title">Rendimiento</h3>
-            <p id="card-perf-desc">Optimización extrema de peso, carga instantánea, gráficos por Canvas interactivo y animaciones aceleradas por GPU.</p>
-            <div class="detail-tags"><span>CANVAS</span><span>GPU ACCEL</span><span>LIGHTWEIGHT</span></div>
-          </div>
-
-          <div class="site-detail-card">
-            <div class="site-detail-icon">04</div>
-            <h3 id="card-i18n-title">Internacionalización</h3>
-            <p id="card-i18n-desc">Conmutador dinámico entre español e inglés con persistencia local de preferencia de idioma y tema visual.</p>
-            <div class="detail-tags"><span>ES / EN</span><span>LOCALSTORAGE</span><span>I18N JS</span></div>
-          </div>
-        </div>
-
-        <!-- EXTENDED PROSE SECTION FOR HOW THIS SITE WORKS -->
-        <div class="hood-extended-text">
-          <h3 id="hood-prose-title">¿Cómo funciona este sitio web?</h3>
-          
-          <p id="hood-prose-p1">
-            Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. A diferencia de las plataformas modernas infladas con dependencias complejas y frameworks de procesamiento pesado, este sitio opera como una Single Page Application (SPA) pura, impulsada exclusivamente por tecnologías web nativas. Cada línea de código está optimizada para ofrecer una velocidad de carga instantánea, garantizando al mismo tiempo una navegación fluida entre secciones mediante desplazamientos suaves y transiciones visuales aceleradas por hardware.
-          </p>
-          
-          <p id="hood-prose-p2">
-            El apartado visual se fundamenta en un canvas interactivo de fondo que renderiza de forma eficiente partículas y efectos dinámicos sin degradar la tasa de cuadros por segundo. La paleta de colores y el comportamiento de la interfaz reaccionan en tiempo real según las preferencias del usuario, soportando la alternancia entre un tema oscuro profundo y un modo claro refinado, así como un sistema de traducción dinámico en JavaScript que adapta todos los contenidos del sitio de manera nativa sin recargar la página.
-          </p>
-
-          <p id="hood-prose-p3">
-            Cada módulo del portafolio —desde las fichas de proyectos interactivos hasta el compendio de certificaciones— está estructurado de manera responsiva para ofrecer una legibilidad impecable tanto en dispositivos móviles de pantalla pequeña como en monitores de alta resolución. Este sitio no es solo una vitrina de proyectos: es un garaje conceptual y un laboratorio de código vivo que refleja una visión clara sobre cómo construir para la web moderna.
+          <p class="section-subtitle" data-i18n="contact_desc">
+            Canales directos para colaboración, proyectos o consultas técnicas.
           </p>
         </div>
+
+
+        <div class="contact-card">
+
+          <div class="contact-grid">
+
+            <a
+              href="https://github.com/espinelgalvisjuanpablo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-btn">
+
+              <span class="contact-icon">GH</span>
+              <span>GitHub</span>
+              <b>↗</b>
+            </a>
+
+
+            <a
+              href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-btn">
+
+              <span class="contact-icon">in</span>
+              <span>LinkedIn</span>
+              <b>↗</b>
+            </a>
+
+
+            <a
+              href="mailto:juanpabloespinel12@gmail.com"
+              class="contact-btn">
+
+              <span class="contact-icon">@</span>
+              <span>Email</span>
+              <b>↗</b>
+            </a>
+
+
+            <a
+              href="https://instagram.com/juanpabloespinelgalvis"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-btn">
+
+              <span class="contact-icon">IG</span>
+              <span>Instagram</span>
+              <b>↗</b>
+            </a>
+
+
+            <a
+              href="https://cv-tau-gray.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-btn cv-contact">
+
+              <span class="contact-icon cv-icon">CV</span>
+              <span data-i18n="cv_contact">Curriculum Vitae</span>
+              <b>↗</b>
+            </a>
+
+          </div>
+
+        </div>
+
 
         <div class="human-notice">
+
+          <div class="human-mark">01</div>
+
           <div>
-            <h3 id="human-notice-title">Nota sobre la autoría y producción</h3>
-            <p id="human-notice-desc">Todas las aplicaciones, sistemas y conceptos presentados en este portafolio han sido concebidos, diseñados y desarrollados por Juan Pablo Espinel (DIRECTED BY JPEG), combinando lógica de ingeniería, diseño de experiencia de usuario y arquitectura de software.</p>
+            <h3 data-i18n="human_title">
+              Hecho por un humano.
+            </h3>
+
+            <p data-i18n="human_desc">
+              Este sitio fue creado por una persona y, como cualquier proyecto humano, puede tener algún error. Si encuentras algo que pueda mejorarse o se te ocurre una idea para la página, puedes escribirme por cualquiera de los canales de contacto de arriba.
+            </p>
           </div>
+
         </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= UNDER THE HOOD ================= -->
+    <section id="sobre-el-sitio" class="site-details-section">
+
+      <div class="section-container">
+
+        <div class="section-header">
+          <div class="section-kicker" data-i18n="hood_kicker">
+            ARQUITECTURA &amp; FILOSOFÍA
+          </div>
+
+          <h2 class="section-title" data-i18n="hood_title">
+            Bajo el capó
+          </h2>
+
+          <p class="section-subtitle" data-i18n="hood_desc">
+            Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.
+          </p>
+        </div>
+
+
+        <div class="hood-grid">
+
+          <article class="hood-card">
+            <span>01</span>
+            <h3 data-i18n="arch_title">Arquitectura</h3>
+            <p data-i18n="arch_desc">
+              HTML5 semántico, CSS moderno y JavaScript vanilla ligero sin librerías pesadas.
+            </p>
+            <div class="tags">
+              <b>HTML5</b>
+              <b>CSS3</b>
+              <b>VANILLA JS</b>
+            </div>
+          </article>
+
+
+          <article class="hood-card">
+            <span>02</span>
+            <h3 data-i18n="design_title">Diseño Visual</h3>
+            <p data-i18n="design_desc">
+              Estética tecnológica con Manrope, Inter y detalles en Fira Code.
+            </p>
+            <div class="tags">
+              <b>DARK MODE</b>
+              <b>MANROPE</b>
+              <b>FIRA CODE</b>
+            </div>
+          </article>
+
+
+          <article class="hood-card">
+            <span>03</span>
+            <h3 data-i18n="performance_title">Rendimiento</h3>
+            <p data-i18n="performance_desc">
+              Canvas ligero, animaciones controladas y una estructura sin dependencias innecesarias.
+            </p>
+            <div class="tags">
+              <b>CANVAS</b>
+              <b>GPU</b>
+              <b>LIGHTWEIGHT</b>
+            </div>
+          </article>
+
+
+          <article class="hood-card">
+            <span>04</span>
+            <h3 data-i18n="i18n_title">Internacionalización</h3>
+            <p data-i18n="i18n_desc">
+              Cambio dinámico entre español e inglés con preferencias guardadas localmente.
+            </p>
+            <div class="tags">
+              <b>ES / EN</b>
+              <b>I18N</b>
+              <b>LOCALSTORAGE</b>
+            </div>
+          </article>
+
+        </div>
+
+
+        <div class="hood-copy">
+
+          <h3 data-i18n="hood_question">
+            ¿Cómo funciona este sitio web?
+          </h3>
+
+          <p data-i18n="hood_p1">
+            Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. Opera como una experiencia web construida principalmente con tecnologías nativas, evitando dependencias innecesarias y manteniendo el control sobre la interfaz.
+          </p>
+
+          <p data-i18n="hood_p2">
+            El apartado visual utiliza un canvas de fondo para generar partículas y efectos dinámicos. La interfaz también permite alternar entre tema oscuro y claro, además de cambiar dinámicamente entre español e inglés sin recargar la página.
+          </p>
+
+          <p data-i18n="hood_p3">
+            Cada módulo está estructurado de forma responsiva para mantener una experiencia clara tanto en dispositivos pequeños como en pantallas de alta resolución. El sitio funciona como una vitrina de proyectos, pero también como un laboratorio donde experimentar con código, diseño y sistemas digitales.
+          </p>
+
+        </div>
+
       </div>
     </section>
 
   </main>
 
+
+  <!-- ================= FOOTER ================= -->
   <footer>
-    <div>DIRECTED BY JPEG © 2026 — TODOS LOS DERECHOS RESERVADOS</div>
-    <div class="footer-credits">BOGOTÁ, COLOMBIA · CONSTRUIDO CON HTML, CSS Y VANILLA JS</div>
+    <div>DIRECTED BY JPEG © 2026 — <span data-i18n="rights">TODOS LOS DERECHOS RESERVADOS</span></div>
+    <div class="footer-credits">
+      BOGOTÁ, COLOMBIA · HTML · CSS · VANILLA JS
+    </div>
   </footer>
-<script src="js/app.js" defer></script>
+
+
+  <script src="js/app.js"></script>
+</body>
 </html>
