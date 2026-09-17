@@ -1,122 +1,634 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIRECTED BY JPEG</title>
-  <link rel="stylesheet" href="style.css">
+  <title>DIRIGIDO POR JPEG — Portafolio, Laboratorio y Garaje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07070b;
+      --accent-color: #8b5cf6;
+      --accent-secondary: #22d3ee;
+      --accent-pink: #f472b6;
+      --accent-amber: #fbbf24;
+      --accent-glow: rgba(139, 92, 246, 0.34);
+      --card-bg: rgba(13, 14, 23, 0.72);
+      --text-main: #f8fafc;
+      --text-muted: #a6adbb;
+      --border-color: rgba(255, 255, 255, 0.10);
+      --header-bg: rgba(7, 7, 11, 0.85);
+      --font-display: 'Manrope', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    body.light-theme {
+      --bg-dark: #f4f5f8;
+      --accent-color: #6d28d9;
+      --accent-secondary: #0891b2;
+      --accent-pink: #db2777;
+      --accent-glow: rgba(109, 40, 217, 0.18);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text-main: #111827;
+      --text-muted: #596274;
+      --border-color: rgba(15, 23, 42, 0.10);
+      --header-bg: rgba(244, 245, 248, 0.88);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* BARRA DE NAVEGACIÓN CENTRADA Y STICKY */
+    .site-header {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 1220px);
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      background: var(--header-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-mini {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 1.2px;
+      color: var(--text-main);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--text-main);
+      background: rgba(139, 92, 246, 0.12);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn, .lang-switch, .mobile-menu-btn {
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      background: rgba(139, 92, 246, 0.08);
+      cursor: pointer;
+      border-radius: 10px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ctrl-btn { width: 36px; }
+    .lang-switch { padding: 0 10px; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; }
+    .mobile-menu-btn { display: none; width: 36px; font-size: 1rem; }
+
+    .ctrl-btn:hover, .lang-switch:hover {
+      border-color: var(--accent-color);
+      background: rgba(139, 92, 246, 0.18);
+    }
+
+    .mobile-nav {
+      display: none;
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: var(--header-bg);
+      backdrop-filter: blur(18px);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .mobile-nav.open { display: grid; }
+    .mobile-nav .nav-btn { text-align: center; }
+
+    /* HERO */
+    .hero-v2 {
+      min-height: 100vh;
+      padding: 130px 24px 60px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-grid {
+      position: absolute;
+      width: min(75vh, 85vw, 800px);
+      height: min(75vh, 85vw, 800px);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      box-shadow: 0 0 100px var(--accent-glow);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent-secondary);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title strong {
+      background: linear-gradient(105deg, var(--text-main) 10%, var(--accent-color) 50%, var(--accent-secondary) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+
+    .hero-intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .hero-cta:hover {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 25px var(--accent-glow);
+    }
+
+    /* SECCIONES Y CONTENEDORES COMPACTOS */
+    .section-container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 70px 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    /* PROYECTOS */
+    .project-strip {
+      padding: 40px 24px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+      position: relative;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      margin: 10px 0;
+    }
+
+    .project-title a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .project-title a:hover {
+      color: var(--accent-secondary);
+    }
+
+    .project-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-secondary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .capabilities {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .capabilities span {
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+    }
+
+    .badge-status {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      display: inline-block;
+    }
+
+    .badge-live { color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+    .badge-project { color: var(--accent-secondary); }
+
+    /* CÁPSULAS Y GRID COMPACTO DE CERTIFICACIONES */
+    .cert-columns-layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .cert-category-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+    }
+
+    .cert-category-box h3 {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cert-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .cert-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .cert-issuer-sub {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    .cert-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* CONTACTO Y FOOTER */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 36px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat( auto-fit, minmax(140px, 1fr) );
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .contact-btn {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.02);
+      text-align: center;
+    }
+
+    .contact-btn:hover {
+      border-color: var(--accent-color);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav { display: none; }
+      .mobile-menu-btn { display: inline-flex; }
+      .cert-columns-layout { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">DIRECTED BY JPEG</div>
-    <nav class="nav-links">
-      <a href="#home" data-i18n="nav.home">Inicio</a>
-      <a href="#projects" data-i18n="nav.projects">Proyectos</a>
-      <a href="#contact" data-i18n="nav.contact">Contacto</a>
-      <a href="#under-the-hood" data-i18n="nav.underTheHood">Bajo el capó</a>
-      <a href="#certifications" data-i18n="nav.certifications">Certificaciones</a>
-    </nav>
-    <div class="nav-actions">
-      <button id="lang-toggle">ES / EN</button>
+  <canvas id="bg-canvas"></canvas>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand-mini" id="brand-title">DIRECTED BY JPEG</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#home" class="nav-btn active">Inicio</a>
+        <a href="#proyectos" class="nav-btn">Proyectos</a>
+        <a href="#certificaciones" class="nav-btn">Certificaciones</a>
+        <a href="#contacto" class="nav-btn">Contacto</a>
+      </nav>
+      <div class="header-controls">
+        <button class="ctrl-btn" onclick="toggleTheme()" title="Cambiar tema">◑</button>
+        <button class="lang-switch" onclick="toggleLanguage()">ES/EN</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">≡</button>
+      </div>
     </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="#home" class="nav-btn" onclick="toggleMobileMenu()">Inicio</a>
+      <a href="#proyectos" class="nav-btn" onclick="toggleMobileMenu()">Proyectos</a>
+      <a href="#certificaciones" class="nav-btn" onclick="toggleMobileMenu()">Certificaciones</a>
+      <a href="#contacto" class="nav-btn" onclick="toggleMobileMenu()">Contacto</a>
+    </nav>
   </header>
 
   <main>
-    <!-- SECCIÓN: INICIO (HOME) -->
-    <section id="home" class="section hero">
+    <section class="hero-v2" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content">
-        <p class="location">Bogotá, Colombia • v2.0</p>
-        <p class="profile-desc" data-i18n="home.profile">
-          Desarrollador Web apasionado por crear experiencias digitales funcionales y modernas.
-        </p>
+        <div class="eyebrow">DIGITAL EXPERIENCES · WEB · AI · SYSTEMS</div>
+        <h1 class="hero-title">DIRIGIDO POR <strong>JPEG</strong></h1>
+        <p class="hero-subtitle">JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE</p>
+        <p class="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en cosas reales y utilizables.</p>
+        <a class="hero-cta" href="#proyectos">Explorar proyectos ↓</a>
       </div>
     </section>
 
-    <!-- SECCIÓN: PROYECTOS -->
-    <section id="projects" class="section">
-      <h2 data-i18n="projects.title">Proyectos</h2>
-      <div class="projects-grid">
-        <!-- Tarjetas de proyectos -->
+    <section id="proyectos">
+      <div class="section-container" style="padding-bottom: 20px;">
+        <h2 class="section-title">Proyectos</h2>
+        <p class="section-subtitle">Selección de desarrollos, plataformas y experimentos de software.</p>
       </div>
+
+      <article class="project-strip">
+        <span class="badge-status badge-live">DESPLIEGUE ACTIVO</span>
+        <h2 class="project-title"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
+        <p class="project-kicker">Interactive Self-Discovery & Career Exploration</p>
+        <p class="project-desc">Experiencia interactiva de autoconocimiento y exploración profesional con evaluación adaptativa y medición indirecta.</p>
+        <div class="capabilities"><span>EVALUACIÓN ADAPTATIVA</span><span>MEDICIÓN INDIRECTA</span><span>UX INTERACTIVA</span></div>
+      </article>
+
+      <article class="project-strip">
+        <span class="badge-status badge-live">DESPLIEGUE ACTIVO</span>
+        <h2 class="project-title"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
+        <p class="project-kicker">AI Intelligence & Interactive Web Systems</p>
+        <p class="project-desc">Radar de inteligencia artificial, herramientas web interactivas y recursos técnicos bajo arquitectura SPA.</p>
+        <div class="capabilities"><span>SISTEMAS INTERACTIVOS</span><span>ARQUITECTURA SPA</span><span>CONTENIDO CON IA</span></div>
+      </article>
+
+      <article class="project-strip">
+        <span class="badge-status badge-live">DESPLIEGUE ACTIVO</span>
+        <h2 class="project-title"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
+        <p class="project-kicker">Learning Experience & AI-Assisted Education</p>
+        <p class="project-desc">Plataforma educativa con mentoría personalizada, inglés práctico y aprendizaje asistido por IA.</p>
+        <div class="capabilities"><span>UX EDUCATIVA</span><span>FLUJOS DE MENTORÍA</span><span>APRENDIZAJE CON IA</span></div>
+      </article>
+
+      <article class="project-strip">
+        <span class="badge-status badge-live">DESPLIEGUE ACTIVO</span>
+        <h2 class="project-title"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener">DIGITAL VAULT</a></h2>
+        <p class="project-kicker">AI Resources, Prompt Engineering & Workflow Systems</p>
+        <p class="project-desc">Bóveda digital de recursos, ingeniería de prompts y optimización de flujos con IA.</p>
+        <div class="capabilities"><span>INGENIERÍA DE PROMPTS</span><span>FLUJOS CON IA</span><span>ARQUITECTURA DIGITAL</span></div>
+      </article>
+
+      <article class="project-strip">
+        <span class="badge-status badge-live">DESPLIEGUE ACTIVO</span>
+        <h2 class="project-title"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener">CURRICULUM VITAE</a></h2>
+        <p class="project-kicker">Perfil Profesional & Portafolio Técnico</p>
+        <p class="project-desc">Hoja de vida interactiva con trayectoria, competencias y credenciales integradas.</p>
+        <div class="capabilities"><span>MARCA PERSONAL</span><span>UI RESPONSIVA</span><span>NARRATIVA TÉCNICA</span></div>
+      </article>
+
+      <article class="project-strip">
+        <span class="badge-status badge-project">NON-PROFIT PROJECT</span>
+        <h2 class="project-title"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener">PARROQUIA MEDALLA MILAGROSA</a></h2>
+        <p class="project-kicker">Institutional Web Project · Accessibility & Community</p>
+        <p class="project-desc">Proyecto web institucional sin fines de lucro enfocado en accesibilidad e información comunitaria.</p>
+        <div class="capabilities"><span>UX ACCESIBLE</span><span>UI MULTILINGÜE</span><span>INFORMACIÓN COMUNITARIA</span></div>
+      </article>
     </section>
 
-    <!-- SECCIÓN: CONTACTO -->
-    <section id="contact" class="section compact-section">
-      <span class="subtitle" data-i18n="contact.subtitle">CONECTEMOS</span>
-      <h2 data-i18n="contact.title">Contacto</h2>
-      <p class="section-desc" data-i18n="contact.desc">Canales directos para colaboración, proyectos o consultas técnicas.</p>
+    <div id="certificaciones" class="section-container">
+      <h2 class="section-title">Credenciales y Certificaciones</h2>
+      <p class="section-subtitle">Validación técnica en cumplimiento, ciberseguridad, datos e inteligencia artificial.</p>
       
-      <div class="contact-grid">
-        <a href="https://github.com/espinelgalvisjuanpablo" target="_blank" rel="noopener noreferrer" class="contact-card">
-          <span class="icon">🐙</span>
-          <span>GitHub</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis" target="_blank" rel="noopener noreferrer" class="contact-card">
-          <span class="icon">💼</span>
-          <span>LinkedIn</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="mailto:juanpabloespinel12@gmail.com" class="contact-card">
-          <span class="icon">✉️</span>
-          <span>Correo Electrónico</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://www.instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener noreferrer" class="contact-card">
-          <span class="icon">📷</span>
-          <span>Instagram</span>
-          <span class="arrow">↗</span>
-        </a>
+      <div class="cert-columns-layout">
+        <div class="cert-category-box">
+          <h3>◈ Cumplimiento y Delitos Financieros</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">AML in Practice</div>
+              <div class="cert-issuer-sub">Antiga Compliance</div>
+              <div class="cert-desc">Marcos operativos y prevención de lavado de activos.</div>
+            </li>
+            <li>
+              <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
+              <div class="cert-issuer-sub">AC30</div>
+              <div class="cert-desc">Tipologías de trata y monitoreo transaccional.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3>◇ Ciberseguridad e Infraestructura</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">IT Security & Google IT Support</div>
+              <div class="cert-issuer-sub">Google</div>
+              <div class="cert-desc">Criptografía, administración de sistemas, redes e infraestructura IT.</div>
+            </li>
+            <li>
+              <div class="cert-title">Hacking Ético Gamificado</div>
+              <div class="cert-issuer-sub">HackerMentor</div>
+              <div class="cert-desc">Evaluación de vulnerabilidades y pentesting.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3>◎ Inteligencia Artificial & Ética</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">AI Policy & AI for Everyone</div>
+              <div class="cert-issuer-sub">Fred Hutch / DeepLearning.AI</div>
+              <div class="cert-desc">Gobernanza, ética algorítmica y fundamentos de Machine Learning.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3>▦ Datos y Analítica</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">Power BI Data Analyst & Big Data</div>
+              <div class="cert-issuer-sub">Datax / IBM / Huawei</div>
+              <div class="cert-desc">Modelado DAX, analítica estratégica y procesamiento distribuido.</div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- SECCIÓN: BAJO EL CAPÓ -->
-    <section id="under-the-hood" class="section compact-section">
-      <span class="subtitle" data-i18n="hood.subtitle">ARQUITECTURA & FILOSOFÍA</span>
-      <h2 data-i18n="hood.title">Bajo el capó</h2>
-      <p class="section-desc" data-i18n="hood.desc">Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.</p>
-
-      <div class="hood-grid">
-        <div class="hood-card">
-          <h3 data-i18n="hood.stackTitle">Stack Técnico</h3>
-          <p data-i18n="hood.stackDesc">Construido con HTML5 semántico, CSS3 personalizado y Vanilla JavaScript para la interactividad y cambio de idioma, sin frameworks pesados.</p>
-        </div>
-        <div class="hood-card">
-          <h3 data-i18n="hood.deployTitle">Despliegue</h3>
-          <p data-i18n="hood.deployDesc">Control de versiones con Git/GitHub y despliegue continuo (CI/CD) automatizado a través de Vercel.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN: CERTIFICACIONES (CÁPSULAS COMPACTAS) -->
-    <section id="certifications" class="section compact-section">
-      <span class="subtitle" data-i18n="certs.subtitle">CREDANCIALES & FORMACIÓN</span>
-      <h2 data-i18n="certs.title">Certificaciones</h2>
-      
-      <div class="pills-container">
-        <div class="pill-item">
-          <span class="pill-title">Compliance and Financial Crime</span>
-          <span class="pill-issuer">Revolut</span>
-        </div>
-        <div class="pill-item">
-          <span class="pill-title">Artificial Intelligence</span>
-          <span class="pill-issuer">Cisco / AvanzaTec</span>
-        </div>
-        <div class="pill-item">
-          <span class="pill-title">Hack&nbsp;&nbsp;Academy</span>
-          <span class="pill-issuer">Seguridad Web</span>
+    <section id="contacto" class="section-container">
+      <div class="contact-card">
+        <h2 class="section-title">Conectemos</h2>
+        <p class="section-subtitle">Canales de contacto y perfiles profesionales.</p>
+        <div class="contact-links">
+          <a href="https://github.com" target="_blank" rel="noopener" class="contact-btn">GitHub</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-btn">LinkedIn</a>
+          <a href="mailto:juanpabloespinel@example.com" class="contact-btn">Correo</a>
+          <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn">Instagram</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p class="copyright" data-i18n="footer.rights">© Todos los derechos reservados</p>
+  <footer>
+    <p>DIRECTED BY JPEG © 2026 — Bogotá, Colombia</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+    }
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('open');
+    }
+    function toggleLanguage() {
+      // Alternar idioma según lógica requerida
+    }
+  </script>
 </body>
 </html>
