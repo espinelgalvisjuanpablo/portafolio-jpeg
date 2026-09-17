@@ -15,12 +15,12 @@
       --accent-secondary: #22d3ee;
       --accent-pink: #f472b6;
       --accent-glow: rgba(139, 92, 246, 0.35);
-      --card-bg: rgba(13, 14, 23, 0.75);
+      --card-bg: rgba(13, 14, 23, 0.72);
       --text-main: #f8fafc;
       --text-muted: #a6adbb;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --header-bg: rgba(7, 7, 11, 0.85);
-      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.25), transparent 60%), #090810;
+      --border-color: rgba(255, 255, 255, 0.10);
+      --header-bg: rgba(7, 7, 11, 0.82);
+      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.30), transparent 50%), radial-gradient(circle at 80% 30%, rgba(34, 211, 238, 0.18), transparent 40%), #090810;
       --btn-bg: #ffffff;
       --btn-text: #000000;
       --footer-bg: #06070a;
@@ -28,17 +28,17 @@
     }
 
     body.light-theme {
-      --bg-dark: #f8fafc;
+      --bg-dark: #f4f5f8;
       --accent-color: #6d28d9;
       --accent-secondary: #0891b2;
       --accent-pink: #db2777;
-      --accent-glow: rgba(109, 40, 217, 0.2);
-      --card-bg: rgba(255, 255, 255, 0.95);
+      --accent-glow: rgba(109, 40, 217, 0.18);
+      --card-bg: rgba(255, 255, 255, 0.88);
       --text-main: #0f172a;
       --text-muted: #475569;
       --border-color: rgba(15, 23, 42, 0.12);
-      --header-bg: rgba(248, 250, 252, 0.9);
-      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(109, 40, 217, 0.12), transparent 70%), #f1f5f9;
+      --header-bg: rgba(244, 245, 248, 0.88);
+      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(109, 40, 217, 0.16), transparent 60%), radial-gradient(circle at 80% 30%, rgba(8, 145, 178, 0.12), transparent 50%), #e2e8f0;
       --btn-bg: #0f172a;
       --btn-text: #ffffff;
       --footer-bg: #e2e8f0;
@@ -76,7 +76,7 @@
       pointer-events: none;
     }
 
-    /* BARRA DE NAVEGACIÓN FIJA Y AJUSTADA */
+    /* ENCABEZADO Y BARRA CENTRADA FIJA */
     .site-header {
       position: sticky;
       top: 0;
@@ -90,57 +90,71 @@
     }
 
     .site-header .header-inner {
-      max-width: 1280px;
+      width: min(100%, 1440px);
+      min-height: 54px;
       margin: 0 auto;
-      padding: 6px 12px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      padding: 7px 12px;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
       align-items: center;
-      gap: 16px;
+      column-gap: 18px;
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      background: rgba(9, 10, 15, 0.4);
+      border-radius: 18px;
+      background: rgba(9, 10, 15, 0.42);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.16);
     }
 
     body.light-theme .site-header .header-inner {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.62);
     }
 
     .brand-mini {
-      font-family: 'Fira Code', monospace;
-      font-weight: 800;
-      font-size: 0.82rem;
-      letter-spacing: 1.2px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font: 800 0.82rem/1 'Fira Code', monospace;
+      letter-spacing: 1.35px;
       text-decoration: none;
       color: var(--text-main);
-      white-space: nowrap;
+      justify-self: start;
     }
 
     .main-nav {
-      display: flex;
+      justify-self: center;
+      display: flex !important;
+      align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
     }
 
-    .nav-btn {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 8px 12px;
+    .main-nav .nav-btn {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 11px;
+      border: 1px solid transparent;
       border-radius: 10px;
-      font-family: 'Manrope', sans-serif;
+      color: var(--text-muted);
+      font: 700 0.72rem/1 'Manrope', sans-serif;
+      letter-spacing: 0.45px;
+      text-decoration: none;
     }
 
-    .nav-btn:hover, .nav-btn.active {
+    .main-nav .nav-btn:hover,
+    .main-nav .nav-btn.active {
       color: var(--text-main);
       background: rgba(139, 92, 246, 0.12);
+      border-color: var(--border-color);
     }
 
     .header-controls {
-      display: flex;
+      display: flex !important;
       align-items: center;
+      justify-content: flex-end;
       gap: 6px;
+      justify-self: end;
     }
 
     .ctrl-btn, .lang-switch, .mobile-menu-btn {
@@ -148,233 +162,146 @@
       color: var(--text-main);
       background: rgba(139, 92, 246, 0.08);
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 12px;
       height: 36px;
+      transition: all 0.25s ease;
     }
 
     .ctrl-btn { width: 36px; display: grid; place-items: center; }
     .lang-switch { padding: 0 10px; font: 700 0.72rem 'Fira Code', monospace; }
     .lang-divider { opacity: 0.35; padding: 0 3px; }
     .lang-active { color: var(--accent-secondary); }
-    .mobile-menu-btn { display: none; width: 36px; }
+    .mobile-menu-btn { display: none; width: 36px; font-size: 1rem; }
+
+    .mobile-nav {
+      display: none;
+      width: min(100%, 560px);
+      margin: 7px auto 0;
+      padding: 6px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: var(--header-bg);
+      backdrop-filter: blur(18px);
+    }
+
+    .mobile-nav.open { display: grid !important; }
+    .mobile-nav .nav-btn { text-align: center; font-size: 0.7rem; padding: 8px; color: var(--text-main); text-decoration: none; font-weight: 700; }
 
     /* HERO */
     .hero-v2 {
-      min-height: 82vh;
-      padding: 80px 24px 60px;
+      min-height: 84vh;
+      padding: 90px 24px 60px;
       position: relative;
       display: grid;
       place-items: center;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
+      background: radial-gradient(circle at 50% 42%, rgba(139, 92, 246, 0.14), transparent 32%), var(--bg-dark);
     }
 
-    .hero-title {
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-family: 'Manrope', sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      line-height: 0.9;
-      margin: 12px 0;
-    }
-
-    .hero-title strong {
-      background: linear-gradient(105deg, var(--text-main) 5%, var(--accent-color) 50%, var(--accent-secondary) 95%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      color: var(--text-muted);
-      font: 600 0.8rem 'Fira Code', monospace;
-      letter-spacing: 2px;
-    }
-
-    .hero-intro {
-      max-width: 580px;
-      margin: 16px auto 24px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+    .hero-content { width: min(100%, 900px); z-index: 2; }
+    .eyebrow { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2.2px; color: var(--accent-secondary); text-transform: uppercase; }
+    .hero-title { font-size: clamp(3.5rem, 10vw, 8rem); font-family: 'Manrope', sans-serif; font-weight: 900; line-height: 0.85; margin: 14px 0; }
+    .hero-title span { color: var(--text-main); font-size: 0.35em; letter-spacing: 0.15em; display: block; }
+    .hero-title strong { background: linear-gradient(105deg, var(--text-main) 5%, var(--accent-color) 47%, var(--accent-secondary) 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-subtitle { color: var(--text-muted); font: 600 0.8rem 'Fira Code', monospace; letter-spacing: 2px; }
+    .hero-intro { max-width: 620px; margin: 18px auto 26px; color: var(--text-muted); font-size: 0.98rem; line-height: 1.65; }
+    .hero-cta { display: inline-flex; gap: 10px; align-items: center; padding: 12px 22px; border: 1px solid var(--border-color); border-radius: 999px; color: var(--text-main); text-decoration: none; font-weight: 800; font-size: 0.8rem; background: rgba(139, 92, 246, 0.09); }
 
     /* PROYECTOS */
-    .project-strip {
+    .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 60px; padding-bottom: 30px; }
+    .section-kicker { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2px; color: var(--accent-secondary); text-transform: uppercase; }
+    .section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-family: 'Manrope', sans-serif; font-weight: 800; margin-top: 4px; }
+    .section-subtitle { color: var(--text-muted); font-size: 0.92rem; max-width: 650px; }
+    .project-count { font: 800 1.4rem 'Fira Code', monospace; color: var(--text-main); }
+    .project-count span { font-size: 0.7rem; color: var(--text-muted); }
+
+    .project-v2 {
       position: relative;
-      padding: 48px 24px;
-      border-bottom: 1px solid var(--border-color);
+      min-height: 360px;
+      padding: 46px 24px;
       display: flex;
       justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
     }
 
+    .project-index { position: absolute; left: 30px; top: 32px; font: 700 0.7rem 'Fira Code', monospace; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .project-index span { color: var(--accent-secondary); }
+    .strip-content { max-width: 820px; text-align: center; position: relative; z-index: 5; }
+    .project-title { font-size: clamp(2.3rem, 5vw, 4rem); font-family: 'Manrope', sans-serif; font-weight: 800; margin: 12px 0 8px; }
+    .project-title a { color: var(--text-main); text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.3em; }
+    .project-title a::after { content: '↗'; font: 600 0.45em 'Fira Code', monospace; color: var(--accent-secondary); }
+    .project-title a:hover { color: var(--accent-secondary); }
+    .project-kicker { color: var(--accent-secondary); font: 700 0.75rem 'Fira Code', monospace; text-transform: uppercase; margin-bottom: 12px; }
+    .project-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    
+    .badge-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-color); border-radius: 999px; padding: 5px 12px; font: 700 0.6rem 'Fira Code', monospace; color: var(--text-muted); background: rgba(255, 255, 255, 0.025); margin-bottom: 10px; }
+    .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px rgba(52, 211, 153, 0.8); }
+    .badge-project::before { content: "✦"; color: var(--accent-secondary); }
+
+    .capabilities { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+    .capabilities span { border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 999px; color: var(--text-muted); font: 600 0.58rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.025); }
+
+    /* ESTILOS DE FONDOS POR PROYECTO */
     .strip-prisma { background: var(--strip-gradient-prisma); }
+    .strip-nexus { background: radial-gradient(circle at 35% 40%, rgba(34, 211, 238, 0.16), transparent 35%), var(--bg-dark); }
+    .strip-hackacademy { background: radial-gradient(circle at 70% 50%, rgba(244, 114, 182, 0.13), transparent 35%), var(--bg-dark); }
+    .strip-jpegstore { background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.15), transparent 35%), var(--bg-dark); }
+    .strip-cv { background: radial-gradient(circle at 65% 50%, rgba(16, 185, 129, 0.13), transparent 35%), var(--bg-dark); }
+    .strip-parroquia { background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.10), transparent 35%), var(--bg-dark); }
 
-    .strip-content {
-      max-width: 800px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .project-title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-family: 'Manrope', sans-serif;
-      margin: 10px 0;
-    }
-
-    .project-title a {
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .project-title a:hover {
-      color: var(--accent-secondary);
-    }
-
-    .project-kicker {
-      color: var(--accent-secondary);
-      font: 700 0.75rem 'Fira Code', monospace;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .project-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
-
-    .capabilities {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .capabilities span {
-      border: 1px solid var(--border-color);
-      padding: 5px 10px;
-      border-radius: 999px;
-      color: var(--text-muted);
-      font: 600 0.6rem 'Fira Code', monospace;
-    }
-
-    /* CERTIFICACIONES OPTIMIZADAS */
-    .section-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-
-    .cert-columns-layout {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .cert-category-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 18px;
-      backdrop-filter: blur(12px);
-    }
-
-    .cert-category-box h3 {
-      font-size: 1rem;
-      font-family: 'Manrope', sans-serif;
-      margin-bottom: 12px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .cert-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px 14px;
-    }
-
-    .cert-list-full {
-      grid-template-columns: 1fr;
-    }
-
-    .cert-title {
-      font-weight: 700;
-      font-size: 0.82rem;
-      color: var(--text-main);
-    }
-
-    .cert-issuer-sub {
-      font-size: 0.68rem;
-      color: var(--accent-color);
-      font-family: 'Fira Code', monospace;
-      font-weight: 700;
-    }
-
-    .cert-desc {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-    }
+    /* CERTIFICACIONES OPTIMIZADAS COMPACTAS */
+    .section-container { max-width: 1220px; margin: 0 auto; padding: 60px 24px; }
+    .cert-columns-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .cert-category-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; backdrop-filter: blur(14px); }
+    .cert-category-box h3 { font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+    .cert-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+    .cert-list li { padding: 4px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    .cert-list li:last-child { border-bottom: 0; }
+    .cert-title { font-weight: 700; font-size: 0.8rem; color: var(--text-main); line-height: 1.3; }
+    .cert-issuer-sub { font-size: 0.62rem; color: var(--accent-color); font-family: 'Fira Code', monospace; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+    .cert-desc { font-size: 0.7rem; color: var(--text-muted); line-height: 1.35; margin-top: 2px; }
 
     /* CONTACTO */
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 36px 24px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    .contact-card-v2 { border: 1px solid var(--border-color); border-radius: 24px; padding: 32px; background: var(--card-bg); backdrop-filter: blur(16px); max-width: 880px; margin: 0 auto; }
+    .contact-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .contact-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none; color: var(--text-main); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.025); font-weight: 700; font-size: 0.88rem; }
+    .contact-btn:hover { border-color: var(--accent-color); background: rgba(139, 92, 246, 0.1); transform: translateY(-2px); }
+    .contact-icon { width: 22px; height: 22px; display: grid; place-items: center; flex-shrink: 0; }
+    .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
 
-    .contact-links {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-    }
+    .human-notice { margin-top: 24px; padding: 22px; border: 1px dashed var(--border-color); border-radius: 18px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(34, 211, 238, 0.035)); }
+    .human-notice h3 { font-family: 'Manrope', sans-serif; font-size: 1.1rem; margin: 4px 0 8px; }
+    .human-notice p { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
 
-    .contact-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
+    /* DETALLES Y PIE DE PÁGINA */
+    .site-details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+    .site-detail-card { padding: 22px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--card-bg); backdrop-filter: blur(14px); }
+    .site-detail-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; margin-bottom: 14px; color: var(--accent-secondary); border: 1px solid var(--border-color); font: 800 1rem 'Fira Code', monospace; }
+    .site-detail-card h3 { font-size: 1rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 8px; }
+    .site-detail-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-color); }
+    .detail-tags span { font: 700 0.55rem 'Fira Code', monospace; color: var(--text-muted); border: 1px solid var(--border-color); border-radius: 999px; padding: 4px 7px; }
 
-    .contact-btn:hover {
-      border-color: var(--accent-color);
-      background: rgba(139, 92, 246, 0.12);
-    }
+    footer { padding: 24px 6%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--footer-muted); background: var(--footer-bg); margin-top: auto; font-family: 'Fira Code', monospace; }
+    .footer-credits { margin-top: 6px; font-size: 0.72rem; opacity: 0.85; }
 
-    footer {
-      padding: 24px 6%;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--footer-muted);
-      background: var(--footer-bg);
-      margin-top: auto;
-      font-family: 'Fira Code', monospace;
-    }
-
-    @media (max-width: 850px) {
-      .site-header .main-nav { display: none; }
-      .mobile-menu-btn { display: grid; place-items: center; }
+    @media (max-width: 960px) {
+      .site-header .main-nav { display: none !important; }
+      .mobile-menu-btn { display: grid !important; place-items: center; }
+      .site-header .header-inner { grid-template-columns: minmax(0, 1fr) max-content !important; }
       .cert-columns-layout { grid-template-columns: 1fr; }
       .cert-list { grid-template-columns: 1fr; }
       .contact-links { grid-template-columns: repeat(2, 1fr); }
+      .site-details-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .contact-links { grid-template-columns: 1fr; }
+      .site-details-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -382,10 +309,11 @@
 
   <canvas id="bg-canvas"></canvas>
 
+  <!-- ENCABEZADO CON NAVEGACIÓN CENTRADA Y FIJA -->
   <header class="site-header">
     <div class="header-inner">
       <a href="#home" class="brand-mini" id="brand-title">DIRECTED BY JPEG</a>
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navegación principal">
         <a href="#home" class="nav-btn active" id="nav-inicio">Inicio</a>
         <a href="#proyectos" class="nav-btn" id="nav-projects">Proyectos</a>
         <a href="#certificaciones" class="nav-btn" id="nav-cert">Certificaciones</a>
@@ -393,110 +321,537 @@
         <a href="#sobre-el-sitio" class="nav-btn" id="nav-site">Bajo el capó</a>
       </nav>
       <div class="header-controls">
-        <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+        <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema">
           <span id="theme-icon">◑</span>
         </button>
-        <button class="lang-switch" id="lang-btn" onclick="toggleLanguage()" aria-label="Switch language">
+        <button class="lang-switch" id="lang-btn" onclick="toggleLanguage()" title="Cambiar idioma" aria-label="Cambiar idioma">
           <span id="lang-es">ES</span><span class="lang-divider">/</span><span id="lang-en">EN</span>
         </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">≡</button>
       </div>
     </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+      <a href="#home" class="nav-btn active">Inicio</a>
+      <a href="#proyectos" class="nav-btn">Proyectos</a>
+      <a href="#certificaciones" class="nav-btn">Certificaciones</a>
+      <a href="#contacto" class="nav-btn">Contacto</a>
+      <a href="#sobre-el-sitio" class="nav-btn">Bajo el capó</a>
+    </nav>
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section class="hero-v2" id="home">
       <div class="hero-content">
-        <div class="hero-subtitle" id="hero-eyebrow">DIGITAL EXPERIENCES · WEB · AI · SYSTEMS</div>
-        <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR </span><strong id="hero-title-brand">JPEG</strong></h1>
-        <p class="hero-subtitle" id="hero-tagline">JPEG PORTAFOLIO • LABORATORIO & GARAJE</p>
-        <p class="hero-intro" id="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.</p>
+        <div class="eyebrow" id="hero-eyebrow">DIGITAL EXPERIENCES · WEB · AI · SYSTEMS</div>
+        <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR</span><strong id="hero-title-brand">JPEG</strong></h1>
+        <p class="hero-subtitle" id="hero-tagline">JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE</p>
+        <p class="hero-intro" id="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en cosas que se pueden usar.</p>
+        <a class="hero-cta" href="#proyectos"><span id="hero-cta-text">Explorar proyectos</span><span aria-hidden="true">↓</span></a>
       </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos">
-      <article class="project-strip strip-prisma">
+    <!-- SECCIÓN DE PROYECTOS COMPLETA (6 PROYECTOS) -->
+    <section id="proyectos" class="projects-section">
+      <div class="section-container projects-heading">
+        <div>
+          <div class="section-kicker" id="projects-kicker">SELECTED WORK</div>
+          <h2 class="section-title" id="projects-title">Proyectos</h2>
+          <p class="section-subtitle" id="projects-desc">Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.</p>
+        </div>
+        <div class="project-count">06 <span>/ 06</span></div>
+      </div>
+
+      <!-- 01. PRISMA -->
+      <article class="project-v2 strip-prisma">
+        <div class="project-index"><span aria-hidden="true">◈</span> 01</div>
         <div class="strip-content">
-          <h2 class="project-title"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA ↗</a></h2>
+          <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
           <p class="project-kicker" id="kicker-prisma">Interactive Self-Discovery & Career Exploration</p>
-          <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que evalúa patrones mediante decisiones indirectas y evidencia cruzada.</p>
+          <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
+          <div class="capabilities"><span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span><span id="cap-prisma-2">MEDICIÓN INDIRECTA</span><span id="cap-prisma-3">UX INTERACTIVA</span></div>
         </div>
       </article>
-      <!-- Demás proyectos... -->
+
+      <!-- 02. NEXUS -->
+      <article class="project-v2 strip-nexus">
+        <div class="project-index"><span aria-hidden="true">◇</span> 02</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
+          <p class="project-kicker" id="kicker-nexus">AI Intelligence & Interactive Web Systems</p>
+          <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
+          <div class="capabilities"><span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span><span id="cap-nexus-2">ARQUITECTURA SPA</span><span id="cap-nexus-3">CONTENIDO CON IA</span></div>
+        </div>
+      </article>
+
+      <!-- 03. HACK ACADEMY -->
+      <article class="project-v2 strip-hackacademy">
+        <div class="project-index"><span aria-hidden="true">≋</span> 03</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
+          <p class="project-kicker" id="kicker-hack">Learning Experience & AI-Assisted Education</p>
+          <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
+          <div class="capabilities"><span id="cap-hack-1">UX EDUCATIVA</span><span id="cap-hack-2">FLUJOS DE MENTORÍA</span><span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></div>
+        </div>
+      </article>
+
+      <!-- 04. DIGITAL VAULT -->
+      <article class="project-v2 strip-jpegstore">
+        <div class="project-index"><span aria-hidden="true">▣</span> 04</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-store">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-store"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener">DIGITAL VAULT</a></h2>
+          <p class="project-kicker" id="kicker-store">AI Resources, Prompt Engineering & Workflow Systems</p>
+          <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
+          <div class="capabilities"><span id="cap-store-1">INGENIERÍA DE PROMPTS</span><span id="cap-store-2">FLUJOS CON IA</span><span id="cap-store-3">ARQUITECTURA DIGITAL</span></div>
+        </div>
+      </article>
+
+      <!-- 05. CURRICULUM VITAE -->
+      <article class="project-v2 strip-cv">
+        <div class="project-index"><span aria-hidden="true">◎</span> 05</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-cv">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-cv"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener">CURRICULUM VITAE</a></h2>
+          <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
+          <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
+          <div class="capabilities"><span id="cap-cv-1">MARCA PERSONAL</span><span id="cap-cv-2">UI RESPONSIVA</span><span id="cap-cv-3">NARRATIVA TÉCNICA</span></div>
+        </div>
+      </article>
+
+      <!-- 06. PARROQUIA / NON-PROFIT -->
+      <article class="project-v2 strip-parroquia">
+        <div class="project-index"><span aria-hidden="true">✦</span> 06</div>
+        <div class="strip-content">
+          <span class="badge-status badge-project" id="badge-parroquia">NON-PROFIT PROJECT</span>
+          <h2 class="project-title" id="title-parroquia"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener">NUESTRA SEÑORA DE LA MEDALLA MILAGROSA</a></h2>
+          <p class="project-kicker" id="kicker-parroquia">Institutional Web Project · Accessibility & Community</p>
+          <p class="project-desc" id="desc-parroquia">Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni la identidad personal de DIRECTED BY JPEG.</p>
+          <div class="capabilities"><span id="cap-parish-1">UX ACCESIBLE</span><span id="cap-parish-2">UI MULTILINGÜE</span><span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></div>
+        </div>
+      </article>
     </section>
 
-    <!-- CERTIFICACIONES COMPACTAS -->
-    <section id="certificaciones" class="section-container">
+    <!-- SECCIÓN DE CERTIFICACIONES COMPLETA (6 CATEGORÍAS) -->
+    <div id="certificaciones" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
+        <p class="section-subtitle" id="cert-main-desc">Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.</p>
+      </div>
+      
       <div class="cert-columns-layout">
-        <div class="cert-category-box">
-          <h3 id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">AML in Practice</div>
-              <div class="cert-issuer-sub">Antiga Compliance</div>
-              <div class="cert-desc" id="desc-aml-1">Marcos operativos y prevención de lavado de activos.</div>
-            </li>
-            <li>
-              <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
-              <div class="cert-issuer-sub">AC30</div>
-              <div class="cert-desc" id="desc-aml-2">Tipologías de trata y monitoreo transaccional.</div>
-            </li>
-          </ul>
+        <div>
+          <!-- 1. Cumplimiento -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">AML in Practice</div>
+                <div class="cert-issuer-sub">Antiga Compliance</div>
+                <div class="cert-desc" id="desc-aml-1">Marcos operativos y prevención de lavado de activos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
+                <div class="cert-issuer-sub">AC30</div>
+                <div class="cert-desc" id="desc-aml-2">Tipologías de trata y monitoreo transaccional.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 2. Ciberseguridad -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-sec">◇ Ciberseguridad &amp; Infraestructura</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">IT Security: Defense against the digital dark arts</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
+              </li>
+              <li>
+                <div class="cert-title">Cybersecurity for Managers</div>
+                <div class="cert-issuer-sub">BBVA</div>
+                <div class="cert-desc" id="desc-sec-2">Gestión estratégica de la seguridad de la información.</div>
+              </li>
+              <li>
+                <div class="cert-title">Hacking Ético Gamificado</div>
+                <div class="cert-issuer-sub">HackerMentor</div>
+                <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pentesting.</div>
+              </li>
+              <li>
+                <div class="cert-title">Google IT Support</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
+              </li>
+              <li>
+                <div class="cert-title">The Bits and Bytes of Computer Networking</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-5">Protocolos de red y arquitectura web.</div>
+              </li>
+              <li>
+                <div class="cert-title">System Administration &amp; IT Infrastructure</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-6">Administración de infraestructura IT y servidores.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3. IA -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-ai">◎ Inteligencia Artificial &amp; Ética</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">AI Policy</div>
+                <div class="cert-issuer-sub">Fred Hutch</div>
+                <div class="cert-desc" id="desc-ai-1">Gobernanza, marcos operativos y ética algorítmica.</div>
+              </li>
+              <li>
+                <div class="cert-title">AI for Everyone</div>
+                <div class="cert-issuer-sub">DeepLearning.AI</div>
+                <div class="cert-desc" id="desc-ai-2">Fundamentos de IA y conceptos de machine learning.</div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="cert-category-box">
-          <h3 id="cat-title-ai">◎ Inteligencia Artificial & Ética</h3>
-          <ul class="cert-list">
-            <li>
-              <div class="cert-title">AI Policy</div>
-              <div class="cert-issuer-sub">Fred Hutch</div>
-              <div class="cert-desc" id="desc-ai-1">Gobernanza, marcos operativos y ética algorítmica.</div>
-            </li>
-            <li>
-              <div class="cert-title">AI for Everyone</div>
-              <div class="cert-issuer-sub">DeepLearning.AI</div>
-              <div class="cert-desc" id="desc-ai-2">Fundamentos de IA y machine learning.</div>
-            </li>
-          </ul>
+        <div>
+          <!-- 4. Datos -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-data">▦ Datos y Analítica</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">Microsoft Certified: Power BI Data Analyst Associate</div>
+                <div class="cert-issuer-sub">Datax, Latam</div>
+                <div class="cert-desc" id="desc-data-1">Modelado avanzado con DAX y visualización de datos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Analítica de Datos</div>
+                <div class="cert-issuer-sub">IBM</div>
+                <div class="cert-desc" id="desc-data-2">Análisis estratégico e inteligencia de negocio.</div>
+              </li>
+              <li>
+                <div class="cert-title">Big Data V3.5</div>
+                <div class="cert-issuer-sub">Huawei</div>
+                <div class="cert-desc" id="desc-data-3">Procesamiento masivo, MapReduce y ecosistemas distribuidos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Power BI</div>
+                <div class="cert-issuer-sub">Platzi</div>
+                <div class="cert-desc" id="desc-data-4">Transformación de datos y paneles empresariales.</div>
+              </li>
+              <li>
+                <div class="cert-title">Google Analytics</div>
+                <div class="cert-issuer-sub">Google Digital Academy</div>
+                <div class="cert-desc" id="desc-data-5">Marketing digital analítico y métricas de conversión.</div>
+              </li>
+              <li>
+                <div class="cert-title">Analiza datos web y toma decisiones estratégicas</div>
+                <div class="cert-issuer-sub">Cámara de Comercio de Bogotá</div>
+                <div class="cert-desc" id="desc-data-6">Pruebas analíticas y optimización de plataformas web.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 5. Desarrollo -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-dev">⌘ Desarrollo &amp; Arquitectura</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">Profesional de Arquitectura de Software</div>
+                <div class="cert-issuer-sub">Platzi</div>
+                <div class="cert-desc" id="desc-dev-1">Patrones de diseño, escalabilidad y código limpio.</div>
+              </li>
+              <li>
+                <div class="cert-title">Java</div>
+                <div class="cert-issuer-sub">UNAM</div>
+                <div class="cert-desc" id="desc-dev-2">Programación orientada a objetos y algoritmos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Lovable - No-Code Web Development</div>
+                <div class="cert-issuer-sub">Platzi</div>
+                <div class="cert-desc" id="desc-dev-3">Desarrollo ágil de productos digitales asistido por IA.</div>
+              </li>
+              <li>
+                <div class="cert-title">N8N Automation</div>
+                <div class="cert-issuer-sub">Platzi</div>
+                <div class="cert-desc" id="desc-dev-4">Automatizaciones low-code e integración de procesos.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 6. Gestión -->
+          <div class="cert-category-box">
+            <h3 id="cat-title-mgmt">≋ Gestión, Marketing &amp; Idiomas</h3>
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">Foundations of Project Management</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-mgmt-1">Ciclo de vida y metodologías de gestión de proyectos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Project Initiation / Planning</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-mgmt-2">Arranque, alcance, control de tiempos y presupuestos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Sistematización de procesos</div>
+                <div class="cert-issuer-sub">Cámara de Comercio de Bogotá</div>
+                <div class="cert-desc" id="desc-mgmt-3">Mejora continua operativa y automatización empresarial.</div>
+              </li>
+              <li>
+                <div class="cert-title">Growth Marketing with AI</div>
+                <div class="cert-issuer-sub">Platzi</div>
+                <div class="cert-desc" id="desc-mgmt-4">IA conversacional aplicada a la retención de usuarios.</div>
+              </li>
+              <li>
+                <div class="cert-title">Proficient English C2</div>
+                <div class="cert-issuer-sub">EF SET</div>
+                <div class="cert-desc" id="desc-mgmt-5">Dominio bilingüe nativo avanzado.</div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- CONTACTO ACTUALIZADO -->
-    <section id="contacto" class="section-container">
-      <div class="contact-card">
-        <h2 id="contact-title">Conectemos</h2>
+    <!-- SECCIÓN DE CONTACTO CON ICONOS SVG (CORREO EN LUGAR DE WHATSAPP) -->
+    <div id="contacto" class="section-container contact-section-v2">
+      <div class="section-header">
+        <div class="section-kicker" id="contact-kicker">CANAL ABIERTO</div>
+        <h2 class="section-title" id="contact-title">Conectemos</h2>
+        <p class="section-subtitle" id="contact-desc">Disponible para consultoría, desarrollo de software, automatización e iniciativas tecnológicas.</p>
+      </div>
+      <div class="contact-card-v2">
         <div class="contact-links">
-          <a href="https://github.com/espinelgalvisjuanpablo" target="_blank" rel="noopener" class="contact-btn">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-" target="_blank" rel="noopener" class="contact-btn">LinkedIn ↗</a>
-          <a href="mailto:juanpabloespinel12@gmail.com" class="contact-btn">Correo ↗</a>
-          <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn">Instagram ↗</a>
+          <!-- GitHub -->
+          <a href="https://github.com/espinelgalvisjuanpablo" target="_blank" rel="noopener" class="contact-btn" aria-label="GitHub">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.28c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/></svg></span>
+            <span>GitHub</span><span aria-hidden="true">↗</span>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/juan-pablo-espinel-galvis-" target="_blank" rel="noopener" class="contact-btn" aria-label="LinkedIn">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.16 8.17H1.7V22h3.46V8.17ZM3.43 2A2.01 2.01 0 1 0 3.43 6.03 2.01 2.01 0 0 0 3.43 2ZM22.3 13.5c0-4.17-2.22-6.11-5.19-6.11-2.39 0-3.46 1.31-4.06 2.23V8.17H9.58V22h3.47v-6.84c0-1.8.34-3.54 2.57-3.54 2.2 0 2.23 2.06 2.23 3.66V22h3.47l.98-8.5Z"/></svg></span>
+            <span>LinkedIn</span><span aria-hidden="true">↗</span>
+          </a>
+          <!-- Email en lugar de WhatsApp -->
+          <a href="mailto:juanpabloespinel12@gmail.com" class="contact-btn" aria-label="Correo electrónico">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+            <span>Correo</span><span aria-hidden="true">↗</span>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn" aria-label="Instagram">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm-.23 2A3.03 3.03 0 0 0 4 7.03v9.94A3.03 3.03 0 0 0 7.03 20h9.94A3.03 3.03 0 0 0 20 16.97V7.03A3.03 3.03 0 0 0 16.97 4H6.97ZM17.5 5.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg></span>
+            <span>Instagram</span><span aria-hidden="true">↗</span>
+          </a>
         </div>
+
+        <div class="human-notice">
+          <div>
+            <div class="section-kicker" id="human-kicker">NOTA HUMANA</div>
+            <h3 id="human-title">Recuerda que esto lo hizo un humano y puede cometer errores.</h3>
+            <p id="human-desc">Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio. Si tienes alguna idea o implementación, será muy bien recibida.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN BAJO EL CAPÓ COMPLETA -->
+    <section id="sobre-el-sitio" class="section-container site-details-section">
+      <div class="section-header">
+        <div class="section-kicker" id="site-kicker">DETRÁS DE LA PÁGINA</div>
+        <h2 class="section-title" id="site-title">Cómo está construida</h2>
+        <p class="section-subtitle" id="site-desc">Una mirada rápida a la estructura, tecnologías, experiencias y rutas que forman este sitio.</p>
+      </div>
+      <div class="site-details-grid">
+        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">⌘</span><h3 id="site-card-1-title">Arquitectura</h3><p id="site-card-1-desc">SPA ligera en HTML, CSS y JavaScript puro. Un solo documento lo resuelve todo: anclas internas para las secciones, enlaces externos para cada proyecto y un sistema de idioma que no duplica páginas.</p><div class="detail-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></article>
+        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">✦</span><h3 id="site-card-2-title">Interacción</h3><p id="site-card-2-desc">Tema claro/oscuro persistente, cambio de idioma completo, scroll suave y un menú que se adapta a cada tamaño de pantalla. El movimiento ambiental respeta prefers-reduced-motion cuando el dispositivo lo pide.</p><div class="detail-tags"><span>UI / UX</span><span>ADAPTABLE</span><span>ACCESIBILIDAD</span></div></article>
+        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">↗</span><h3 id="site-card-3-title">Rutas</h3><p id="site-card-3-desc">Las anclas internas llevan a cada sección sin recargar la página, y el nombre de cada proyecto enlaza directo a su despliegue. El encabezado y el menú móvil comparten la misma jerarquía.</p><div class="detail-tags"><span id="route-tag-1">PROYECTOS</span><span id="route-tag-2">ENLACES ACTIVOS</span></div></article>
+        <article class="site-detail-card"><span class="site-detail-icon" aria-hidden="true">◎</span><h3 id="site-card-4-title">Propósito</h3><p id="site-card-4-desc">El punto de entrada a mis proyectos: portafolio, laboratorio y garaje digital, donde conviven trabajos publicados y experimentos en evolución.</p><div class="detail-tags"><span id="purpose-tag-1">PORTAFOLIO</span><span id="purpose-tag-2">LABORATORIO</span><span id="purpose-tag-3">GARAJE</span></div></article>
       </div>
     </section>
   </main>
 
   <footer>
     <div id="footer-text">DIRECTED BY JPEG &copy; 2026 — Todos los derechos reservados</div>
+    <div class="footer-credits" id="footer-author">Diseñado y Desarrollado por Juan Pablo Espinel Galvis</div>
   </footer>
 
   <script>
-    /* Lógica JS de cambio de tema e idioma unificada */
-    const html = document.getElementById('html-root');
-    let currentLang = 'es';
-    let currentTheme = 'dark';
+    (() => {
+      const html = document.getElementById('html-root');
+      const storedLang = localStorage.getItem('jpeg_portfolio_lang');
+      const storedTheme = localStorage.getItem('jpeg_portfolio_theme');
+      let currentLang = storedLang === 'en' ? 'en' : 'es';
+      let currentTheme = storedTheme === 'light' ? 'light' : 'dark';
 
-    function toggleTheme() {
-      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.body.classList.toggle('light-theme', currentTheme === 'light');
-    }
+      const translations = {
+        es: {
+          pageTitle: 'DIRIGIDO POR JPEG — Portafolio, Laboratorio y Garaje', brandTitle:'DIRECTED BY JPEG', heroTitlePrefix:'DIRIGIDO POR', heroTitleBrand:'JPEG',
+          heroEyebrow: 'DIGITAL EXPERIENCES · WEB · AI · SYSTEMS',
+          heroTagline: 'JPEG PORTAFOLIO • LABORATORIO & GARAJE',
+          heroIntro: 'Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en cosas que se pueden usar.',
+          heroCta: 'Explorar proyectos', scroll: 'DESLIZA PARA EXPLORAR',
+          navHome: 'Inicio', navProjects: 'Proyectos', navCert: 'Certificaciones', navContact: 'Contacto', navSite: 'Bajo el capó',
+          projectsKicker: 'SELECTED WORK', projectsTitle: 'Proyectos',
+          projectsDesc: 'Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.',
+          titlePrisma:'PRISMA', titleNexus:'NEXUS', titleHack:'HACK ACADEMY', titleStore:'DIGITAL VAULT', titleCv:'CURRICULUM VITAE', titleParish:'NUESTRA SEÑORA DE LA MEDALLA MILAGROSA',
+          prismaKicker: 'Interactive Self-Discovery & Career Exploration',
+          prismaDesc: 'Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.',
+          nexusKicker: 'AI Intelligence & Interactive Web Systems',
+          nexusDesc: 'Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.',
+          hackKicker: 'Learning Experience & AI-Assisted Education',
+          hackDesc: 'Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.',
+          storeKicker: 'AI Resources, Prompt Engineering & Workflow Systems',
+          storeDesc: 'Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.',
+          cvKicker: 'Perfil Profesional & Portafolio Técnico',
+          cvDesc: 'Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.',
+          parishKicker: 'Institutional Web Project · Accessibility & Community',
+          parishDesc: 'Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni la identidad personal de DIRECTED BY JPEG.',
+          humanKicker: 'NOTA HUMANA', humanTitle: 'Recuerda que esto lo hizo un humano y puede cometer errores.',
+          humanDesc: 'Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio. Si tienes alguna idea o implementación, será muy bien recibida.',
+          contactKicker: 'CANAL ABIERTO', contactTitle: 'Conectemos', contactDesc: 'Disponible para consultoría, desarrollo de software, automatización e iniciativas tecnológicas.',
+          certTitle: 'Credenciales y Certificaciones', certDesc: 'Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.',
+          catAml: '◈ Cumplimiento y Delitos Financieros', aml1: 'Marcos operativos y prevención de lavado de activos.', aml2: 'Tipologías de trata y monitoreo transaccional.',
+          catSec: '◇ Ciberseguridad & Infraestructura', sec1: 'Criptografía y mitigación de riesgos digitales.', sec2: 'Gestión estratégica de la seguridad de la información.', sec3: 'Evaluación de vulnerabilidades y pentesting.', sec4: 'Soporte técnico, sistemas operativos y redes.', sec5: 'Protocolos de red y arquitectura web.', sec6: 'Administración de infraestructura IT y servidores.',
+          catAi: '◎ Inteligencia Artificial & Ética', ai1: 'Gobernanza, marcos operativos y ética algorítmica.', ai2: 'Fundamentos de IA y conceptos de machine learning.',
+          catData: '▦ Datos y Analítica', data1: 'Modelado avanzado con DAX y visualización de datos.', data2: 'Análisis estratégico e inteligencia de negocio.', data3: 'Procesamiento masivo, MapReduce y ecosistemas distribuidos.', data4: 'Transformación de datos y paneles empresariales.', data5: 'Marketing digital analítico y métricas de conversión.', data6: 'Pruebas analíticas y optimización de plataformas web.',
+          catDev: '⌘ Desarrollo & Arquitectura', dev1: 'Patrones de diseño, escalabilidad y código limpio.', dev2: 'Programación orientada a objetos y algoritmos.', dev3: 'Desarrollo ágil de productos digitales asistido por IA.', dev4: 'Automatizaciones low-code e integración de procesos.',
+          catMgmt: '≋ Gestión, Marketing & Idiomas', mgmt1: 'Ciclo de vida y metodologías de gestión de proyectos.', mgmt2: 'Arranque, alcance, control de tiempos y presupuestos.', mgmt3: 'Sistematización de procesos y mejora continua.', mgmt4: 'Growth Marketing con IA e IA conversacional.', mgmt5: 'Dominio de inglés C2 avanzado.',
+          badgeLive:'DESPLIEGUE ACTIVO', capPrisma1:'EVALUACIÓN ADAPTATIVA', capPrisma2:'MEDICIÓN INDIRECTA', capPrisma3:'UX INTERACTIVA', capNexus1:'SISTEMAS INTERACTIVOS', capNexus2:'ARQUITECTURA SPA', capNexus3:'CONTENIDO CON IA', capHack1:'UX EDUCATIVA', capHack2:'FLUJOS DE MENTORÍA', capHack3:'APRENDIZAJE ASISTIDO POR IA', capStore1:'INGENIERÍA DE PROMPTS', capStore2:'FLUJOS CON IA', capStore3:'ARQUITECTURA DIGITAL', capCv1:'MARCA PERSONAL', capCv2:'UI RESPONSIVA', capCv3:'NARRATIVA TÉCNICA', capParish1:'UX ACCESIBLE', capParish2:'UI MULTILINGÜE', capParish3:'INFORMACIÓN COMUNITARIA', siteKicker:'DETRÁS DE LA PÁGINA', siteTitle:'Cómo está construida', siteDesc:'Una mirada rápida a la estructura, tecnologías, experiencias y rutas que forman este sitio.', site1Title:'Arquitectura', site1Desc:'SPA ligera en HTML, CSS y JavaScript puro. Un solo documento lo resuelve todo: anclas internas para las secciones, enlaces externos para cada proyecto y un sistema de idioma que no duplica páginas.', site2Title:'Interacción', site2Desc:'Tema claro/oscuro persistente, cambio de idioma completo, scroll suave y un menú que se adapta a cada tamaño de pantalla. El movimiento ambiental respeta prefers-reduced-motion cuando el dispositivo lo pide.', site3Title:'Rutas', site3Desc:'Las anclas internas llevan a cada sección sin recargar la página, y el nombre de cada proyecto enlaza directo a su despliegue. El encabezado y el menú móvil comparten la misma jerarquía.', site4Title:'Propósito', site4Desc:'El punto de entrada a mis proyectos: portafolio, laboratorio y garaje digital, donde conviven trabajos publicados y experimentos en evolución.', routeTag1:'PROYECTOS', routeTag2:'ENLACES ACTIVOS', purposeTag1:'PORTAFOLIO', purposeTag2:'LABORATORIO', purposeTag3:'GARAJE', footer:'DIRECTED BY JPEG © 2026 — Todos los derechos reservados', author:'Diseñado y Desarrollado por Juan Pablo Espinel Galvis'
+        },
+        en: {
+          pageTitle: 'DIRECTED BY JPEG — Portfolio, Lab & Garage', brandTitle:'DIRECTED BY JPEG', heroTitlePrefix:'DIRECTED BY', heroTitleBrand:'JPEG',
+          heroEyebrow: 'DIGITAL EXPERIENCES · WEB · AI · SYSTEMS',
+          heroTagline: 'JPEG PORTFOLIO • LAB & GARAGE',
+          heroIntro: 'Designing digital experiences, interactive systems and products that turn ideas into things people can actually use.',
+          heroCta: 'Explore projects', scroll: 'SCROLL TO EXPLORE',
+          navHome: 'Home', navProjects: 'Projects', navCert: 'Certifications', navContact: 'Contact', navSite: 'Under the Hood',
+          projectsKicker: 'SELECTED WORK', projectsTitle: 'Projects',
+          projectsDesc: 'Six digital pieces exploring different ways to build, experiment and solve problems.',
+          titlePrisma:'PRISMA', titleNexus:'NEXUS', titleHack:'HACK ACADEMY', titleStore:'DIGITAL VAULT', titleCv:'CURRICULUM VITAE', titleParish:'NUESTRA SEÑORA DE LA MEDALLA MILAGROSA',
+          prismaKicker: 'Interactive Self-Discovery & Career Exploration',
+          prismaDesc: 'An interactive self-discovery and career exploration experience built around indirect decisions, crossed evidence and adaptive assessment.',
+          nexusKicker: 'AI Intelligence & Interactive Web Systems',
+          nexusDesc: 'A radar for artificial intelligence, finance, interactive web tools and technical resources brought together in a focused SPA experience.',
+          hackKicker: 'Learning Experience & AI-Assisted Education',
+          hackDesc: 'An educational platform focused on personalized mentoring, practical English, learning pace and AI-assisted tools.',
+          storeKicker: 'AI Resources, Prompt Engineering & Workflow Systems',
+          storeDesc: 'A digital vault of resources, prompt engineering guides, AI workflow optimization and automation-oriented architectures.',
+          cvKicker: 'Professional Profile & Technical Portfolio',
+          cvDesc: 'An interactive CV bringing together professional experience, skills, credentials and selected work in a direct web experience.',
+          parishKicker: 'Institutional Web Project · Accessibility & Community',
+          parishDesc: 'An institutional web project developed for a parish in Bogotá. It is independent work for a religious organization and does not represent personal beliefs.',
+          humanKicker: 'HUMAN NOTE', humanTitle: 'Remember: a human made this, and humans can make mistakes.',
+          humanDesc: 'If you have any feedback, write to me through any of the contacts above so we can improve it.',
+          contactKicker: 'OPEN CHANNEL', contactTitle: "Let's connect", contactDesc: 'Available for consulting, software development, automation and technology initiatives.',
+          certTitle: 'Credentials & Certifications', certDesc: 'Validated technical competencies across regulatory compliance, software development, data analytics, and artificial intelligence.',
+          catAml: '◈ Compliance & Financial Crimes', aml1: 'Operational frameworks and anti-money laundering prevention.', aml2: 'Human trafficking typologies and transaction monitoring.',
+          catSec: '◇ Cybersecurity & Infrastructure', sec1: 'Cryptography and digital risk mitigation.', sec2: 'Strategic information security management.', sec3: 'Vulnerability assessment and hands-on pentesting.', sec4: 'Technical IT support, operating systems, and networking.', sec5: 'Network protocols and web architecture.', sec6: 'IT infrastructure services and systems administration.',
+          catAi: '◎ Artificial Intelligence & Ethics', ai1: 'Algorithmic governance, policy frameworks, and AI ethics.', ai2: 'AI fundamentals and core machine learning concepts.',
+          catData: '▦ Data & Analytics', data1: 'Advanced DAX data modeling and business visual dashboards.', data2: 'Strategic business analytics and business intelligence.', data3: 'Massive big data processing, MapReduce, and distributed ecosystems.', data4: 'Data transformation and enterprise Power BI reporting.', data5: 'Digital analytics marketing and conversion metrics.', data6: 'Web data analysis and strategic decision making.',
+          catDev: '⌘ Development & Architecture', dev1: 'Software design patterns, scalability, and clean code architecture.', dev2: 'Object-oriented programming and algorithmic logic.', dev3: 'Agile AI-assisted digital product development.', dev4: 'Low-code workflow automations and API integrations.',
+          catMgmt: '≋ Management, Marketing & Languages', mgmt1: 'Project management lifecycles and modern methodologies.', mgmt2: 'Initiation, project chartering, scheduling, and budget controls.', mgmt3: 'Process systematization and continuous improvement.', mgmt4: 'Growth Marketing with AI and conversational AI.', mgmt5: 'Advanced C2 English proficiency.',
+          badgeLive:'LIVE DEPLOYMENT', capPrisma1:'ADAPTIVE ASSESSMENT', capPrisma2:'INDIRECT MEASUREMENT', capPrisma3:'INTERACTIVE UX', capNexus1:'INTERACTIVE SYSTEMS', capNexus2:'SPA ARCHITECTURE', capNexus3:'AI CONTENT', capHack1:'EDTECH UX', capHack2:'MENTORING FLOWS', capHack3:'AI-ASSISTED LEARNING', capStore1:'PROMPT ENGINEERING', capStore2:'AI WORKFLOWS', capStore3:'DIGITAL ARCHITECTURE', capCv1:'PERSONAL BRAND', capCv2:'RESPONSIVE UI', capCv3:'TECHNICAL STORYTELLING', capParish1:'ACCESSIBLE UX', capParish2:'MULTILINGUAL UI', capParish3:'COMMUNITY INFORMATION', siteKicker:'UNDER THE HOOD', siteTitle:'How this site works', siteDesc:'A concise look at the architecture, technologies, interactions and routes connecting this experience to each project.', site1Title:'Architecture', site1Desc:'A lightweight SPA in HTML, CSS and vanilla JavaScript. One document handles it all: internal anchors for sections, external links for each project, and a language system that never duplicates pages.', site2Title:'Interaction', site2Desc:'A persistent light/dark theme, full language switching, smooth scroll and a menu that adapts to every screen size.', site3Title:'Routes', site3Desc:'Internal anchors jump between sections without reloading the page, and each project name links straight to its live deployment.', site4Title:'Purpose', site4Desc:'The entry point to my projects: portfolio, lab and digital garage.', routeTag1:'PROJECTS', routeTag2:'LIVE LINKS', purposeTag1:'PORTFOLIO', purposeTag2:'LAB', purposeTag3:'GARAGE', footer:'DIRECTED BY JPEG © 2026 — All rights reserved', author:'Designed & Developed by Juan Pablo Espinel Galvis'
+        }
+      };
 
-    function toggleLanguage() {
-      currentLang = currentLang === 'es' ? 'en' : 'es';
-      html.lang = currentLang;
-      // Actualización de textos del DOM según objeto de traducción
-    }
+      const set = (id, value, htmlValue = false) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (htmlValue) el.innerHTML = value; else el.textContent = value;
+      };
+
+      function applyLanguage(lang) {
+        currentLang = lang === 'en' ? 'en' : 'es';
+        localStorage.setItem('jpeg_portfolio_lang', currentLang);
+        const t = translations[currentLang];
+        html.lang = currentLang;
+        set('brand-title', t.brandTitle);
+        document.title = t.pageTitle;
+
+        const map = {
+          'hero-title-prefix':'heroTitlePrefix','hero-title-brand':'heroTitleBrand','hero-eyebrow':'heroEyebrow','hero-tagline':'heroTagline','hero-intro':'heroIntro','hero-cta-text':'heroCta',
+          'nav-inicio':'navHome','nav-projects':'navProjects','nav-cert':'navCert','nav-contact':'navContact','nav-site':'navSite',
+          'projects-kicker':'projectsKicker','projects-title':'projectsTitle','projects-desc':'projectsDesc',
+          'kicker-prisma':'prismaKicker','desc-prisma':'prismaDesc',
+          'kicker-nexus':'nexusKicker','desc-nexus':'nexusDesc',
+          'kicker-hack':'hackKicker','desc-hack':'hackDesc',
+          'kicker-store':'storeKicker','desc-store':'storeDesc',
+          'kicker-cv':'cvKicker','desc-cv':'cvDesc',
+          'kicker-parroquia':'parishKicker','desc-parroquia':'parishDesc',
+          'human-kicker':'humanKicker','human-title':'humanTitle','human-desc':'humanDesc',
+          'contact-kicker':'contactKicker','contact-title':'contactTitle','contact-desc':'contactDesc',
+          'cert-main-title':'certTitle','cert-main-desc':'certDesc','cat-title-aml':'catAml','desc-aml-1':'aml1','desc-aml-2':'aml2',
+          'cat-title-sec':'catSec','desc-sec-1':'sec1','desc-sec-2':'sec2','desc-sec-3':'sec3','desc-sec-4':'sec4','desc-sec-5':'sec5','desc-sec-6':'sec6',
+          'cat-title-ai':'catAi','desc-ai-1':'ai1','desc-ai-2':'ai2','cat-title-data':'catData','desc-data-1':'data1','desc-data-2':'data2','desc-data-3':'data3','desc-data-4':'data4','desc-data-5':'data5','desc-data-6':'data6',
+          'cat-title-dev':'catDev','desc-dev-1':'dev1','desc-dev-2':'dev2','desc-dev-3':'dev3','desc-dev-4':'dev4',
+          'cat-title-mgmt':'catMgmt','desc-mgmt-1':'mgmt1','desc-mgmt-2':'mgmt2','desc-mgmt-3':'mgmt3','desc-mgmt-4':'mgmt4','desc-mgmt-5':'mgmt5',
+          'site-kicker':'siteKicker','site-title':'siteTitle','site-desc':'siteDesc','site-card-1-title':'site1Title','site-card-1-desc':'site1Desc','site-card-2-title':'site2Title','site-card-2-desc':'site2Desc','site-card-3-title':'site3Title','site-card-3-desc':'site3Desc','site-card-4-title':'site4Title','site-card-4-desc':'site4Desc','route-tag-1':'routeTag1','route-tag-2':'routeTag2','purpose-tag-1':'purposeTag1','purpose-tag-2':'purposeTag2','purpose-tag-3':'purposeTag3','footer-text':'footer','footer-author':'author'
+        };
+        Object.entries(map).forEach(([id,key]) => set(id, t[key], id === 'footer-text'));
+        document.querySelectorAll('.badge-live').forEach(el => { el.textContent = t.badgeLive; });
+        document.querySelectorAll('#mobile-nav .nav-btn').forEach((el, i) => { el.textContent = [t.navHome,t.navProjects,t.navCert,t.navContact,t.navSite][i]; });
+        document.getElementById('lang-es')?.classList.toggle('lang-active', currentLang === 'es');
+        document.getElementById('lang-en')?.classList.toggle('lang-active', currentLang === 'en');
+      }
+
+      function applyTheme(theme) {
+        currentTheme = theme === 'light' ? 'light' : 'dark';
+        localStorage.setItem('jpeg_portfolio_theme', currentTheme);
+        document.body.classList.toggle('light-theme', currentTheme === 'light');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = currentTheme === 'light' ? '◐' : '◑';
+      }
+
+      window.toggleLanguage = () => applyLanguage(currentLang === 'es' ? 'en' : 'es');
+      window.toggleTheme = () => applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileNav = document.getElementById('mobile-nav');
+      menuBtn?.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.textContent = open ? '×' : '≡';
+      });
+
+      // Canvas background animation
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas?.getContext('2d', { alpha: true });
+      let width = 0, height = 0, particles = [];
+      
+      function resizeCanvas() {
+        if (!canvas || !ctx) return;
+        width = window.innerWidth; height = window.innerHeight;
+        canvas.width = width; canvas.height = height;
+        particles = Array.from({length: 40}, () => ({
+          x: Math.random() * width, y: Math.random() * height,
+          r: Math.random() * 1.5 + 0.3,
+          vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3
+        }));
+      }
+
+      function drawParticles() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = currentTheme === 'light' ? 'rgba(109,40,217,0.25)' : 'rgba(139,92,246,0.35)';
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0) p.x = width; if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height; if (p.y > height) p.y = 0;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        }
+        requestAnimationFrame(drawParticles);
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      drawParticles();
+
+      applyTheme(currentTheme);
+      applyLanguage(currentLang);
+    })();
   </script>
 </body>
 </html>
