@@ -1,10 +1,1792 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIRIGIDO POR JPEG — Portafolio, Laboratorio y Garaje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07070b;
+      --accent-color: #8b5cf6;
+      --accent-secondary: #22d3ee;
+      --accent-pink: #f472b6;
+      --accent-glow: rgba(139,92,246,.34);
+      --card-bg: rgba(13,14,23,.72);
+      --text-main: #f8fafc;
+      --text-muted: #a6adbb;
+      --border-color: rgba(255,255,255,.10);
+      --header-bg: rgba(7,7,11,.85);
+      --font-display: 'Manrope', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    body.light-theme {
+      --bg-dark: #f4f5f8;
+      --accent-color: #6d28d9;
+      --accent-secondary: #0891b2;
+      --accent-pink: #db2777;
+      --accent-glow: rgba(109,40,217,.18);
+      --card-bg: rgba(255,255,255,.85);
+      --text-main: #111827;
+      --text-muted: #596274;
+      --border-color: rgba(15,23,42,.10);
+      --header-bg: rgba(244,245,248,.88);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, .brand-mini, .nav-btn, .hero-title, .project-title, .section-title {
+      font-family: var(--font-display);
+    }
+
+    .hero-subtitle, .eyebrow, .section-kicker, .badge-status, .detail-tags, .site-route-line, .cert-issuer-sub {
+      font-family: var(--font-mono);
+    }
+
+    /* Ambient background graphics */
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      inset: -30%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    body::before {
+      background: conic-gradient(from 20deg at 50% 50%, transparent 0deg, rgba(139,92,246,.035) 70deg, transparent 120deg, rgba(34,211,238,.025) 190deg, transparent 250deg, rgba(244,114,182,.025) 320deg, transparent 360deg);
+      animation: ambient-rotate 42s linear infinite;
+    }
+    body::after {
+      background: radial-gradient(ellipse at 15% 20%, rgba(139,92,246,.08), transparent 25%), radial-gradient(ellipse at 85% 55%, rgba(34,211,238,.06), transparent 23%), radial-gradient(ellipse at 50% 90%, rgba(244,114,182,.045), transparent 22%);
+      filter: blur(22px);
+      animation: ambient-drift 18s ease-in-out infinite alternate;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .55;
+      mix-blend-mode: screen;
+    }
+    body.light-theme #bg-canvas {
+      opacity: .30;
+      mix-blend-mode: multiply;
+    }
+
+    /* HEADER & NAVIGATION (Centered & Balanced) */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      padding: 10px 18px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .site-header .header-inner {
+      width: min(100%, 1440px);
+      min-height: 54px;
+      margin: 0 auto;
+      padding: 7px 14px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      background: rgba(9,10,15,.42);
+      box-shadow: 0 10px 35px rgba(0,0,0,.16);
+    }
+
+    body.light-theme .site-header .header-inner {
+      background: rgba(255,255,255,.62);
+    }
+
+    .site-header .brand-mini {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font: 800 .82rem/1 'Fira Code', monospace;
+      letter-spacing: 1.35px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .site-header .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 0 auto;
+    }
+
+    .site-header .main-nav .nav-btn {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 14px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      color: var(--text-muted);
+      font: 700 .75rem/1 var(--font-display);
+      letter-spacing: .45px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .site-header .main-nav .nav-btn:hover,
+    .site-header .main-nav .nav-btn.active {
+      color: var(--text-main);
+      background: rgba(139,92,246,.12);
+      border-color: var(--border-color);
+    }
+
+    .site-header .header-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .ctrl-btn, .lang-switch, .mobile-menu-btn {
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      background: rgba(139,92,246,.08);
+      cursor: pointer;
+      transition: .25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ctrl-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+    }
+
+    .lang-switch {
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 12px;
+      font: 700 .72rem var(--font-mono);
+    }
+
+    .lang-divider {
+      opacity: .35;
+      padding: 0 4px;
+    }
+
+    .lang-active {
+      color: var(--accent-secondary);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+
+    .site-header .mobile-nav {
+      width: min(100%, 560px);
+      margin: 7px auto 0;
+      padding: 8px;
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: var(--header-bg);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header .mobile-nav.open {
+      display: grid;
+    }
+
+    .site-header .mobile-nav .nav-btn {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 7px;
+      text-align: center;
+      font-size: .72rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .site-header .mobile-nav .nav-btn:last-child {
+      grid-column: 1 / -1;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+    }
+
+    /* HERO SECTION */
+    .hero-v2 {
+      min-height: 100svh;
+      height: 100svh;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--border-color);
+      background: radial-gradient(circle at 50% 42%, rgba(139,92,246,.14), transparent 32%), linear-gradient(135deg, rgba(34,211,238,.035), transparent 38%), var(--bg-dark);
+    }
+
+    .hero-grid {
+      position: absolute;
+      width: min(78vh, 88vw, 900px);
+      height: min(78vh, 88vw, 900px);
+      aspect-ratio: 1;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      box-shadow: 0 0 110px var(--accent-glow), 0 0 220px rgba(34,211,238,.09), inset 0 0 120px rgba(34,211,238,.06);
+      animation: slow-spin 30s linear infinite;
+    }
+    .hero-grid::before, .hero-grid::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border: 1px dashed var(--border-color);
+      border-radius: 50%;
+    }
+    .hero-grid::after {
+      inset: 30%;
+      border-style: solid;
+      border-color: rgba(139,92,246,.16);
+    }
+
+    .hero-band {
+      position: absolute;
+      width: 125%;
+      height: 1px;
+      left: -12.5%;
+      pointer-events: none;
+      opacity: .28;
+      transform-origin: center;
+      background: linear-gradient(90deg, transparent, var(--accent-secondary), var(--accent-color), var(--accent-pink), transparent);
+      filter: blur(.35px);
+    }
+    .hero-band-a { top: 30%; transform: rotate(11deg); animation: band-drift-a 13s ease-in-out infinite alternate; }
+    .hero-band-b { top: 62%; transform: rotate(-8deg); opacity: .18; animation: band-drift-b 17s ease-in-out infinite alternate; }
+    .hero-band-c { top: 72%; transform: rotate(5deg); opacity: .12; animation: band-drift-c 21s ease-in-out infinite alternate; }
+
+    .hero-orbit {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      border: 1px solid rgba(255,255,255,.08);
+      animation: float-orbit 8s ease-in-out infinite;
+    }
+    .hero-orbit-a { width: 340px; height: 340px; top: 17%; left: 8%; box-shadow: 0 0 70px rgba(34,211,238,.12); border-color: rgba(34,211,238,.13); }
+    .hero-orbit-b { width: 230px; height: 230px; right: 10%; bottom: 18%; box-shadow: 0 0 70px rgba(244,114,182,.12); animation-delay: -3s; border-color: rgba(244,114,182,.13); }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(70%, 690px);
+      text-align: center;
+      transform: translateY(-4px);
+    }
+
+    .eyebrow {
+      font: 700 .67rem/1.3 var(--font-mono);
+      letter-spacing: 2.2px;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 16px 0 10px;
+      display: flex;
+      flex-direction: column;
+      font-size: clamp(3.6rem, 7.2vw, 7rem);
+      line-height: .78;
+      letter-spacing: -.07em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .hero-title span {
+      color: var(--text-main);
+      font-size: .33em;
+      letter-spacing: .18em;
+      margin-right: .1em;
+      opacity: .78;
+    }
+    .hero-title strong {
+      background: linear-gradient(105deg, var(--text-main) 5%, var(--accent-color) 47%, var(--accent-secondary) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -.085em;
+    }
+
+    .hero-subtitle {
+      margin: 20px 0 0;
+      color: var(--text-muted);
+      font: 600 .78rem var(--font-mono);
+      letter-spacing: 2px;
+    }
+
+    .hero-intro {
+      max-width: 500px;
+      margin: 18px auto 26px;
+      color: var(--text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .8rem;
+      background: rgba(139,92,246,.09);
+      transition: .3s;
+      margin-bottom: 12px;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 40px var(--accent-glow);
+    }
+
+    .hero-meta {
+      position: absolute;
+      bottom: 34px;
+      z-index: 2;
+      color: var(--text-muted);
+      opacity: .65;
+      font: 500 .6rem var(--font-mono);
+      letter-spacing: 1.4px;
+    }
+    .hero-meta-left { left: 30px; }
+    .hero-meta-right { right: 30px; }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      opacity: .8;
+      background: rgba(9,10,15,.16);
+      padding: 4px 8px;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      z-index: 4;
+    }
+    .scroll-cue span {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(var(--accent-color), transparent);
+      animation: pulse-line 1.8s ease-in-out infinite;
+    }
+    .scroll-cue small {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .55rem;
+      letter-spacing: 1.2px;
+      white-space: nowrap;
+    }
+
+    /* PROJECTS SECTION */
+    .projects-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(118deg, transparent 0 150px, rgba(139,92,246,.018) 151px, transparent 152px 310px);
+      animation: section-sweep 24s linear infinite;
+    }
+
+    .section-container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 110px 24px;
+    }
+
+    .projects-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 74px;
+      padding-bottom: 22px;
+      margin-bottom: 0;
+    }
+    .projects-heading .section-title { margin: 7px 0 0; }
+    
+    .section-kicker {
+      font: 700 .67rem/1.3 var(--font-mono);
+      letter-spacing: 2.2px;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      letter-spacing: -.05em;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: .95rem;
+      max-width: 650px;
+    }
+
+    .project-count {
+      font: 800 1.4rem var(--font-mono);
+      color: var(--text-main);
+    }
+    .project-count span {
+      font-size: .7rem;
+      color: var(--text-muted);
+    }
+
+    /* PROJECT STRIPS */
+    .project-v2 {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+      padding: 46px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-color);
+      scroll-margin-top: 90px;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .project-v2 + .project-v2 {
+      border-top: 0;
+      margin-top: 0;
+    }
+
+    .strip-prisma { background: radial-gradient(circle at 50% 50%, rgba(139,92,246,.25), transparent 30%), radial-gradient(circle at 80% 30%, rgba(34,211,238,.12), transparent 25%), #090810; }
+    .strip-nexus { background: radial-gradient(circle at 35% 40%, rgba(34,211,238,.16), transparent 32%), var(--bg-dark); }
+    .strip-hackacademy { background: radial-gradient(circle at 70% 50%, rgba(244,114,182,.13), transparent 34%), var(--bg-dark); }
+    .strip-jpegstore { background: radial-gradient(circle at 30% 50%, rgba(139,92,246,.15), transparent 34%), var(--bg-dark); }
+    .strip-cv { background: radial-gradient(circle at 65% 50%, rgba(16,185,129,.13), transparent 34%), var(--bg-dark); }
+    .strip-parroquia { background: radial-gradient(circle at 50% 40%, rgba(34,211,238,.10), transparent 35%), var(--bg-dark); }
+
+    .project-index {
+      position: absolute;
+      left: 30px;
+      top: 32px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .8rem;
+      color: var(--text-muted);
+      opacity: .8;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .project-index span {
+      display: inline-grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      color: var(--accent-secondary);
+      background: rgba(255,255,255,.025);
+      font-size: .7rem;
+      box-shadow: 0 0 18px rgba(139,92,246,.08);
+    }
+
+    .strip-content {
+      max-width: 820px;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font: 700 .58rem var(--font-mono);
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,.025);
+      text-transform: uppercase;
+    }
+    .badge-live::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 12px rgba(52,211,153,.7);
+    }
+    .badge-project::before {
+      content: "✦";
+      color: var(--accent-secondary);
+    }
+
+    .project-title {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -.045em;
+      font-weight: 800;
+      margin: 12px 0 8px;
+      line-height: .95;
+    }
+    .project-title a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: .35em;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .2s ease, border-color .2s ease, transform .2s ease;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    .project-title a::after {
+      content: "↗";
+      font: 600 .42em/1 var(--font-mono);
+      color: var(--accent-secondary);
+      transform: translateY(-.12em);
+      transition: transform .2s ease, color .2s ease;
+    }
+    .project-title a:hover, .project-title a:focus-visible {
+      color: var(--accent-secondary);
+      border-color: var(--accent-secondary);
+      outline: none;
+    }
+    .project-title a:hover::after, .project-title a:focus-visible::after {
+      transform: translate(.14em, -.2em);
+    }
+
+    .project-kicker {
+      font-family: var(--font-display);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+      margin: 0 auto 12px;
+    }
+
+    .project-desc {
+      max-width: 690px;
+      font-size: .94rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0 auto 14px;
+    }
+
+    .capabilities {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin: 12px auto 0;
+    }
+    .capabilities span {
+      border: 1px solid var(--border-color);
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font: 600 .57rem var(--font-mono);
+      letter-spacing: .6px;
+      background: rgba(255,255,255,.025);
+      transition: .25s ease;
+    }
+    .project-v2:hover .capabilities span {
+      border-color: rgba(139,92,246,.22);
+      transform: translateY(-1px);
+    }
+
+    /* CERTIFICATIONS SECTION (Compact 2-Column Grid Layout) */
+    .certifications-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #certificaciones {
+      padding-top: 62px;
+      padding-bottom: 70px;
+    }
+
+    #certificaciones .section-header {
+      margin-bottom: 28px;
+    }
+
+    .cert-columns-layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .cert-category-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+
+    .cert-category-box h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -.01em;
+    }
+
+    .cert-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .cert-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+    }
+    .cert-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .cert-title {
+      font-weight: 700;
+      font-size: .84rem;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .cert-issuer-sub {
+      font-size: .63rem;
+      color: var(--accent-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .cert-desc {
+      font-size: .73rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* CONTACT SECTION (Centered Cards Grid) */
+    .contact-section-v2 {
+      padding-top: 70px;
+      padding-bottom: 70px;
+      position: relative;
+    }
+
+    .contact-card-v2 {
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 36px 28px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 80px rgba(0,0,0,.18);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .contact-btn {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+      transition: .25s;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .88rem;
+    }
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-color);
+      background: rgba(139,92,246,.08);
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 24px;
+      border-radius: 7px;
+    }
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .contact-btn:nth-child(1) .contact-icon { background: rgba(139,92,246,.12); color: #c4b5fd; }
+    .contact-btn:nth-child(2) .contact-icon { background: rgba(34,211,238,.10); color: #67e8f9; }
+    .contact-btn:nth-child(3) .contact-icon { background: rgba(52,211,153,.10); color: #86efac; }
+    .contact-btn:nth-child(4) .contact-icon { background: rgba(244,114,182,.10); color: #f9a8d4; }
+    .contact-btn:nth-child(5) .contact-icon { background: rgba(251,191,36,.10); color: #fde047; }
+    .contact-btn:hover .contact-icon { color: #fff !important; }
+
+    .contact-btn-arrow {
+      margin-left: auto;
+      opacity: .55;
+      font-family: var(--font-mono);
+    }
+
+    /* UNDER THE HOOD / BAJO EL CAPÓ */
+    .site-details-section {
+      padding-top: 58px;
+      padding-bottom: 54px;
+      position: relative;
+    }
+
+    .site-details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .site-detail-card {
+      min-height: 220px;
+      padding: 22px;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 50px rgba(0,0,0,.10);
+      transition: .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-detail-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -45px;
+      top: -45px;
+      border-radius: 50%;
+      border: 1px solid rgba(139,92,246,.10);
+      box-shadow: 0 0 40px rgba(34,211,238,.05);
+    }
+    .site-detail-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139,92,246,.35);
+      box-shadow: 0 24px 60px rgba(139,92,246,.10);
+    }
+
+    .site-detail-icon {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      color: var(--accent-secondary);
+      border: 1px solid var(--border-color);
+      background: linear-gradient(135deg, rgba(139,92,246,.13), rgba(34,211,238,.08));
+      font: 800 1.05rem var(--font-display);
+    }
+
+    .site-detail-card h3 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .site-detail-card p {
+      color: var(--text-muted);
+      font-size: .84rem;
+      line-height: 1.65;
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 16px;
+    }
+    .detail-tags span {
+      font: 700 .54rem var(--font-mono);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+
+    /* Extended & Readable Copy for Under the Hood */
+    .hood-extended-text {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px;
+      margin-top: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .hood-extended-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .hood-extended-text p {
+      color: var(--text-muted);
+      font-size: .92rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .hood-extended-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .human-notice {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px dashed var(--border-color);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(139,92,246,.06), rgba(34,211,238,.035));
+    }
+    .human-notice h3 {
+      margin: .25rem 0 .45rem;
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+    }
+    .human-notice p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: .86rem;
+      max-width: 780px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 6%;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: .82rem;
+      color: var(--text-muted);
+      background: rgba(6,7,10,.8);
+      margin-top: auto;
+      font-family: var(--font-mono);
+    }
+    .footer-credits {
+      margin-top: 6px;
+      font-size: .75rem;
+      opacity: .85;
+    }
+
+    /* ANIMATIONS & MEDIA QUERIES */
+    @keyframes slow-spin { to { transform: rotate(360deg); } }
+    @keyframes float-orbit { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -18px, 0); } }
+    @keyframes pulse-line { 0%, 100% { opacity: .35; transform: scaleY(.6); } 50% { opacity: 1; transform: scaleY(1); } }
+    @keyframes band-drift-a { from { transform: translateX(-7%) rotate(11deg); } to { transform: translateX(7%) rotate(11deg); } }
+    @keyframes band-drift-b { from { transform: translateX(8%) rotate(-8deg); } to { transform: translateX(-8%) rotate(-8deg); } }
+    @keyframes band-drift-c { from { transform: translateX(-5%) rotate(5deg); } to { transform: translateX(5%) rotate(5deg); } }
+    @keyframes ambient-rotate { to { transform: rotate(360deg); } }
+    @keyframes ambient-drift { 0% { transform: translate3d(-2%, 0, 0) scale(1); } 100% { transform: translate3d(2%, -2%, 0) scale(1.05); } }
+    @keyframes section-sweep { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+
+    @media (max-width: 1020px) {
+      .site-header{ padding: 8px 12px; }
+      .site-header .header-inner {
+        grid-template-columns: 1fr auto !important;
+        padding: 6px 10px;
+      }
+      .site-header .main-nav { display: none !important; }
+      .mobile-menu-btn { display: inline-flex !important; }
+      .cert-columns-layout { grid-template-columns: 1fr; }
+      .contact-links { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .contact-links { grid-template-columns: 1fr; }
+      .hero-title { font-size: clamp(2.5rem, 12vw, 4.5rem); }
+      .project-v2 { padding: 40px 16px; }
+      .project-title { font-size: 1.8rem; }
+      .hood-extended-text { padding: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::before, body::after, .projects-section::before, .hero-grid, .hero-band, .hero-orbit { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand-mini" id="brand-title" aria-label="DIRECTED BY JPEG — Home">DIRECTED BY JPEG</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#home" class="nav-btn active" id="nav-inicio">Inicio</a>
+        <a href="#proyectos" class="nav-btn" id="nav-projects">Proyectos</a>
+        <a href="#certificaciones" class="nav-btn" id="nav-cert">Certificaciones</a>
+        <a href="#contacto" class="nav-btn" id="nav-contact">Contacto</a>
+        <a href="#sobre-el-sitio" class="nav-btn" id="nav-site">Bajo el capó</a>
+      </nav>
+      <div class="header-controls">
+        <button class="ctrl-btn theme-control" id="theme-btn" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema">
+          <span id="theme-icon">◑</span>
+        </button>
+        <button class="lang-switch" id="lang-btn" onclick="toggleLanguage()" title="Cambiar idioma" aria-label="Cambiar idioma">
+          <span id="lang-es" class="lang-active">ES</span><span class="lang-divider">/</span><span id="lang-en">EN</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú" title="Abrir menú">≡</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+      <a href="#home" class="nav-btn active" onclick="toggleMobileMenu()">Inicio</a>
+      <a href="#proyectos" class="nav-btn" onclick="toggleMobileMenu()">Proyectos</a>
+      <a href="#certificaciones" class="nav-btn" onclick="toggleMobileMenu()">Certificaciones</a>
+      <a href="#contacto" class="nav-btn" onclick="toggleMobileMenu()">Contacto</a>
+      <a href="#sobre-el-sitio" class="nav-btn" onclick="toggleMobileMenu()">Bajo el capó</a>
+    </nav>
+  </header>
+
+  <main>
+    
+    <!-- HERO SECTION -->
+    <section class="hero-section hero-v2" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-band hero-band-a" aria-hidden="true"></div>
+      <div class="hero-band hero-band-b" aria-hidden="true"></div>
+      <div class="hero-band hero-band-c" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit-a" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit-b" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="eyebrow" id="hero-eyebrow">EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS</div>
+        <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR</span><strong id="hero-title-brand">JPEG</strong></h1>
+        <p class="hero-subtitle" id="hero-tagline">JPEG PORTAFOLIO • LABORATORIO &amp; GARAJE</p>
+        <p class="hero-intro" id="hero-intro">Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.</p>
+        <a class="hero-cta" href="#proyectos"><span id="hero-cta-text">Explorar proyectos</span><span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-meta hero-meta-left" id="hero-meta-left" aria-hidden="true">V2.6 / TRABAJO SELECCIONADO</div>
+      <div class="hero-meta hero-meta-right" id="hero-meta-right" aria-hidden="true">BOGOTÁ · CO</div>
+      <div class="scroll-cue" aria-hidden="true"><span></span><small id="scroll-text">DESLIZA PARA EXPLORAR</small></div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="proyectos" class="projects-section">
+      <div class="section-container projects-heading">
+        <div>
+          <div class="section-kicker" id="projects-kicker">TRABAJO SELECCIONADO</div>
+          <h2 class="section-title" id="projects-title">Proyectos</h2>
+          <p class="section-subtitle" id="projects-desc">Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.</p>
+        </div>
+        <div class="project-count" id="projects-count-display">1 de 6</div>
+      </div>
+
+      <!-- 01. PRISMA -->
+      <article class="project-strip project-v2 strip-prisma">
+        <div class="project-index"><span aria-hidden="true">◈</span> 1 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir PRISMA">PRISMA</a></h2>
+          <p class="project-kicker" id="kicker-prisma">Exploración Profesional & Autodescubrimiento Interactivo</p>
+          <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
+          <div class="capabilities" id="caps-prisma"><span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span><span id="cap-prisma-2">MEDICIÓN INDIRECTA</span><span id="cap-prisma-3">DISEÑO DE EXPERIENCIA</span></div>
+        </div>
+      </article>
+
+      <!-- 02. NEXUS -->
+      <article class="project-strip project-v2 strip-nexus">
+        <div class="project-index"><span aria-hidden="true">◇</span> 2 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir NEXUS">NEXUS</a></h2>
+          <p class="project-kicker" id="kicker-nexus">Inteligencia Artificial & Sistemas Web Interactivos</p>
+          <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
+          <div class="capabilities"><span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span><span id="cap-nexus-2">ARQUITECTURA SPA</span><span id="cap-nexus-3">CONTENIDO CON IA</span></div>
+        </div>
+      </article>
+
+      <!-- 03. HACK ACADEMY -->
+      <article class="project-strip project-v2 strip-hackacademy">
+        <div class="project-index"><span aria-hidden="true">≋</span> 3 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir HACK ACADEMY">HACK ACADEMY</a></h2>
+          <p class="project-kicker" id="kicker-hack">Experiencia de Aprendizaje & Educación Asistida por IA</p>
+          <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
+          <div class="capabilities"><span id="cap-hack-1">DISEÑO EDUCATIVO</span><span id="cap-hack-2">FLUJOS DE MENTORÍA</span><span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></div>
+        </div>
+      </article>
+
+      <!-- 04. DIGITAL VAULT -->
+      <article class="project-strip project-v2 strip-jpegstore">
+        <div class="project-index"><span aria-hidden="true">▣</span> 4 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-store">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-store"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir DIGITAL VAULT">DIGITAL VAULT</a></h2>
+          <p class="project-kicker" id="kicker-store">Recursos de IA, Ingeniería de Prompts & Flujos de Trabajo</p>
+          <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
+          <div class="capabilities"><span id="cap-store-1">INGENIERÍA DE PROMPTS</span><span id="cap-store-2">FLUJOS CON IA</span><span id="cap-store-3">ARQUITECTURA DIGITAL</span></div>
+        </div>
+      </article>
+
+      <!-- 05. CURRICULUM VITAE -->
+      <article class="project-strip project-v2 strip-cv">
+        <div class="project-index"><span aria-hidden="true">◎</span> 5 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-live" id="badge-cv">DESPLIEGUE ACTIVO</span>
+          <h2 class="project-title" id="title-cv"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir CURRICULUM VITAE">CURRICULUM VITAE</a></h2>
+          <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
+          <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
+          <div class="capabilities"><span id="cap-cv-1">MARCA PERSONAL</span><span id="cap-cv-2">INTERFAZ RESPONSIVA</span><span id="cap-cv-3">NARRATIVA TÉCNICA</span></div>
+        </div>
+      </article>
+
+      <!-- 06. PARROQUIA / NON-PROFIT -->
+      <article class="project-strip project-v2 strip-parroquia">
+        <div class="project-index"><span aria-hidden="true">✦</span> 6 de 6</div>
+        <div class="strip-content">
+          <span class="badge-status badge-project" id="badge-parroquia">PROYECTO SIN ÁNIMO DE LUCRO</span>
+          <h2 class="project-title" id="title-parroquia"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir NUESTRA SEÑORA DE LA MEDALLA MILAGROSA">NUESTRA SEÑORA DE LA MEDALLA MILAGROSA</a></h2>
+          <p class="project-kicker" id="kicker-parroquia">Proyecto Web Institucional · Accesibilidad & Comunidad</p>
+          <p class="project-desc" id="desc-parroquia">Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni identidad personal de DIRECTED BY JPEG.</p>
+          <div class="capabilities"><span id="cap-parish-1">DISEÑO ACCESIBLE</span><span id="cap-parish-2">INTERFAZ MULTILINGÜE</span><span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <div id="certificaciones" class="section-container certifications-section">
+      <div class="section-header">
+        <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
+        <p class="section-subtitle" id="cert-main-desc">Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.</p>
+      </div>
+      
+      <div class="cert-columns-layout">
+        <div class="cert-category-box">
+          <h3 id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">AML en la Práctica</div>
+              <div class="cert-issuer-sub">Antiga Compliance</div>
+              <div class="cert-desc" id="desc-aml-1">Marcos operativos y prevención de lavado de activos.</div>
+            </li>
+            <li>
+              <div class="cert-title">Inteligencia Financiera contra la Trata de Personas</div>
+              <div class="cert-issuer-sub">AC30</div>
+              <div class="cert-desc" id="desc-aml-2">Tipologías de trata y monitoreo transaccional.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3 id="cat-title-sec">◇ Ciberseguridad e Infraestructura</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">Seguridad TI: Defensa contra las artes oscuras digitales</div>
+              <div class="cert-issuer-sub">Google</div>
+              <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
+            </li>
+            <li>
+              <div class="cert-title">Ciberseguridad para Gerentes</div>
+              <div class="cert-issuer-sub">BBVA</div>
+              <div class="cert-desc" id="desc-sec-2">Gestión estratégica de la seguridad de la información.</div>
+            </li>
+            <li>
+              <div class="cert-title">Hacking Ético Gamificado</div>
+              <div class="cert-issuer-sub">HackerMentor</div>
+              <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pruebas de penetración.</div>
+            </li>
+            <li>
+              <div class="cert-title">Soporte Tecnológico de Google</div>
+              <div class="cert-issuer-sub">Google</div>
+              <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
+            </li>
+            <li>
+              <div class="cert-title">Bits y Bytes de las Redes de Computadores</div>
+              <div class="cert-issuer-sub">Google</div>
+              <div class="cert-desc" id="desc-sec-5">Protocolos de red y arquitectura web.</div>
+            </li>
+            <li>
+              <div class="cert-title">Administración de Sistemas e Infraestructura TI</div>
+              <div class="cert-issuer-sub">Google</div>
+              <div class="cert-desc" id="desc-sec-6">Administración de infraestructura IT y servidores.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3 id="cat-title-ai">◎ Inteligencia Artificial & Ética</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">Políticas de Inteligencia Artificial</div>
+              <div class="cert-issuer-sub">Fred Hutch</div>
+              <div class="cert-desc" id="desc-ai-1">Gobernanza, marcos operativos y ética algorítmica.</div>
+            </li>
+            <li>
+              <div class="cert-title">IA para Todos</div>
+              <div class="cert-issuer-sub">DeepLearning.AI</div>
+              <div class="cert-desc" id="desc-ai-2">Estrategia, capacidades y casos de uso en IA.</div>
+            </li>
+            <li>
+              <div class="cert-title">Ética de la Datos</div>
+              <div class="cert-issuer-sub">University of Michigan</div>
+              <div class="cert-desc" id="desc-ai-3">Privacidad, sesgo de datos y responsabilidad algorítmica.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cert-category-box">
+          <h3 id="cat-title-dev">≋ Desarrollo Web & Operaciones</h3>
+          <ul class="cert-list">
+            <li>
+              <div class="cert-title">Fundamentos de Desarrollo Front-End</div>
+              <div class="cert-issuer-sub">Meta</div>
+              <div class="cert-desc" id="desc-dev-1">Arquitectura HTML, CSS, JavaScript y principios de UI.</div>
+            </li>
+            <li>
+              <div class="cert-title">Sistemas de Control de Versiones con Git</div>
+              <div class="cert-issuer-sub">Meta</div>
+              <div class="cert-desc" id="desc-dev-2">Flujos de trabajo colaborativos y despliegues con Git.</div>
+            </li>
+            <li>
+              <div class="cert-title">Soporte al Cliente & Operaciones Tecnológicas</div>
+              <div class="cert-issuer-sub">Teleperformance</div>
+              <div class="cert-desc" id="desc-dev-3">Resolución técnica, estándares de servicio y flujos de trabajo.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section id="contacto" class="contact-section-v2">
+      <div class="section-container">
+        <div class="section-header text-center" style="text-align: center; margin-bottom: 35px;">
+          <div class="section-kicker">CONECTEMOS</div>
+          <h2 class="section-title" id="contact-main-title">Contacto</h2>
+          <p class="section-subtitle" style="margin: 0 auto;" id="contact-main-desc">Canales directos para colaboración, proyectos o consultas técnicas.</p>
+        </div>
+
+        <div class="contact-card-v2">
+          <div class="contact-links">
+            <a href="https://github.com/juanespinel1" target="_blank" rel="noopener" class="contact-btn">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </span>
+              <span>GitHub</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+
+            <a href="https://linkedin.com/in/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </span>
+              <span>LinkedIn</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+
+            <a href="mailto:juanpabloespinelgalvis@gmail.com" class="contact-btn">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </span>
+              <span>Correo Electrónico</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+
+            <a href="https://instagram.com/juanpabloespinelgalvis" target="_blank" rel="noopener" class="contact-btn">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </span>
+              <span>Instagram</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+
+            <a href="https://x.com/juanespinel1" target="_blank" rel="noopener" class="contact-btn">
+              <span class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </span>
+              <span>X (Twitter)</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNDER THE HOOD / BAJO EL CAPÓ SECTION -->
+    <section id="sobre-el-sitio" class="site-details-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-kicker">ARQUITECTURA & FILOSOFÍA</div>
+          <h2 class="section-title" id="site-main-title">Bajo el capó</h2>
+          <p class="section-subtitle" id="site-main-desc">Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.</p>
+        </div>
+
+        <div class="site-details-grid">
+          <div class="site-detail-card">
+            <div class="site-detail-icon">01</div>
+            <h3 id="card-arch-title">Arquitectura</h3>
+            <p id="card-arch-desc">SPA en HTML5 semántico, CSS nativo moderno con variables personalizadas y JS vanilla ligero sin librerías pesadas.</p>
+            <div class="detail-tags"><span>HTML5</span><span>CSS3</span><span>VANILLA JS</span></div>
+          </div>
+
+          <div class="site-detail-card">
+            <div class="site-detail-icon">02</div>
+            <h3 id="card-design-title">Diseño Visual</h3>
+            <p id="card-design-desc">Estética dark mode por defecto con tipografía Manrope e Inter, detalles en Fira Code y acentos en degradados sutiles.</p>
+            <div class="detail-tags"><span>DARK MODE</span><span>MANROPE</span><span>FIRA CODE</span></div>
+          </div>
+
+          <div class="site-detail-card">
+            <div class="site-detail-icon">03</div>
+            <h3 id="card-perf-title">Rendimiento</h3>
+            <p id="card-perf-desc">Optimización extrema de peso, carga instantánea, gráficos por Canvas interactivo y animaciones aceleradas por GPU.</p>
+            <div class="detail-tags"><span>CANVAS</span><span>GPU ACCEL</span><span>LIGHTWEIGHT</span></div>
+          </div>
+
+          <div class="site-detail-card">
+            <div class="site-detail-icon">04</div>
+            <h3 id="card-i18n-title">Internacionalización</h3>
+            <p id="card-i18n-desc">Conmutador dinámico entre español e inglés con persistencia local de preferencia de idioma y tema visual.</p>
+            <div class="detail-tags"><span>ES / EN</span><span>LOCALSTORAGE</span><span>I18N JS</span></div>
+          </div>
+        </div>
+
+        <!-- EXTENDED PROSE SECTION FOR HOW THIS SITE WORKS -->
+        <div class="hood-extended-text">
+          <h3 id="hood-prose-title">¿Cómo funciona este sitio web?</h3>
+          
+          <p id="hood-prose-p1">
+            Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. A diferencia de las plataformas modernas infladas con dependencias complejas y frameworks de procesamiento pesado, este sitio opera como una Single Page Application (SPA) pura, impulsada exclusivamente por tecnologías web nativas. Cada línea de código está optimizada para ofrecer una velocidad de carga instantánea, garantizando al mismo tiempo una navegación fluida entre secciones mediante desplazamientos suaves y transiciones visuales aceleradas por hardware.
+          </p>
+          
+          <p id="hood-prose-p2">
+            El apartado visual se fundamenta en un canvas interactivo de fondo que renderiza de forma eficiente partículas y efectos dinámicos sin degradar la tasa de cuadros por segundo. La paleta de colores y el comportamiento de la interfaz reaccionan en tiempo real según las preferencias del usuario, soportando la alternancia entre un tema oscuro profundo y un modo claro refinado, así como un sistema de traducción dinámico en JavaScript que adapta todos los contenidos del sitio de manera nativa sin recargar la página.
+          </p>
+
+          <p id="hood-prose-p3">
+            Cada módulo del portafolio —desde las fichas de proyectos interactivos hasta el compendio de certificaciones— está estructurado de manera responsiva para ofrecer una legibilidad impecable tanto en dispositivos móviles de pantalla pequeña como en monitores de alta resolución. Este sitio no es solo una vitrina de proyectos: es un garaje conceptual y un laboratorio de código vivo que refleja una visión clara sobre cómo construir para la web moderna.
+          </p>
+        </div>
+
+        <div class="human-notice">
+          <div>
+            <h3 id="human-notice-title">Nota sobre la autoría y producción</h3>
+            <p id="human-notice-desc">Todas las aplicaciones, sistemas y conceptos presentados en este portafolio han sido concebidos, diseñados y desarrollados por Juan Pablo Espinel (DIRECTED BY JPEG), combinando lógica de ingeniería, diseño de experiencia de usuario y arquitectura de software.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>DIRECTED BY JPEG © 2026 — TODOS LOS DERECHOS RESERVADOS</div>
+    <div class="footer-credits">BOGOTÁ, COLOMBIA · CONSTRUIDO CON HTML, CSS Y VANILLA JS</div>
+  </footer>
+
+  <script>
+    // Dictionary for ES / EN Translations
+    const translations = {
+      es: {
+        nav_inicio: "Inicio",
+        nav_projects: "Proyectos",
+        nav_cert: "Certificaciones",
+        nav_contact: "Contacto",
+        nav_site: "Bajo el capó",
+        hero_eyebrow: "EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS",
+        hero_title_prefix: "DIRIGIDO POR",
+        hero_tagline: "JPEG PORTAFOLIO • LABORATORIO & GARAJE",
+        hero_intro: "Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.",
+        hero_cta: "Explorar proyectos",
+        scroll_text: "DESLIZA PARA EXPLORAR",
+        projects_kicker: "TRABAJO SELECCIONADO",
+        projects_title: "Proyectos",
+        projects_desc: "Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.",
+        badge_live: "DESPLIEGUE ACTIVO",
+        badge_nonprofit: "PROYECTO SIN ÁNIMO DE LUCRO",
+        
+        kicker_prisma: "Exploración Profesional & Autodescubrimiento Interactivo",
+        desc_prisma: "Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.",
+        cap_prisma_1: "EVALUACIÓN ADAPTATIVA",
+        cap_prisma_2: "MEDICIÓN INDIRECTA",
+        cap_prisma_3: "DISEÑO DE EXPERIENCIA",
+
+        kicker_nexus: "Inteligencia Artificial & Sistemas Web Interactivos",
+        desc_nexus: "Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.",
+        cap_nexus_1: "SISTEMAS INTERACTIVOS",
+        cap_nexus_2: "ARQUITECTURA SPA",
+        cap_nexus_3: "CONTENIDO CON IA",
+
+        kicker_hack: "Experiencia de Aprendizaje & Educación Asistida por IA",
+        desc_hack: "Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.",
+        cap_hack_1: "DISEÑO EDUCATIVO",
+        cap_hack_2: "FLUJOS DE MENTORÍA",
+        cap_hack_3: "APRENDIZAJE ASISTIDO POR IA",
+
+        kicker_store: "Recursos de IA, Ingeniería de Prompts & Flujos de Trabajo",
+        desc_store: "Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.",
+        cap_store_1: "INGENIERÍA DE PROMPTS",
+        cap_store_2: "FLUJOS CON IA",
+        cap_store_3: "ARQUITECTURA DIGITAL",
+
+        kicker_cv: "Perfil Profesional & Portafolio Técnico",
+        desc_cv: "Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.",
+        cap_cv_1: "MARCA PERSONAL",
+        cap_cv_2: "INTERFAZ RESPONSIVA",
+        cap_cv_3: "NARRATIVA TÉCNICA",
+
+        kicker_parroquia: "Proyecto Web Institucional · Accesibilidad & Comunidad",
+        desc_parroquia: "Proyecto web institucional desarrollado para una parroquia en Bogotá. Es un trabajo independiente para una organización religiosa y no representa los valores, creencias ni identidad personal de DIRECTED BY JPEG.",
+        cap_parish_1: "DISEÑO ACCESIBLE",
+        cap_parish_2: "INTERFAZ MULTILINGÜE",
+        cap_parish_3: "INFORMACIÓN COMUNITARIA",
+
+        cert_main_title: "Credenciales y Certificaciones",
+        cert_main_desc: "Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.",
+        cat_title_aml: "◈ Cumplimiento y Delitos Financieros",
+        cat_title_sec: "◇ Ciberseguridad e Infraestructura",
+        cat_title_ai: "◎ Inteligencia Artificial & Ética",
+        cat_title_dev: "≋ Desarrollo Web & Operaciones",
+
+        desc_aml_1: "Marcos operativos y prevención de lavado de activos.",
+        desc_aml_2: "Tipologías de trata y monitoreo transaccional.",
+        desc_sec_1: "Criptografía y mitigación de riesgos digitales.",
+        desc_sec_2: "Gestión estratégica de la seguridad de la información.",
+        desc_sec_3: "Evaluación de vulnerabilidades y pruebas de penetración.",
+        desc_sec_4: "Soporte técnico, sistemas operativos y redes.",
+        desc_sec_5: "Protocolos de red y arquitectura web.",
+        desc_sec_6: "Administración de infraestructura IT y servidores.",
+        desc_ai_1: "Gobernanza, marcos operativos y ética algorítmica.",
+        desc_ai_2: "Estrategia, capacidades y casos de uso en IA.",
+        desc_ai_3: "Privacidad, sesgo de datos y responsabilidad algorítmica.",
+        desc_dev_1: "Arquitectura HTML, CSS, JavaScript y principios de UI.",
+        desc_dev_2: "Flujos de trabajo colaborativos y despliegues con Git.",
+        desc_dev_3: "Resolución técnica, estándares de servicio y flujos de trabajo.",
+
+        contact_main_title: "Contacto",
+        contact_main_desc: "Canales directos para colaboración, proyectos o consultas técnicas.",
+
+        site_main_title: "Bajo el capó",
+        site_main_desc: "Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.",
+        card_arch_title: "Arquitectura",
+        card_arch_desc: "SPA en HTML5 semántico, CSS nativo moderno con variables personalizadas y JS vanilla ligero sin librerías pesadas.",
+        card_design_title: "Diseño Visual",
+        card_design_desc: "Estética dark mode por defecto con tipografía Manrope e Inter, detalles en Fira Code y acentos en degradados sutiles.",
+        card_perf_title: "Rendimiento",
+        card_perf_desc: "Optimización extrema de peso, carga instantánea, gráficos por Canvas interactivo y animaciones aceleradas por GPU.",
+        card_i18n_title: "Internacionalización",
+        card_i18n_desc: "Conmutador dinámico entre español e inglés con persistencia local de preferencia de idioma y tema visual.",
+
+        hood_prose_title: "¿Cómo funciona este sitio web?",
+        hood_prose_p1: "Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. A diferencia de las plataformas modernas infladas con dependencias complejas y frameworks de procesamiento pesado, este sitio opera como una Single Page Application (SPA) pura, impulsada exclusivamente por tecnologías web nativas. Cada línea de código está optimizada para ofrecer una velocidad de carga instantánea, garantizando al mismo tiempo una navegación fluida entre secciones mediante desplazamientos suaves y transiciones visuales aceleradas por hardware.",
+        hood_prose_p2: "El apartado visual se fundamenta en un canvas interactivo de fondo que renderiza de forma eficiente partículas y efectos dinámicos sin degradar la tasa de cuadros por segundo. La paleta de colores y el comportamiento de la interfaz reaccionan en tiempo real según las preferencias del usuario, soportando la alternancia entre un tema oscuro profundo y un modo claro refinado, así como un sistema de traducción dinámico en JavaScript que adapta todos los contenidos del sitio de manera nativa sin recargar la página.",
+        hood_prose_p3: "Cada módulo del portafolio —desde las fichas de proyectos interactivos hasta el compendio de certificaciones— está estructurado de manera responsiva para ofrecer una legibilidad impecable tanto en dispositivos móviles de pantalla pequeña como en monitores de alta resolución. Este sitio no es solo una vitrina de proyectos: es un garaje conceptual y un laboratorio de código vivo que refleja una visión clara sobre cómo construir para la web moderna.",
+
+        human_notice_title: "Nota sobre la autoría y producción",
+        human_notice_desc: "Todas las aplicaciones, sistemas y conceptos presentados en este portafolio han sido concebidos, diseñados y desarrollados por Juan Pablo Espinel (DIRECTED BY JPEG), combinando lógica de ingeniería, diseño de experiencia de usuario y arquitectura de software."
+      },
+      en: {
+        nav_inicio: "Home",
+        nav_projects: "Projects",
+        nav_cert: "Certifications",
+        nav_contact: "Contact",
+        nav_site: "Under the Hood",
+        hero_eyebrow: "DIGITAL EXPERIENCES · WEB · AI · SYSTEMS",
+        hero_title_prefix: "DIRECTED BY",
+        hero_tagline: "JPEG PORTFOLIO • LAB & GARAGE",
+        hero_intro: "Designing digital experiences, interactive systems, and products that turn ideas into functional solutions.",
+        hero_cta: "Explore projects",
+        scroll_text: "SCROLL TO EXPLORE",
+        projects_kicker: "SELECTED WORK",
+        projects_title: "Projects",
+        projects_desc: "Six digital pieces demonstrating different ways to build, experiment, and solve problems.",
+        badge_live: "ACTIVE DEPLOYMENT",
+        badge_nonprofit: "NON-PROFIT PROJECT",
+
+        kicker_prisma: "Career Exploration & Interactive Self-Discovery",
+        desc_prisma: "Interactive experience for self-knowledge and career exploration finding patterns through indirect choices, cross-evidence, and adaptive assessment.",
+        cap_prisma_1: "ADAPTIVE EVALUATION",
+        cap_prisma_2: "INDIRECT MEASUREMENT",
+        cap_prisma_3: "UX DESIGN",
+
+        kicker_nexus: "AI Intelligence & Interactive Web Systems",
+        desc_nexus: "Radar for artificial intelligence, finance, interactive web tools, and technical resources brought together in a SPA architecture experience.",
+        cap_nexus_1: "INTERACTIVE SYSTEMS",
+        cap_nexus_2: "SPA ARCHITECTURE",
+        cap_nexus_3: "AI CONTENT",
+
+        kicker_hack: "Learning Experience & AI-Assisted Education",
+        desc_hack: "Educational platform focused on personalized mentorship, practical English, learning pacing, and AI tools applied to education.",
+        cap_hack_1: "EDUCATIONAL DESIGN",
+        cap_hack_2: "MENTORSHIP FLOWS",
+        cap_hack_3: "AI-ASSISTED LEARNING",
+
+        kicker_store: "AI Resources, Prompt Engineering & Workflow Systems",
+        desc_store: "Digital vault for AI resources, prompt engineering guides, AI workflow optimization, and automation-oriented architectures.",
+        cap_store_1: "PROMPT ENGINEERING",
+        cap_store_2: "AI WORKFLOWS",
+        cap_store_3: "DIGITAL ARCHITECTURE",
+
+        kicker_cv: "Professional Profile & Technical Portfolio",
+        desc_cv: "Interactive resume bringing together trajectory, skills, credentials, and key projects in a direct web experience.",
+        cap_cv_1: "PERSONAL BRAND",
+        cap_cv_2: "RESPONSIVE UI",
+        cap_cv_3: "TECHNICAL STORYTELLING",
+
+        kicker_parroquia: "Institutional Web Project · Accessibility & Community",
+        desc_parroquia: "Institutional web project developed for a parish in Bogotá. Independent work for a religious organization; does not reflect DIRECTED BY JPEG's personal beliefs.",
+        cap_parish_1: "ACCESSIBLE DESIGN",
+        cap_parish_2: "MULTILINGUAL UI",
+        cap_parish_3: "COMMUNITY INFO",
+
+        cert_main_title: "Credentials & Certifications",
+        cert_main_desc: "Validation of technical skills, regulatory compliance, software engineering, and artificial intelligence.",
+        cat_title_aml: "◈ Compliance & Financial Crime",
+        cat_title_sec: "◇ Cybersecurity & Infrastructure",
+        cat_title_ai: "◎ Artificial Intelligence & Ethics",
+        cat_title_dev: "≋ Web Development & Operations",
+
+        desc_aml_1: "Operational frameworks and anti-money laundering prevention.",
+        desc_aml_2: "Human trafficking typologies and transactional monitoring.",
+        desc_sec_1: "Cryptography and digital risk mitigation.",
+        desc_sec_2: "Strategic management of information security.",
+        desc_sec_3: "Vulnerability assessment and penetration testing.",
+        desc_sec_4: "Technical support, operating systems, and networking.",
+        desc_sec_5: "Network protocols and web architecture.",
+        desc_sec_6: "IT infrastructure administration and server management.",
+        desc_ai_1: "Governance, operational frameworks, and algorithmic ethics.",
+        desc_ai_2: "Strategy, capabilities, and real-world AI use cases.",
+        desc_ai_3: "Privacy, data bias, and algorithmic accountability.",
+        desc_dev_1: "HTML, CSS, JavaScript architecture, and UI fundamentals.",
+        desc_dev_2: "Collaborative workflows and deployment strategies with Git.",
+        desc_dev_3: "Technical troubleshooting, service standards, and workflows.",
+
+        contact_main_title: "Contact",
+        contact_main_desc: "Direct channels for collaboration, projects, or technical inquiries.",
+
+        site_main_title: "Under the Hood",
+        site_main_desc: "Technical details, visual stack, and design principles powering this website.",
+        card_arch_title: "Architecture",
+        card_arch_desc: "Semantic HTML5 SPA, modern native CSS with custom properties, and lightweight vanilla JS with zero heavy libraries.",
+        card_design_title: "Visual Design",
+        card_design_desc: "Dark mode aesthetic by default with Manrope & Inter typography, Fira Code accents, and subtle gradient highlights.",
+        card_perf_title: "Performance",
+        card_perf_desc: "Extreme footprint optimization, instant loading, interactive Canvas graphics, and GPU-accelerated animations.",
+        card_i18n_title: "Internationalization",
+        card_i18n_desc: "Dynamic switcher between English and Spanish with local storage persistence for theme and language preferences.",
+
+        hood_prose_title: "How does this site work?",
+        hood_prose_p1: "This portfolio was engineered under the principles of structural simplicity and maximum technical efficiency. Unlike modern platforms bloated with heavy dependencies and processing frameworks, this site operates as a pure Single Page Application (SPA), driven entirely by native web technologies. Every line of code is optimized to deliver instant page loads while maintaining smooth section scrolling and hardware-accelerated visual transitions.",
+        hood_prose_p2: "The visual presentation rests on an interactive background canvas that efficiently renders particles and dynamic lighting without degrading frame rates. The color palette and interface adjust in real-time according to user preferences, offering seamless toggling between a deep dark theme and a refined light mode, alongside a native JavaScript translation engine that updates all text without requiring page reloads.",
+        hood_prose_p3: "Every module —from the interactive project cards to the certifications compendium— is responsively structured for flawless readability across both mobile displays and high-resolution desktop monitors. This website is not merely a project showcase: it is a conceptual garage and a living code laboratory reflecting a clear vision for building modern web software.",
+
+        human_notice_title: "Authorship & Production Note",
+        human_notice_desc: "All applications, systems, and concepts showcased in this portfolio were conceived, designed, and engineered by Juan Pablo Espinel (DIRECTED BY JPEG), combining engineering logic, user experience design, and software architecture."
+      }
+    };
+
+    let currentLang = 'es';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      applyTranslations();
+    }
+
+    function applyTranslations() {
+      const t = translations[currentLang];
+      
+      // Language switch UI
+      document.getElementById('lang-es').className = currentLang === 'es' ? 'lang-active' : '';
+      document.getElementById('lang-en').className = currentLang === 'en' ? 'lang-active' : '';
+
+      // Navigation
+      document.getElementById('nav-inicio').textContent = t.nav_inicio;
+      document.getElementById('nav-projects').textContent = t.nav_projects;
+      document.getElementById('nav-cert').textContent = t.nav_cert;
+      document.getElementById('nav-contact').textContent = t.nav_contact;
+      document.getElementById('nav-site').textContent = t.nav_site;
+
+      // Hero
+      document.getElementById('hero-eyebrow').textContent = t.hero_eyebrow;
+      document.getElementById('hero-title-prefix').textContent = t.hero_title_prefix;
+      document.getElementById('hero-tagline').textContent = t.hero_tagline;
+      document.getElementById('hero-intro').textContent = t.hero_intro;
+      document.getElementById('hero-cta-text').textContent = t.hero_cta;
+      document.getElementById('scroll-text').textContent = t.scroll_text;
+
+      // Projects Header
+      document.getElementById('projects-kicker').textContent = t.projects_kicker;
+      document.getElementById('projects-title').textContent = t.projects_title;
+      document.getElementById('projects-desc').textContent = t.projects_desc;
+
+      // Badges
+      ['badge-prisma', 'badge-nexus', 'badge-hack', 'badge-store', 'badge-cv'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = t.badge_live;
+      });
+      document.getElementById('badge-parroquia').textContent = t.badge_nonprofit;
+
+      // Project 1
+      document.getElementById('kicker-prisma').textContent = t.kicker_prisma;
+      document.getElementById('desc-prisma').textContent = t.desc_prisma;
+      document.getElementById('cap-prisma-1').textContent = t.cap_prisma_1;
+      document.getElementById('cap-prisma-2').textContent = t.cap_prisma_2;
+      document.getElementById('cap-prisma-3').textContent = t.cap_prisma_3;
+
+      // Project 2
+      document.getElementById('kicker-nexus').textContent = t.kicker_nexus;
+      document.getElementById('desc-nexus').textContent = t.desc_nexus;
+      document.getElementById('cap-nexus-1').textContent = t.cap_nexus_1;
+      document.getElementById('cap-nexus-2').textContent = t.cap_nexus_2;
+      document.getElementById('cap-nexus-3').textContent = t.cap_nexus_3;
+
+      // Project 3
+      document.getElementById('kicker-hack').textContent = t.kicker_hack;
+      document.getElementById('desc-hack').textContent = t.desc_hack;
+      document.getElementById('cap-hack-1').textContent = t.cap_hack_1;
+      document.getElementById('cap-hack-2').textContent = t.cap_hack_2;
+      document.getElementById('cap-hack-3').textContent = t.cap_hack_3;
+
+      // Project 4
+      document.getElementById('kicker-store').textContent = t.kicker_store;
+      document.getElementById('desc-store').textContent = t.desc_store;
+      document.getElementById('cap-store-1').textContent = t.cap_store_1;
+      document.getElementById('cap-store-2').textContent = t.cap_store_2;
+      document.getElementById('cap-store-3').textContent = t.cap_store_3;
+
+      // Project 5
+      document.getElementById('kicker-cv').textContent = t.kicker_cv;
+      document.getElementById('desc-cv').textContent = t.desc_cv;
+      document.getElementById('cap-cv-1').textContent = t.cap_cv_1;
+      document.getElementById('cap-cv-2').textContent = t.cap_cv_2;
+      document.getElementById('cap-cv-3').textContent = t.cap_cv_3;
+
+      // Project 6
+      document.getElementById('kicker-parroquia').textContent = t.kicker_parroquia;
+      document.getElementById('desc-parroquia').textContent = t.desc_parroquia;
+      document.getElementById('cap-parish-1').textContent = t.cap_parish_1;
+      document.getElementById('cap-parish-2').textContent = t.cap_parish_2;
+      document.getElementById('cap-parish-3').textContent = t.cap_parish_3;
+
+      // Certifications
+      document.getElementById('cert-main-title').textContent = t.cert_main_title;
+      document.getElementById('cert-main-desc').textContent = t.cert_main_desc;
+      document.getElementById('cat-title-aml').textContent = t.cat_title_aml;
+      document.getElementById('cat-title-sec').textContent = t.cat_title_sec;
+      document.getElementById('cat-title-ai').textContent = t.cat_title_ai;
+      document.getElementById('cat-title-dev').textContent = t.cat_title_dev;
+
+      document.getElementById('desc-aml-1').textContent = t.desc_aml_1;
+      document.getElementById('desc-aml-2').textContent = t.desc_aml_2;
+      document.getElementById('desc-sec-1').textContent = t.desc_sec_1;
+      document.getElementById('desc-sec-2').textContent = t.desc_sec_2;
+      document.getElementById('desc-sec-3').textContent = t.desc_sec_3;
+      document.getElementById('desc-sec-4').textContent = t.desc_sec_4;
+      document.getElementById('desc-sec-5').textContent = t.desc_sec_5;
+      document.getElementById('desc-sec-6').textContent = t.desc_sec_6;
+      document.getElementById('desc-ai-1').textContent = t.desc_ai_1;
+      document.getElementById('desc-ai-2').textContent = t.desc_ai_2;
+      document.getElementById('desc-ai-3').textContent = t.desc_ai_3;
+      document.getElementById('desc-dev-1').textContent = t.desc_dev_1;
+      document.getElementById('desc-dev-2').textContent = t.desc_dev_2;
+      document.getElementById('desc-dev-3').textContent = t.desc_dev_3;
+
+      // Contact
+      document.getElementById('contact-main-title').textContent = t.contact_main_title;
+      document.getElementById('contact-main-desc').textContent = t.contact_main_desc;
+
+      // Under the Hood
+      document.getElementById('site-main-title').textContent = t.site_main_title;
+      document.getElementById('site-main-desc').textContent = t.site_main_desc;
+      document.getElementById('card-arch-title').textContent = t.card_arch_title;
+      document.getElementById('card-arch-desc').textContent = t.card_arch_desc;
+      document.getElementById('card-design-title').textContent = t.card_design_title;
+      document.getElementById('card-design-desc').textContent = t.card_design_desc;
+      document.getElementById('card-perf-title').textContent = t.card_perf_title;
+      document.getElementById('card-perf-desc').textContent = t.card_perf_desc;
+      document.getElementById('card-i18n-title').textContent = t.card_i18n_title;
+      document.getElementById('card-i18n-desc').textContent = t.card_i18n_desc;
+
+      document.getElementById('hood-prose-title').textContent = t.hood_prose_title;
+      document.getElementById('hood-prose-p1').textContent = t.hood_prose_p1;
+      document.getElementById('hood-prose-p2').textContent = t.hood_prose_p2;
+      document.getElementById('hood-prose-p3').textContent = t.hood_prose_p3;
+
+      document.getElementById('human-notice-title').textContent = t.human_notice_title;
+      document.getElementById('human-notice-desc').textContent = t.human_notice_desc;
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+    }
+
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobile-nav');
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const isOpen = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+    }
+
+    // Canvas Interactive Background Animation
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139, 92, 246, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    function initCanvas() {
+      resizeCanvas();
+      particles = [];
+      const particleCount = Math.floor((width * height) / 18000);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateCanvas() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateCanvas);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    animateCanvas();
 <script>
   // ==========================================
   // 1. DICCIONARIO DE TRADUCCIONES (ES / EN)
   // ==========================================
   const translations = {
     es: {
-      // Orden de Navegación: Inicio -> Proyectos -> Bajo el capó -> Contacto -> Certificaciones
+      // Navegación (Orden corregido)
       nav_inicio: "Inicio",
       nav_projects: "Proyectos",
       nav_site: "Bajo el capó",
@@ -110,7 +1892,7 @@
       desc_dev_3: "Resolución técnica, estándares de servicio y flujos de trabajo."
     },
     en: {
-      // Navigation Order: Home -> Projects -> Under the Hood -> Contact -> Certifications
+      // Navegación (Corrected Order)
       nav_inicio: "Home",
       nav_projects: "Projects",
       nav_site: "Under the Hood",
@@ -198,21 +1980,29 @@
       cat_title_aml: "◈ Compliance & Financial Crime",
       cat_title_sec: "◇ Cybersecurity & Infrastructure",
       cat_title_ai: "◎ Artificial Intelligence & Ethics",
-      cat_title_dev: "≋ Web Development & Operations"
+      cat_title_dev: "≋ Web Development & Operations",
+
+      desc_aml_1: "Operational frameworks and anti-money laundering prevention.",
+      desc_aml_2: "Human trafficking typologies and transactional monitoring.",
+      desc_sec_1: "Cryptography and digital risk mitigation.",
+      desc_sec_2: "Strategic management of information security.",
+      desc_sec_3: "Vulnerability assessment and penetration testing.",
+      desc_sec_4: "Technical support, operating systems, and networking.",
+      desc_sec_5: "Network protocols and web architecture.",
+      desc_sec_6: "IT infrastructure administration and server management.",
+      desc_ai_1: "Governance, operational frameworks, and algorithmic ethics.",
+      desc_ai_2: "Strategy, capabilities, and real-world AI use cases.",
+      desc_ai_3: "Privacy, data bias, and algorithmic accountability.",
+      desc_dev_1: "HTML, CSS, JavaScript architecture, and UI fundamentals.",
+      desc_dev_2: "Collaborative workflows and deployment strategies with Git.",
+      desc_dev_3: "Technical troubleshooting, service standards, and workflows."
     }
   };
 
   // ==========================================
-  // 2. CONTROL DE IDIOMA Y NAVEGACIÓN
+  // 2. GESTIÓN DE IDIOMA & PERSISTENCIA
   // ==========================================
   let currentLang = localStorage.getItem('jpeg_lang') || 'es';
-
-  function setSafeText(id, value) {
-    const el = document.getElementById(id);
-    if (el) {
-      el.textContent = value;
-    }
-  }
 
   function toggleLanguage() {
     currentLang = currentLang === 'es' ? 'en' : 'es';
@@ -222,11 +2012,11 @@
 
   function applyTranslations() {
     const t = translations[currentLang];
-    if (!t) return;
-
+    
+    // Actualizar atributo global del documento
     document.documentElement.lang = currentLang;
 
-    // Accesibilidad en conmutador de idioma
+    // Actualizar estados visuales y accesibilidad de los botones de idioma
     const btnEs = document.getElementById('lang-es');
     const btnEn = document.getElementById('lang-en');
     if (btnEs && btnEn) {
@@ -236,7 +2026,7 @@
       btnEn.setAttribute('aria-pressed', currentLang === 'en');
     }
 
-    // Navegación
+    // Actualizar Navegación (Orden: Inicio -> Proyectos -> Bajo el capó -> Contacto -> Certificaciones)
     setSafeText('nav-inicio', t.nav_inicio);
     setSafeText('nav-projects', t.nav_projects);
     setSafeText('nav-site', t.nav_site);
@@ -251,7 +2041,7 @@
     setSafeText('hero-cta-text', t.hero_cta);
     setSafeText('scroll-text', t.scroll_text);
 
-    // Proyectos
+    // Sección Proyectos
     setSafeText('projects-kicker', t.projects_kicker);
     setSafeText('projects-title', t.projects_title);
     setSafeText('projects-desc', t.projects_desc);
@@ -297,7 +2087,7 @@
     setSafeText('cap-parish-2', t.cap_parish_2);
     setSafeText('cap-parish-3', t.cap_parish_3);
 
-    // Bajo el capó & Autoría Humana
+    // Sección Bajo el capó
     setSafeText('site-main-title', t.site_main_title);
     setSafeText('site-main-desc', t.site_main_desc);
     setSafeText('card-arch-title', t.card_arch_title);
@@ -317,11 +2107,11 @@
     setSafeText('human-notice-title', t.human_notice_title);
     setSafeText('human-notice-desc', t.human_notice_desc);
 
-    // Contacto
+    // Sección Contacto
     setSafeText('contact-main-title', t.contact_main_title);
     setSafeText('contact-main-desc', t.contact_main_desc);
 
-    // Certificaciones
+    // Sección Certificaciones
     setSafeText('cert-main-title', t.cert_main_title);
     setSafeText('cert-main-desc', t.cert_main_desc);
     setSafeText('cat-title-aml', t.cat_title_aml);
@@ -345,8 +2135,14 @@
     setSafeText('desc-dev-3', t.desc_dev_3);
   }
 
+  // Función auxiliar para evitar errores si algún ID no existe en el DOM
+  function setSafeText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
   // ==========================================
-  // 3. PERSISTENCIA DE TEMA VISUAL
+  // 3. GESTIÓN DE TEMA CLARO / OSCURO
   // ==========================================
   const savedTheme = localStorage.getItem('jpeg_theme');
   if (savedTheme === 'light') {
@@ -359,7 +2155,7 @@
   }
 
   // ==========================================
-  // 4. NAVEGACIÓN MÓVIL Y ATRIBUTOS ARIA
+  // 4. MENÚ MÓVIL Y NAVEGACIÓN ACCESIBLE
   // ==========================================
   function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
@@ -372,7 +2168,7 @@
   }
 
   // ==========================================
-  // 5. MOTOR DE CANVAS OPTIMIZADO
+  // 5. FONDO CANVAS INTERACTIVO Y OPTIMIZADO
   // ==========================================
   const canvas = document.getElementById('bg-canvas');
   let ctx, width, height, particles = [], animFrameId;
@@ -430,6 +2226,7 @@
       animFrameId = requestAnimationFrame(animateCanvas);
     }
 
+    // Pausar renderizado si la pestaña se oculta para ahorrar CPU/Batería
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         cancelAnimationFrame(animFrameId);
@@ -444,9 +2241,11 @@
   }
 
   // ==========================================
-  // 6. INICIALIZACIÓN GENERAL
+  // 6. INICIALIZACIÓN GLOBAL
   // ==========================================
   document.addEventListener('DOMContentLoaded', () => {
     applyTranslations();
   });
 </script>
+</body>
+</html>
