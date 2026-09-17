@@ -1,24 +1,31 @@
 <script>
-  // Diccionario de traducciones (ES / EN)
+  // ==========================================
+  // 1. DICCIONARIO DE TRADUCCIONES (ES / EN)
+  // ==========================================
   const translations = {
     es: {
+      // Orden de Navegación: Inicio -> Proyectos -> Bajo el capó -> Contacto -> Certificaciones
       nav_inicio: "Inicio",
       nav_projects: "Proyectos",
-      nav_cert: "Certificaciones",
-      nav_contact: "Contacto",
       nav_site: "Bajo el capó",
+      nav_contact: "Contacto",
+      nav_cert: "Certificaciones",
+
+      // Hero
       hero_eyebrow: "EXPERIENCIAS DIGITALES · WEB · IA · SISTEMAS",
       hero_title_prefix: "DIRIGIDO POR",
       hero_tagline: "JPEG PORTAFOLIO • LABORATORIO & GARAJE",
       hero_intro: "Diseñando experiencias digitales, sistemas interactivos y productos que convierten ideas en soluciones funcionales.",
       hero_cta: "Explorar proyectos",
       scroll_text: "DESLIZA PARA EXPLORAR",
+
+      // Sección Proyectos
       projects_kicker: "TRABAJO SELECCIONADO",
       projects_title: "Proyectos",
       projects_desc: "Seis piezas digitales que muestran diferentes formas de construir, experimentar y resolver problemas.",
       badge_live: "DESPLIEGUE ACTIVO",
       badge_nonprofit: "PROYECTO SIN ÁNIMO DE LUCRO",
-      
+
       kicker_prisma: "Exploración Profesional & Autodescubrimiento Interactivo",
       desc_prisma: "Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.",
       cap_prisma_1: "EVALUACIÓN ADAPTATIVA",
@@ -55,6 +62,31 @@
       cap_parish_2: "INTERFAZ MULTILINGÜE",
       cap_parish_3: "INFORMACIÓN COMUNITARIA",
 
+      // Sección Bajo el Capó
+      site_main_title: "Bajo el capó",
+      site_main_desc: "Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.",
+      card_arch_title: "Arquitectura",
+      card_arch_desc: "SPA en HTML5 semántico, CSS nativo moderno con variables personalizadas y JS vanilla ligero sin librerías pesadas.",
+      card_design_title: "Diseño Visual",
+      card_design_desc: "Estética dark mode por defecto con tipografía Manrope e Inter, detalles en Fira Code y acentos en degradados sutiles.",
+      card_perf_title: "Rendimiento",
+      card_perf_desc: "Optimización extrema de peso, carga instantánea, gráficos por Canvas interactivo y animaciones aceleradas por GPU.",
+      card_i18n_title: "Internacionalización",
+      card_i18n_desc: "Conmutador dinámico entre español e inglés con persistencia local de preferencia de idioma y tema visual.",
+
+      hood_prose_title: "¿Cómo funciona este sitio web?",
+      hood_prose_p1: "Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. A diferencia de las plataformas modernas infladas con dependencias complejas y frameworks de procesamiento pesado, este sitio opera como una Single Page Application (SPA) pura, impulsada exclusivamente por tecnologías web nativas. Cada línea de código está optimizada para ofrecer una velocidad de carga instantánea, garantizando al mismo tiempo una navegación fluida entre secciones mediante desplazamientos suaves y transiciones visuales aceleradas por hardware.",
+      hood_prose_p2: "El apartado visual se fundamenta en un canvas interactivo de fondo que renderiza de forma eficiente partículas y efectos dinámicos sin degradar la tasa de cuadros por segundo. La paleta de colores y el comportamiento de la interfaz reaccionan en tiempo real según las preferencias del usuario, soportando la alternancia entre un tema oscuro profundo y un modo claro refinado, así como un sistema de traducción dinámico en JavaScript que adapta todos los contenidos del sitio de manera nativa sin recargar la página.",
+      hood_prose_p3: "Cada módulo del portafolio —desde las fichas de proyectos interactivos hasta el compendio de certificaciones— está estructurado de manera responsiva para ofrecer una legibilidad impecable tanto en dispositivos móviles de pantalla pequeña como en monitores de alta resolución. Este sitio no es solo una vitrina de proyectos: es un garaje conceptual y un laboratorio de código vivo que refleja una visión clara sobre cómo construir para la web moderna.",
+
+      human_notice_title: "Nota sobre la autoría y producción",
+      human_notice_desc: "Todas las aplicaciones, sistemas y conceptos presentados en este portafolio han sido concebidos, diseñados y desarrollados por Juan Pablo Espinel (DIRECTED BY JPEG), combinando lógica de ingeniería, diseño de experiencia de usuario y arquitectura de software.",
+
+      // Sección Contacto
+      contact_main_title: "Contacto",
+      contact_main_desc: "Canales directos para colaboración, proyectos o consultas técnicas.",
+
+      // Sección Certificaciones
       cert_main_title: "Credenciales y Certificaciones",
       cert_main_desc: "Validación de competencias técnicas, cumplimiento normativo, desarrollo de software e inteligencia artificial.",
       cat_title_aml: "◈ Cumplimiento y Delitos Financieros",
@@ -75,42 +107,25 @@
       desc_ai_3: "Privacidad, sesgo de datos y responsabilidad algorítmica.",
       desc_dev_1: "Arquitectura HTML, CSS, JavaScript y principios de UI.",
       desc_dev_2: "Flujos de trabajo colaborativos y despliegues con Git.",
-      desc_dev_3: "Resolución técnica, estándares de servicio y flujos de trabajo.",
-
-      contact_main_title: "Contacto",
-      contact_main_desc: "Canales directos para colaboración, proyectos o consultas técnicas.",
-
-      site_main_title: "Bajo el capó",
-      site_main_desc: "Detalles técnicos, stack visual y principios de diseño que mueven este sitio web.",
-      card_arch_title: "Arquitectura",
-      card_arch_desc: "SPA en HTML5 semántico, CSS nativo moderno con variables personalizadas y JS vanilla ligero sin librerías pesadas.",
-      card_design_title: "Diseño Visual",
-      card_design_desc: "Estética dark mode por defecto con tipografía Manrope e Inter, detalles en Fira Code y acentos en degradados sutiles.",
-      card_perf_title: "Rendimiento",
-      card_perf_desc: "Optimización extrema de peso, carga instantánea, gráficos por Canvas interactivo y animaciones aceleradas por GPU.",
-      card_i18n_title: "Internacionalización",
-      card_i18n_desc: "Conmutador dinámico entre español e inglés con persistencia local de preferencia de idioma y tema visual.",
-
-      hood_prose_title: "¿Cómo funciona este sitio web?",
-      hood_prose_p1: "Este portafolio ha sido concebido bajo la premisa de la sencillez estructural y la máxima eficiencia técnica. A diferencia de las plataformas modernas infladas con dependencias complejas y frameworks de procesamiento pesado, este sitio opera como una Single Page Application (SPA) pura, impulsada exclusivamente por tecnologías web nativas. Cada línea de código está optimizada para ofrecer una velocidad de carga instantánea, garantizando al mismo tiempo una navegación fluida entre secciones mediante desplazamientos suaves y transiciones visuales aceleradas por hardware.",
-      hood_prose_p2: "El apartado visual se fundamenta en un canvas interactivo de fondo que renderiza de forma eficiente partículas y efectos dinámicos sin degradar la tasa de cuadros por segundo. La paleta de colores y el comportamiento de la interfaz reaccionan en tiempo real según las preferencias del usuario, soportando la alternancia entre un tema oscuro profundo y un modo claro refinado, así como un sistema de traducción dinámico en JavaScript que adapta todos los contenidos del sitio de manera nativa sin recargar la página.",
-      hood_prose_p3: "Cada módulo del portafolio —desde las fichas de proyectos interactivos hasta el compendio de certificaciones— está estructurado de manera responsiva para ofrecer una legibilidad impecable tanto en dispositivos móviles de pantalla pequeña como en monitores de alta resolución. Este sitio no es solo una vitrina de proyectos: es un garaje conceptual y un laboratorio de código vivo que refleja una visión clara sobre cómo construir para la web moderna.",
-
-      human_notice_title: "Nota sobre la autoría y producción",
-      human_notice_desc: "Todas las aplicaciones, sistemas y conceptos presentados en este portafolio han sido concebidos, diseñados y desarrollados por Juan Pablo Espinel (DIRECTED BY JPEG), combinando lógica de ingeniería, diseño de experiencia de usuario y arquitectura de software."
+      desc_dev_3: "Resolución técnica, estándares de servicio y flujos de trabajo."
     },
     en: {
+      // Navigation Order: Home -> Projects -> Under the Hood -> Contact -> Certifications
       nav_inicio: "Home",
       nav_projects: "Projects",
-      nav_cert: "Certifications",
-      nav_contact: "Contact",
       nav_site: "Under the Hood",
+      nav_contact: "Contact",
+      nav_cert: "Certifications",
+
+      // Hero
       hero_eyebrow: "DIGITAL EXPERIENCES · WEB · AI · SYSTEMS",
       hero_title_prefix: "DIRECTED BY",
       hero_tagline: "JPEG PORTFOLIO • LAB & GARAGE",
       hero_intro: "Designing digital experiences, interactive systems, and products that turn ideas into functional solutions.",
       hero_cta: "Explore projects",
       scroll_text: "SCROLL TO EXPLORE",
+
+      // Projects Section
       projects_kicker: "SELECTED WORK",
       projects_title: "Projects",
       projects_desc: "Six digital pieces demonstrating different ways to build, experiment, and solve problems.",
@@ -153,31 +168,7 @@
       cap_parish_2: "MULTILINGUAL UI",
       cap_parish_3: "COMMUNITY INFO",
 
-      cert_main_title: "Credentials & Certifications",
-      cert_main_desc: "Validation of technical skills, regulatory compliance, software engineering, and artificial intelligence.",
-      cat_title_aml: "◈ Compliance & Financial Crime",
-      cat_title_sec: "◇ Cybersecurity & Infrastructure",
-      cat_title_ai: "◎ Artificial Intelligence & Ethics",
-      cat_title_dev: "≋ Web Development & Operations",
-
-      desc_aml_1: "Operational frameworks and anti-money laundering prevention.",
-      desc_aml_2: "Human trafficking typologies and transactional monitoring.",
-      desc_sec_1: "Cryptography and digital risk mitigation.",
-      desc_sec_2: "Strategic management of information security.",
-      desc_sec_3: "Vulnerability assessment and penetration testing.",
-      desc_sec_4: "Technical support, operating systems, and networking.",
-      desc_sec_5: "Network protocols and web architecture.",
-      desc_sec_6: "IT infrastructure administration and server management.",
-      desc_ai_1: "Governance, operational frameworks, and algorithmic ethics.",
-      desc_ai_2: "Strategy, capabilities, and real-world AI use cases.",
-      desc_ai_3: "Privacy, data bias, and algorithmic accountability.",
-      desc_dev_1: "HTML, CSS, JavaScript architecture, and UI fundamentals.",
-      desc_dev_2: "Collaborative workflows and deployment strategies with Git.",
-      desc_dev_3: "Technical troubleshooting, service standards, and workflows.",
-
-      contact_main_title: "Contact",
-      contact_main_desc: "Direct channels for collaboration, projects, or technical inquiries.",
-
+      // Under the Hood Section
       site_main_title: "Under the Hood",
       site_main_desc: "Technical details, visual stack, and design principles powering this website.",
       card_arch_title: "Architecture",
@@ -195,12 +186,33 @@
       hood_prose_p3: "Every module —from the interactive project cards to the certifications compendium— is responsively structured for flawless readability across both mobile displays and high-resolution desktop monitors. This website is not merely a project showcase: it is a conceptual garage and a living code laboratory reflecting a clear vision for building modern web software.",
 
       human_notice_title: "Authorship & Production Note",
-      human_notice_desc: "All applications, systems, and concepts showcased in this portfolio were conceived, designed, and engineered by Juan Pablo Espinel (DIRECTED BY JPEG), combining engineering logic, user experience design, and software architecture."
+      human_notice_desc: "All applications, systems, and concepts showcased in this portfolio were conceived, designed, and engineered by Juan Pablo Espinel (DIRECTED BY JPEG), combining engineering logic, user experience design, and software architecture.",
+
+      // Contact Section
+      contact_main_title: "Contact",
+      contact_main_desc: "Direct channels for collaboration, projects, or technical inquiries.",
+
+      // Certifications Section
+      cert_main_title: "Credentials & Certifications",
+      cert_main_desc: "Validation of technical skills, regulatory compliance, software engineering, and artificial intelligence.",
+      cat_title_aml: "◈ Compliance & Financial Crime",
+      cat_title_sec: "◇ Cybersecurity & Infrastructure",
+      cat_title_ai: "◎ Artificial Intelligence & Ethics",
+      cat_title_dev: "≋ Web Development & Operations"
     }
   };
 
-  // Persistencia de idioma en localStorage
+  // ==========================================
+  // 2. CONTROL DE IDIOMA Y NAVEGACIÓN
+  // ==========================================
   let currentLang = localStorage.getItem('jpeg_lang') || 'es';
+
+  function setSafeText(id, value) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.textContent = value;
+    }
+  }
 
   function toggleLanguage() {
     currentLang = currentLang === 'es' ? 'en' : 'es';
@@ -210,124 +222,132 @@
 
   function applyTranslations() {
     const t = translations[currentLang];
-    
+    if (!t) return;
+
     document.documentElement.lang = currentLang;
-    document.getElementById('lang-es').className = currentLang === 'es' ? 'lang-active' : '';
-    document.getElementById('lang-en').className = currentLang === 'en' ? 'lang-active' : '';
+
+    // Accesibilidad en conmutador de idioma
+    const btnEs = document.getElementById('lang-es');
+    const btnEn = document.getElementById('lang-en');
+    if (btnEs && btnEn) {
+      btnEs.className = currentLang === 'es' ? 'lang-active' : '';
+      btnEs.setAttribute('aria-pressed', currentLang === 'es');
+      btnEn.className = currentLang === 'en' ? 'lang-active' : '';
+      btnEn.setAttribute('aria-pressed', currentLang === 'en');
+    }
 
     // Navegación
-    document.getElementById('nav-inicio').textContent = t.nav_inicio;
-    document.getElementById('nav-projects').textContent = t.nav_projects;
-    document.getElementById('nav-cert').textContent = t.nav_cert;
-    document.getElementById('nav-contact').textContent = t.nav_contact;
-    document.getElementById('nav-site').textContent = t.nav_site;
+    setSafeText('nav-inicio', t.nav_inicio);
+    setSafeText('nav-projects', t.nav_projects);
+    setSafeText('nav-site', t.nav_site);
+    setSafeText('nav-contact', t.nav_contact);
+    setSafeText('nav-cert', t.nav_cert);
 
     // Hero
-    document.getElementById('hero-eyebrow').textContent = t.hero_eyebrow;
-    document.getElementById('hero-title-prefix').textContent = t.hero_title_prefix;
-    document.getElementById('hero-tagline').textContent = t.hero_tagline;
-    document.getElementById('hero-intro').textContent = t.hero_intro;
-    document.getElementById('hero-cta-text').textContent = t.hero_cta;
-    document.getElementById('scroll-text').textContent = t.scroll_text;
+    setSafeText('hero-eyebrow', t.hero_eyebrow);
+    setSafeText('hero-title-prefix', t.hero_title_prefix);
+    setSafeText('hero-tagline', t.hero_tagline);
+    setSafeText('hero-intro', t.hero_intro);
+    setSafeText('hero-cta-text', t.hero_cta);
+    setSafeText('scroll-text', t.scroll_text);
 
-    // Encabezado Proyectos
-    document.getElementById('projects-kicker').textContent = t.projects_kicker;
-    document.getElementById('projects-title').textContent = t.projects_title;
-    document.getElementById('projects-desc').textContent = t.projects_desc;
+    // Proyectos
+    setSafeText('projects-kicker', t.projects_kicker);
+    setSafeText('projects-title', t.projects_title);
+    setSafeText('projects-desc', t.projects_desc);
 
-    // Badges de proyectos
     ['badge-prisma', 'badge-nexus', 'badge-hack', 'badge-store', 'badge-cv'].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = t.badge_live;
+      setSafeText(id, t.badge_live);
     });
-    document.getElementById('badge-parroquia').textContent = t.badge_nonprofit;
+    setSafeText('badge-parroquia', t.badge_nonprofit);
 
-    // Detalle de Proyectos
-    document.getElementById('kicker-prisma').textContent = t.kicker_prisma;
-    document.getElementById('desc-prisma').textContent = t.desc_prisma;
-    document.getElementById('cap-prisma-1').textContent = t.cap_prisma_1;
-    document.getElementById('cap-prisma-2').textContent = t.cap_prisma_2;
-    document.getElementById('cap-prisma-3').textContent = t.cap_prisma_3;
+    setSafeText('kicker-prisma', t.kicker_prisma);
+    setSafeText('desc-prisma', t.desc_prisma);
+    setSafeText('cap-prisma-1', t.cap_prisma_1);
+    setSafeText('cap-prisma-2', t.cap_prisma_2);
+    setSafeText('cap-prisma-3', t.cap_prisma_3);
 
-    document.getElementById('kicker-nexus').textContent = t.kicker_nexus;
-    document.getElementById('desc-nexus').textContent = t.desc_nexus;
-    document.getElementById('cap-nexus-1').textContent = t.cap_nexus_1;
-    document.getElementById('cap-nexus-2').textContent = t.cap_nexus_2;
-    document.getElementById('cap-nexus-3').textContent = t.cap_nexus_3;
+    setSafeText('kicker-nexus', t.kicker_nexus);
+    setSafeText('desc-nexus', t.desc_nexus);
+    setSafeText('cap-nexus-1', t.cap_nexus_1);
+    setSafeText('cap-nexus-2', t.cap_nexus_2);
+    setSafeText('cap-nexus-3', t.cap_nexus_3);
 
-    document.getElementById('kicker-hack').textContent = t.kicker_hack;
-    document.getElementById('desc-hack').textContent = t.desc_hack;
-    document.getElementById('cap-hack-1').textContent = t.cap_hack_1;
-    document.getElementById('cap-hack-2').textContent = t.cap_hack_2;
-    document.getElementById('cap-hack-3').textContent = t.cap_hack_3;
+    setSafeText('kicker-hack', t.kicker_hack);
+    setSafeText('desc-hack', t.desc_hack);
+    setSafeText('cap-hack-1', t.cap_hack_1);
+    setSafeText('cap-hack-2', t.cap_hack_2);
+    setSafeText('cap-hack-3', t.cap_hack_3);
 
-    document.getElementById('kicker-store').textContent = t.kicker_store;
-    document.getElementById('desc-store').textContent = t.desc_store;
-    document.getElementById('cap-store-1').textContent = t.cap_store_1;
-    document.getElementById('cap-store-2').textContent = t.cap_store_2;
-    document.getElementById('cap-store-3').textContent = t.cap_store_3;
+    setSafeText('kicker-store', t.kicker_store);
+    setSafeText('desc-store', t.desc_store);
+    setSafeText('cap-store-1', t.cap_store_1);
+    setSafeText('cap-store-2', t.cap_store_2);
+    setSafeText('cap-store-3', t.cap_store_3);
 
-    document.getElementById('kicker-cv').textContent = t.kicker_cv;
-    document.getElementById('desc-cv').textContent = t.desc_cv;
-    document.getElementById('cap-cv-1').textContent = t.cap_cv_1;
-    document.getElementById('cap-cv-2').textContent = t.cap_cv_2;
-    document.getElementById('cap-cv-3').textContent = t.cap_cv_3;
+    setSafeText('kicker-cv', t.kicker_cv);
+    setSafeText('desc-cv', t.desc_cv);
+    setSafeText('cap-cv-1', t.cap_cv_1);
+    setSafeText('cap-cv-2', t.cap_cv_2);
+    setSafeText('cap-cv-3', t.cap_cv_3);
 
-    document.getElementById('kicker-parroquia').textContent = t.kicker_parroquia;
-    document.getElementById('desc-parroquia').textContent = t.desc_parroquia;
-    document.getElementById('cap-parish-1').textContent = t.cap_parish_1;
-    document.getElementById('cap-parish-2').textContent = t.cap_parish_2;
-    document.getElementById('cap-parish-3').textContent = t.cap_parish_3;
+    setSafeText('kicker-parroquia', t.kicker_parroquia);
+    setSafeText('desc-parroquia', t.desc_parroquia);
+    setSafeText('cap-parish-1', t.cap_parish_1);
+    setSafeText('cap-parish-2', t.cap_parish_2);
+    setSafeText('cap-parish-3', t.cap_parish_3);
 
-    // Certificaciones
-    document.getElementById('cert-main-title').textContent = t.cert_main_title;
-    document.getElementById('cert-main-desc').textContent = t.cert_main_desc;
-    document.getElementById('cat-title-aml').textContent = t.cat_title_aml;
-    document.getElementById('cat-title-sec').textContent = t.cat_title_sec;
-    document.getElementById('cat-title-ai').textContent = t.cat_title_ai;
-    document.getElementById('cat-title-dev').textContent = t.cat_title_dev;
+    // Bajo el capó & Autoría Humana
+    setSafeText('site-main-title', t.site_main_title);
+    setSafeText('site-main-desc', t.site_main_desc);
+    setSafeText('card-arch-title', t.card_arch_title);
+    setSafeText('card-arch-desc', t.card_arch_desc);
+    setSafeText('card-design-title', t.card_design_title);
+    setSafeText('card-design-desc', t.card_design_desc);
+    setSafeText('card-perf-title', t.card_perf_title);
+    setSafeText('card-perf-desc', t.card_perf_desc);
+    setSafeText('card-i18n-title', t.card_i18n_title);
+    setSafeText('card-i18n-desc', t.card_i18n_desc);
 
-    document.getElementById('desc-aml-1').textContent = t.desc_aml_1;
-    document.getElementById('desc-aml-2').textContent = t.desc_aml_2;
-    document.getElementById('desc-sec-1').textContent = t.desc_sec_1;
-    document.getElementById('desc-sec-2').textContent = t.desc_sec_2;
-    document.getElementById('desc-sec-3').textContent = t.desc_sec_3;
-    document.getElementById('desc-sec-4').textContent = t.desc_sec_4;
-    document.getElementById('desc-sec-5').textContent = t.desc_sec_5;
-    document.getElementById('desc-sec-6').textContent = t.desc_sec_6;
-    document.getElementById('desc-ai-1').textContent = t.desc_ai_1;
-    document.getElementById('desc-ai-2').textContent = t.desc_ai_2;
-    document.getElementById('desc-ai-3').textContent = t.desc_ai_3;
-    document.getElementById('desc-dev-1').textContent = t.desc_dev_1;
-    document.getElementById('desc-dev-2').textContent = t.desc_dev_2;
-    document.getElementById('desc-dev-3').textContent = t.desc_dev_3;
+    setSafeText('hood-prose-title', t.hood_prose_title);
+    setSafeText('hood-prose-p1', t.hood_prose_p1);
+    setSafeText('hood-prose-p2', t.hood_prose_p2);
+    setSafeText('hood-prose-p3', t.hood_prose_p3);
+
+    setSafeText('human-notice-title', t.human_notice_title);
+    setSafeText('human-notice-desc', t.human_notice_desc);
 
     // Contacto
-    document.getElementById('contact-main-title').textContent = t.contact_main_title;
-    document.getElementById('contact-main-desc').textContent = t.contact_main_desc;
+    setSafeText('contact-main-title', t.contact_main_title);
+    setSafeText('contact-main-desc', t.contact_main_desc);
 
-    // Bajo el capó
-    document.getElementById('site-main-title').textContent = t.site_main_title;
-    document.getElementById('site-main-desc').textContent = t.site_main_desc;
-    document.getElementById('card-arch-title').textContent = t.card_arch_title;
-    document.getElementById('card-arch-desc').textContent = t.card_arch_desc;
-    document.getElementById('card-design-title').textContent = t.card_design_title;
-    document.getElementById('card-design-desc').textContent = t.card_design_desc;
-    document.getElementById('card-perf-title').textContent = t.card_perf_title;
-    document.getElementById('card-perf-desc').textContent = t.card_perf_desc;
-    document.getElementById('card-i18n-title').textContent = t.card_i18n_title;
-    document.getElementById('card-i18n-desc').textContent = t.card_i18n_desc;
+    // Certificaciones
+    setSafeText('cert-main-title', t.cert_main_title);
+    setSafeText('cert-main-desc', t.cert_main_desc);
+    setSafeText('cat-title-aml', t.cat_title_aml);
+    setSafeText('cat-title-sec', t.cat_title_sec);
+    setSafeText('cat-title-ai', t.cat_title_ai);
+    setSafeText('cat-title-dev', t.cat_title_dev);
 
-    document.getElementById('hood-prose-title').textContent = t.hood_prose_title;
-    document.getElementById('hood-prose-p1').textContent = t.hood_prose_p1;
-    document.getElementById('hood-prose-p2').textContent = t.hood_prose_p2;
-    document.getElementById('hood-prose-p3').textContent = t.hood_prose_p3;
-
-    document.getElementById('human-notice-title').textContent = t.human_notice_title;
-    document.getElementById('human-notice-desc').textContent = t.human_notice_desc;
+    setSafeText('desc-aml-1', t.desc_aml_1);
+    setSafeText('desc-aml-2', t.desc_aml_2);
+    setSafeText('desc-sec-1', t.desc_sec_1);
+    setSafeText('desc-sec-2', t.desc_sec_2);
+    setSafeText('desc-sec-3', t.desc_sec_3);
+    setSafeText('desc-sec-4', t.desc_sec_4);
+    setSafeText('desc-sec-5', t.desc_sec_5);
+    setSafeText('desc-sec-6', t.desc_sec_6);
+    setSafeText('desc-ai-1', t.desc_ai_1);
+    setSafeText('desc-ai-2', t.desc_ai_2);
+    setSafeText('desc-ai-3', t.desc_ai_3);
+    setSafeText('desc-dev-1', t.desc_dev_1);
+    setSafeText('desc-dev-2', t.desc_dev_2);
+    setSafeText('desc-dev-3', t.desc_dev_3);
   }
 
-  // Persistencia de tema en localStorage
+  // ==========================================
+  // 3. PERSISTENCIA DE TEMA VISUAL
+  // ==========================================
   const savedTheme = localStorage.getItem('jpeg_theme');
   if (savedTheme === 'light') {
     document.body.classList.add('light-theme');
@@ -338,85 +358,95 @@
     localStorage.setItem('jpeg_theme', isLight ? 'light' : 'dark');
   }
 
-  // Menú Móvil con cambio de icono visual
+  // ==========================================
+  // 4. NAVEGACIÓN MÓVIL Y ATRIBUTOS ARIA
+  // ==========================================
   function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
     const menuBtn = document.getElementById('mobile-menu-btn');
+    if (!mobileNav || !menuBtn) return;
+
     const isOpen = mobileNav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', isOpen);
     menuBtn.textContent = isOpen ? '✕' : '≡';
   }
 
-  // Animación del Canvas Interactiva con pausa por visibilidad
+  // ==========================================
+  // 5. MOTOR DE CANVAS OPTIMIZADO
+  // ==========================================
   const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
-  let animFrameId;
+  let ctx, width, height, particles = [], animFrameId;
 
-  function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
+  if (canvas) {
+    ctx = canvas.getContext('2d');
 
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
-      this.radius = Math.random() * 1.5 + 0.5;
-      this.alpha = Math.random() * 0.5 + 0.1;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+    class Particle {
+      constructor() {
         this.reset();
       }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139, 92, 246, ${this.alpha})`;
+        ctx.fill();
+      }
     }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(139, 92, 246, ${this.alpha})`;
-      ctx.fill();
-    }
-  }
 
-  function initCanvas() {
-    resizeCanvas();
-    particles = [];
-    const particleCount = Math.floor((width * height) / 18000);
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
-  }
 
-  function animateCanvas() {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
+    function initCanvas() {
+      resizeCanvas();
+      particles = [];
+      const particleCount = Math.floor((width * height) / 18000);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateCanvas() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      animFrameId = requestAnimationFrame(animateCanvas);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animFrameId);
+      } else {
+        animateCanvas();
+      }
     });
-    animFrameId = requestAnimationFrame(animateCanvas);
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    animateCanvas();
   }
 
-  // Pausar animación si la pestaña no está activa
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      cancelAnimationFrame(animFrameId);
-    } else {
-      animateCanvas();
-    }
+  // ==========================================
+  // 6. INICIALIZACIÓN GENERAL
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', () => {
+    applyTranslations();
   });
-
-  window.addEventListener('resize', initCanvas);
-  
-  // Inicialización de traducciones e iteración visual
-  applyTranslations();
-  initCanvas();
-  animateCanvas();
 </script>
