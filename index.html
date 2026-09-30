@@ -47,29 +47,29 @@
     }
 
     body.light-theme {
-      --bg-dark: #f8f6f0;
-      --accent-color: #6d28d9;
+      --bg-dark: #f3efe6; /* Tono caqui / crema cálido */
+      --accent-color: #7c3aed;
       --accent-secondary: #0284c7;
-      --accent-pink: #be185d;
-      --accent-glow: rgba(109, 40, 217, 0.15);
-      --card-bg: rgba(241, 238, 230, 0.88);
-      --text-main: #1c1917;
-      --text-muted: #57534e;
-      --border-color: rgba(28, 25, 23, 0.12);
-      --header-bg: rgba(248, 246, 240, 0.88);
+      --accent-pink: #db2777;
+      --accent-glow: rgba(124, 58, 237, 0.15);
+      --card-bg: rgba(247, 243, 235, 0.92);
+      --text-main: #181512;
+      --text-muted: #655f57;
+      --border-color: rgba(24, 21, 18, 0.12);
+      --header-bg: rgba(243, 239, 230, 0.88);
       
-      /* GRADIENTES CLAROS VIVOS Y DIFERENCIADOS (LIGHT MODE) */
-      --strip-prisma: linear-gradient(135deg, rgba(139, 92, 246, 0.10), rgba(34, 211, 238, 0.05)), #f1ebf8;
-      --strip-nexus: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(14, 116, 144, 0.06)), #e6f2f7;
-      --strip-hack: linear-gradient(135deg, rgba(244, 114, 182, 0.12), rgba(251, 146, 60, 0.08)), #f9eee9;
-      --strip-store: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.06)), #f2eaf5;
-      --strip-cv: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.06)), #e8f4ef;
-      --strip-parroquia: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(217, 119, 6, 0.08)), #f7efe1;
+      /* GRADIENTES CLAROS CAQUIS / CREMA VIVOS Y DIFERENCIADOS */
+      --strip-prisma: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(2, 132, 199, 0.04)), #f7f2ea;
+      --strip-nexus: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(14, 116, 144, 0.05)), #ece6db;
+      --strip-hack: linear-gradient(135deg, rgba(219, 39, 119, 0.09), rgba(234, 88, 12, 0.06)), #f8eee6;
+      --strip-store: linear-gradient(135deg, rgba(147, 51, 234, 0.08), rgba(219, 39, 119, 0.05)), #f4edf5;
+      --strip-cv: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(4, 120, 87, 0.05)), #ebf4ee;
+      --strip-parroquia: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(180, 83, 9, 0.06)), #f6eee0;
 
-      --btn-bg: #1c1917;
-      --btn-text: #f8f6f0;
-      --footer-bg: #e7e3d8;
-      --footer-muted: #57534e;
+      --btn-bg: #181512;
+      --btn-text: #f3efe6;
+      --footer-bg: #e4ddd0;
+      --footer-muted: #655f57;
     }
 
     * {
@@ -132,7 +132,7 @@
     }
 
     body.light-theme .site-header .header-inner {
-      background: rgba(248, 246, 240, 0.65);
+      background: rgba(247, 243, 235, 0.75);
     }
 
     .brand-mini {
@@ -178,7 +178,7 @@
 
     body.light-theme .main-nav .nav-btn:hover,
     body.light-theme .main-nav .nav-btn.active {
-      background: rgba(109, 40, 217, 0.08);
+      background: rgba(124, 58, 237, 0.1);
     }
 
     .header-controls {
@@ -202,7 +202,7 @@
     body.light-theme .ctrl-btn,
     body.light-theme .lang-switch,
     body.light-theme .mobile-menu-btn {
-      background: rgba(109, 40, 217, 0.05);
+      background: rgba(124, 58, 237, 0.06);
     }
 
     .ctrl-btn { width: 36px; display: grid; place-items: center; }
@@ -267,7 +267,7 @@
     }
 
     body.light-theme .hero-v2 {
-      background: radial-gradient(circle at 50% 42%, rgba(109, 40, 217, 0.08), transparent 35%), var(--bg-dark);
+      background: radial-gradient(circle at 50% 42%, rgba(124, 58, 237, 0.08), transparent 35%), var(--bg-dark);
     }
 
     .hero-content { width: min(100%, 900px); z-index: 2; }
@@ -283,7 +283,7 @@
     }
 
     body.light-theme .hero-title strong {
-      background: linear-gradient(105deg, #1c1917 0%, #6d28d9 50%, #0284c7 100%);
+      background: linear-gradient(105deg, #181512 0%, #7c3aed 50%, #0284c7 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -294,10 +294,10 @@
     .hero-cta { display: inline-flex; gap: 10px; align-items: center; padding: 12px 22px; border: 1px solid var(--border-color); border-radius: 999px; color: var(--text-main); text-decoration: none; font-weight: 800; font-size: 0.8rem; background: rgba(139, 92, 246, 0.09); }
 
     body.light-theme .hero-cta {
-      background: rgba(109, 40, 217, 0.06);
+      background: rgba(124, 58, 237, 0.08);
     }
 
-    /* PROYECTOS (TIER LIST & GRADIENTES ÚNICOS) */
+    /* PROYECTOS (TOP 3 & TIER LIST) */
     .section-container { max-width: 1220px; margin: 0 auto; padding: 65px 24px; }
     .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 60px; padding-bottom: 30px; }
     .section-kicker { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2px; color: var(--accent-secondary); text-transform: uppercase; }
@@ -341,13 +341,13 @@
     .project-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 18px; text-wrap: pretty; }
     
     .badge-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-color); border-radius: 999px; padding: 5px 12px; font: 700 0.6rem 'Fira Code', monospace; color: var(--text-muted); background: rgba(255, 255, 255, 0.025); margin-bottom: 10px; }
-    body.light-theme .badge-status { background: rgba(28, 25, 23, 0.03); }
+    body.light-theme .badge-status { background: rgba(24, 21, 18, 0.04); }
     .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.8); }
     .badge-project::before { content: "✦"; color: #f59e0b; }
 
     .capabilities { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     .capabilities span { border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 999px; color: var(--text-muted); font: 600 0.6rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.03); display: inline-flex; align-items: center; gap: 6px; }
-    body.light-theme .capabilities span { background: rgba(28, 25, 23, 0.03); }
+    body.light-theme .capabilities span { background: rgba(24, 21, 18, 0.04); }
     .cap-icon { color: var(--accent-secondary); font-size: 0.75rem; }
 
     /* FONDOS Y GRADIENTES */
@@ -362,68 +362,68 @@
     .contact-card-v2 { border: 1px solid var(--border-color); border-radius: 24px; padding: 36px; background: var(--card-bg); backdrop-filter: blur(16px); max-width: 880px; margin: 0 auto; }
     .contact-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .contact-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none; color: var(--text-main); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.025); font-weight: 700; font-size: 0.88rem; }
-    body.light-theme .contact-btn { background: rgba(28, 25, 23, 0.03); }
+    body.light-theme .contact-btn { background: rgba(24, 21, 18, 0.04); }
     .contact-btn:hover { border-color: var(--accent-color); background: rgba(139, 92, 246, 0.1); transform: translateY(-2px); }
     .contact-icon { width: 22px; height: 22px; display: grid; place-items: center; flex-shrink: 0; }
     .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
 
     .human-notice { margin-top: 28px; padding: 24px; border: 1px dashed var(--border-color); border-radius: 18px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(34, 211, 238, 0.035)); }
-    body.light-theme .human-notice { background: linear-gradient(135deg, rgba(109, 40, 217, 0.05), rgba(2, 132, 199, 0.03)); }
+    body.light-theme .human-notice { background: linear-gradient(135deg, rgba(124, 58, 237, 0.04), rgba(2, 132, 199, 0.02)); }
     .human-notice h3 { font-family: 'Manrope', sans-serif; font-size: 1.1rem; margin: 4px 0 8px; }
     .human-notice p { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; text-wrap: pretty; }
 
-    /* BAJO EL CAPÓ */
+    /* BAJO EL CAPÓ (ICONOS MEJORADOS NIVEL ÉLITE) */
     .site-details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
-    .site-detail-card { padding: 24px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--card-bg); backdrop-filter: blur(14px); display: flex; flex-direction: column; }
-    .site-detail-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; margin-bottom: 16px; color: var(--accent-secondary); border: 1px solid var(--border-color); font: 800 1rem 'Fira Code', monospace; }
+    .site-detail-card { padding: 26px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--card-bg); backdrop-filter: blur(14px); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .site-detail-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100vh; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-secondary), transparent); opacity: 0.3; }
+    
+    .site-detail-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; margin-bottom: 18px; color: var(--accent-secondary); border: 1px solid var(--border-color); background: rgba(139, 92, 246, 0.08); box-shadow: inset 0 2px 6px rgba(0,0,0,0.1); }
+    body.light-theme .site-detail-icon { background: rgba(124, 58, 237, 0.06); }
+    .site-detail-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
     .site-detail-card h3 { font-size: 1.05rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 10px; }
     .site-detail-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.65; flex-grow: 1; text-wrap: pretty; }
     .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-color); }
     .detail-tags span { font: 700 0.58rem 'Fira Code', monospace; color: var(--text-muted); border: 1px solid var(--border-color); border-radius: 999px; padding: 4px 8px; background: rgba(255, 255, 255, 0.02); }
-    body.light-theme .detail-tags span { background: rgba(28, 25, 23, 0.03); }
+    body.light-theme .detail-tags span { background: rgba(24, 21, 18, 0.03); }
 
-    /* CERTIFICACIONES & ACORDEÓN */
+    /* CERTIFICACIONES & ACORDEONES MÚLTIPLES */
     .cert-columns-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .cert-category-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; backdrop-filter: blur(14px); margin-bottom: 16px; }
     .cert-category-box h3 { font-family: 'Manrope', sans-serif; font-size: 0.98rem; font-weight: 800; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
     .cert-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
     .cert-list li { padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
-    body.light-theme .cert-list li { border-bottom-color: rgba(28, 25, 23, 0.06); }
+    body.light-theme .cert-list li { border-bottom-color: rgba(24, 21, 18, 0.06); }
     .cert-list li:last-child { border-bottom: 0; }
     .cert-title { font-weight: 700; font-size: 0.82rem; color: var(--text-main); line-height: 1.35; }
     .cert-issuer-sub { font-size: 0.64rem; color: var(--accent-color); font-family: 'Fira Code', monospace; font-weight: 700; text-transform: uppercase; margin-top: 3px; }
     .cert-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin-top: 3px; }
 
-    .cert-accordion-wrapper {
-      margin-top: 20px;
-      grid-column: 1 / -1;
-    }
-    details.cert-accordion {
+    /* ACORDEONES INDIVIDUALES POR CATEGORÍA */
+    details.cert-dropdown {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 16px 20px;
+      padding: 18px 22px;
       backdrop-filter: blur(14px);
+      margin-bottom: 16px;
     }
-    details.cert-accordion summary {
-      font: 700 0.85rem 'Fira Code', monospace;
-      color: var(--accent-secondary);
+    details.cert-dropdown summary {
+      font: 700 0.95rem 'Manrope', sans-serif;
+      color: var(--text-main);
       cursor: pointer;
       list-style: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    details.cert-accordion summary::-webkit-details-marker { display: none; }
-    details.cert-accordion summary::after { content: '+'; font-size: 1.2rem; font-weight: 800; }
-    details.cert-accordion[open] summary::after { content: '-'; }
-    .accordion-content {
+    details.cert-dropdown summary::-webkit-details-marker { display: none; }
+    details.cert-dropdown summary::after { content: '+'; font-size: 1.2rem; font-weight: 800; color: var(--accent-secondary); }
+    details.cert-dropdown[open] summary::after { content: '-'; }
+    .cert-dropdown-content {
       margin-top: 16px;
       padding-top: 16px;
       border-top: 1px solid var(--border-color);
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
     }
 
     /* TECH TICKER (MARQUEE INFINITO AL FINAL) */
@@ -488,7 +488,7 @@
       .site-header .main-nav { display: none !important; }
       .mobile-menu-btn { display: grid !important; place-items: center; }
       .site-header .header-inner { grid-template-columns: minmax(0, 1fr) max-content !important; }
-      .cert-columns-layout, .accordion-content { grid-template-columns: 1fr; }
+      .cert-columns-layout { grid-template-columns: 1fr; }
       .cert-list { grid-template-columns: 1fr; }
       .contact-links { grid-template-columns: repeat(2, 1fr); }
       .site-details-grid { grid-template-columns: repeat(2, 1fr); }
@@ -540,7 +540,7 @@
       <div class="hero-content">
         <div class="availability-badge">
           <span class="pulse-dot"></span>
-          <span id="availability-text">Disponible para proyectos • Available for hire</span>
+          <span id="availability-text">Disponible para proyectos</span>
         </div>
         <div class="eyebrow" id="hero-eyebrow">EXPERIENCIAS DIGITALES · FRONTEND · IA · SISTEMAS</div>
         <h1 class="hero-title"><span id="hero-title-prefix">DIRIGIDO POR</span><strong id="hero-title-brand">JPEG</strong></h1>
@@ -563,7 +563,7 @@
       <!-- 01. PRISMA (TOP 1) -->
       <article class="project-v2 strip-prisma">
         <div class="project-index"><span aria-hidden="true">◈</span> 01</div>
-        <div class="tier-badge-flagship" id="tier-prisma-label">⭐ TOP 01 · FLAGSHIP</div>
+        <div class="tier-badge-flagship" id="tier-prisma-label">⭐ TOP 01 · INSIGNIA</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
@@ -580,7 +580,7 @@
       <!-- 02. NEXUS (TOP 2) -->
       <article class="project-v2 strip-nexus">
         <div class="project-index"><span aria-hidden="true">◇</span> 02</div>
-        <div class="tier-badge-flagship" id="tier-nexus-label">⭐ TOP 02 · CORE SYSTEM</div>
+        <div class="tier-badge-flagship" id="tier-nexus-label">⭐ TOP 02 · SISTEMA CENTRAL</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
@@ -597,7 +597,7 @@
       <!-- 03. HACK ACADEMY (TOP 3 - REPLICABLE) -->
       <article class="project-v2 strip-hackacademy">
         <div class="project-index"><span aria-hidden="true">≋</span> 03</div>
-        <div class="tier-badge-flagship" id="tier-hack-label">⚡ TOP 03 · EDTECH LAB</div>
+        <div class="tier-badge-flagship" id="tier-hack-label">⚡ TOP 03 · LAB EDUCATIVO</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
@@ -699,13 +699,13 @@
           <div>
             <div class="section-kicker" id="human-kicker">NOTA HUMANA</div>
             <h3 id="human-title">Recuerda que esto lo hizo un humano y puede cometer errores.</h3>
-            <p id="human-desc">Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio.</p>
+            <p id="human-desc">Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4. BAJO EL CAPÓ -->
+    <!-- 4. BAJO EL CAPÓ (ICONOS ÉLITE REDISEÑADOS) -->
     <section id="sobre-el-sitio" class="section-container site-details-section">
       <div class="section-header">
         <div class="section-kicker" id="site-kicker">DETRÁS DE LA PÁGINA</div>
@@ -714,25 +714,33 @@
       </div>
       <div class="site-details-grid">
         <article class="site-detail-card">
-          <span class="site-detail-icon" aria-hidden="true">⌘</span>
+          <div class="site-detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          </div>
           <h3 id="site-card-1-title">Arquitectura</h3>
           <p id="site-card-1-desc">Demostración deliberada de rendimiento extremo: SPA ligera construida en un solo archivo con HTML semántico, CSS3 y JS nativo. Cero dependencias pesadas y velocidad de carga instantánea.</p>
           <div class="detail-tags"><span>HTML5</span><span>CSS GRID</span><span>ES6+ JS</span></div>
         </article>
         <article class="site-detail-card">
-          <span class="site-detail-icon" aria-hidden="true">✦</span>
+          <div class="site-detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+          </div>
           <h3 id="site-card-2-title">Interacción</h3>
           <p id="site-card-2-desc">Sistema de tema claro/oscuro persistente en LocalStorage, alternancia dinámica de idioma sin recargar la página y renderizado de partículas mediante Canvas 2D.</p>
           <div class="detail-tags"><span>CANVAS API</span><span>LOCALSTORAGE</span><span>UI ACCESIBLE</span></div>
         </article>
         <article class="site-detail-card">
-          <span class="site-detail-icon" aria-hidden="true">↗</span>
+          <div class="site-detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
           <h3 id="site-card-3-title">Rutas &amp; Layout</h3>
           <p id="site-card-3-desc">Navegación por anclas internas con scroll suave y encabezado inteligente con CSS Grid que mantiene el menú perfectamente centrado en cualquier resolución.</p>
           <div class="detail-tags"><span id="route-tag-1">PROYECTOS</span><span id="route-tag-2">ENLACES ACTIVOS</span></div>
         </article>
         <article class="site-detail-card">
-          <span class="site-detail-icon" aria-hidden="true">◎</span>
+          <div class="site-detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
           <h3 id="site-card-4-title">Propósito</h3>
           <p id="site-card-4-desc">Bóveda digital unificada que conecta todos mis proyectos activos, laboratorios interactivos y canal de comunicación directa en un entorno limpio.</p>
           <div class="detail-tags"><span id="purpose-tag-1">PORTAFOLIO</span><span id="purpose-tag-2">LABORATORIO</span><span id="purpose-tag-3">GARAJE</span></div>
@@ -740,17 +748,18 @@
       </div>
     </section>
 
-    <!-- 5. CERTIFICACIONES CON ACORDEÓN -->
+    <!-- 5. CERTIFICACIONES (TODAS EN ACORDEONES MÚLTIPLES) -->
     <div id="certificaciones" class="section-container">
       <div class="section-header">
         <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
         <p class="section-subtitle" id="cert-main-desc">Validación de competencias técnicas en desarrollo, arquitectura, inteligencia artificial y analítica.</p>
       </div>
       
-      <div class="cert-columns-layout">
-        <div>
-          <div class="cert-category-box">
-            <h3 id="cat-title-dev">⌘ Desarrollo &amp; Arquitectura</h3>
+      <div class="cert-accordion-group">
+        <!-- 1. DESARROLLO & ARQUITECTURA (ABIERTA POR DEFECTO) -->
+        <details class="cert-dropdown" open>
+          <summary id="cat-title-dev">⌘ Desarrollo &amp; Arquitectura</summary>
+          <div class="cert-dropdown-content">
             <ul class="cert-list">
               <li>
                 <div class="cert-title">Profesional de Arquitectura de Software</div>
@@ -774,9 +783,12 @@
               </li>
             </ul>
           </div>
+        </details>
 
-          <div class="cert-category-box">
-            <h3 id="cat-title-ai">◎ Inteligencia Artificial &amp; Ética</h3>
+        <!-- 2. INTELIGENCIA ARTIFICIAL -->
+        <details class="cert-dropdown">
+          <summary id="cat-title-ai">◎ Inteligencia Artificial &amp; Ética</summary>
+          <div class="cert-dropdown-content">
             <ul class="cert-list">
               <li>
                 <div class="cert-title">AI Policy</div>
@@ -790,11 +802,12 @@
               </li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <div>
-          <div class="cert-category-box">
-            <h3 id="cat-title-data">▦ Datos y Analítica</h3>
+        <!-- 3. DATOS Y ANALÍTICA -->
+        <details class="cert-dropdown">
+          <summary id="cat-title-data">▦ Datos y Analítica</summary>
+          <div class="cert-dropdown-content">
             <ul class="cert-list">
               <li>
                 <div class="cert-title">Microsoft Certified: Power BI Data Analyst Associate</div>
@@ -818,9 +831,12 @@
               </li>
             </ul>
           </div>
+        </details>
 
-          <div class="cert-category-box">
-            <h3 id="cat-title-mgmt">≋ Gestión, Marketing &amp; Idiomas</h3>
+        <!-- 4. GESTIÓN Y MARKETING -->
+        <details class="cert-dropdown">
+          <summary id="cat-title-mgmt">≋ Gestión, Marketing &amp; Idiomas</summary>
+          <div class="cert-dropdown-content">
             <ul class="cert-list">
               <li>
                 <div class="cert-title">Foundations of Project Management</div>
@@ -834,60 +850,55 @@
               </li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <!-- ACORDEÓN DE CREDENCIALES COMPLEMENTARIAS -->
-        <div class="cert-accordion-wrapper">
-          <details class="cert-accordion">
-            <summary id="summary-toggle">Ver credenciales complementarias (Ciberseguridad &amp; Compliance)</summary>
-            <div class="accordion-content">
-              <div>
-                <div class="cert-category-box">
-                  <h3 id="cat-title-sec">◇ Ciberseguridad &amp; Infraestructura</h3>
-                  <ul class="cert-list">
-                    <li>
-                      <div class="cert-title">IT Security: Defense against digital dark arts</div>
-                      <div class="cert-issuer-sub">Google</div>
-                      <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
-                    </li>
-                    <li>
-                      <div class="cert-title">Cybersecurity for Managers</div>
-                      <div class="cert-issuer-sub">BBVA</div>
-                      <div class="cert-desc" id="desc-sec-2">Gestión estratégica de seguridad.</div>
-                    </li>
-                    <li>
-                      <div class="cert-title">Hacking Ético Gamificado</div>
-                      <div class="cert-issuer-sub">HackerMentor</div>
-                      <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pentesting.</div>
-                    </li>
-                    <li>
-                      <div class="cert-title">Google IT Support &amp; Networking</div>
-                      <div class="cert-issuer-sub">Google</div>
-                      <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <div class="cert-category-box">
-                  <h3 id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</h3>
-                  <ul class="cert-list">
-                    <li>
-                      <div class="cert-title">AML in Practice</div>
-                      <div class="cert-issuer-sub">Antiga Compliance</div>
-                      <div class="cert-desc" id="desc-aml-1">Prevención de lavado de activos.</div>
-                    </li>
-                    <li>
-                      <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
-                      <div class="cert-issuer-sub">AC30</div>
-                      <div class="cert-desc" id="desc-aml-2">Tipologías y monitoreo transaccional.</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
+        <!-- 5. CIBERSEGURIDAD E INFRAESTRUCTURA -->
+        <details class="cert-dropdown">
+          <summary id="cat-title-sec">◇ Ciberseguridad &amp; Infraestructura</summary>
+          <div class="cert-dropdown-content">
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">IT Security: Defense against digital dark arts</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-1">Criptografía y mitigación de riesgos digitales.</div>
+              </li>
+              <li>
+                <div class="cert-title">Cybersecurity for Managers</div>
+                <div class="cert-issuer-sub">BBVA</div>
+                <div class="cert-desc" id="desc-sec-2">Gestión estratégica de seguridad.</div>
+              </li>
+              <li>
+                <div class="cert-title">Hacking Ético Gamificado</div>
+                <div class="cert-issuer-sub">HackerMentor</div>
+                <div class="cert-desc" id="desc-sec-3">Evaluación de vulnerabilidades y pentesting.</div>
+              </li>
+              <li>
+                <div class="cert-title">Google IT Support &amp; Networking</div>
+                <div class="cert-issuer-sub">Google</div>
+                <div class="cert-desc" id="desc-sec-4">Soporte técnico, sistemas operativos y redes.</div>
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 6. CUMPLIMIENTO Y DELITOS FINANCIEROS -->
+        <details class="cert-dropdown">
+          <summary id="cat-title-aml">◈ Cumplimiento y Delitos Financieros</summary>
+          <div class="cert-dropdown-content">
+            <ul class="cert-list">
+              <li>
+                <div class="cert-title">AML in Practice</div>
+                <div class="cert-issuer-sub">Antiga Compliance</div>
+                <div class="cert-desc" id="desc-aml-1">Prevención de lavado de activos.</div>
+              </li>
+              <li>
+                <div class="cert-title">Financial Intelligence Against Human Trafficking</div>
+                <div class="cert-issuer-sub">AC30</div>
+                <div class="cert-desc" id="desc-aml-2">Tipologías y monitoreo transaccional.</div>
+              </li>
+            </ul>
+          </div>
+        </details>
       </div>
     </div>
 
@@ -952,7 +963,7 @@
         es: {
           pageTitle: 'DIRIGIDO POR JPEG — Portafolio, Laboratorio y Garaje',
           brandTitle: 'DIRIGIDO POR JPEG',
-          availabilityText: 'Disponible para proyectos • Available for hire',
+          availabilityText: 'Disponible para proyectos',
           heroTitlePrefix: 'DIRIGIDO POR',
           heroTitleBrand: 'JPEG',
           heroEyebrow: 'EXPERIENCIAS DIGITALES · FRONTEND · IA · SISTEMAS',
@@ -969,9 +980,9 @@
           projectsDesc: 'Seis piezas digitales ordenadas por impacto, arquitectura y experimentación técnica.',
           badgeLive: 'DESPLIEGUE ACTIVO',
           badgeProject: 'PROYECTO SIN FINES DE LUCRO',
-          tierPrismaLabel: '⭐ TOP 01 · FLAGSHIP',
-          tierNexusLabel: '⭐ TOP 02 · CORE SYSTEM',
-          tierHackLabel: '⚡ TOP 03 · EDTECH LAB',
+          tierPrismaLabel: '⭐ TOP 01 · INSIGNIA',
+          tierNexusLabel: '⭐ TOP 02 · SISTEMA CENTRAL',
+          tierHackLabel: '⚡ TOP 03 · LAB EDUCATIVO',
           kickerPrisma: 'Autoconocimiento Interactivo & Exploración Profesional',
           descPrisma: 'Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.',
           kickerNexus: 'Inteligencia Artificial & Sistemas Web Interactivos',
@@ -1008,20 +1019,19 @@
           purposeTag1: 'PORTAFOLIO', purposeTag2: 'LABORATORIO', purposeTag3: 'GARAJE',
           certTitle: 'Credenciales y Certificaciones',
           certDesc: 'Validación de competencias técnicas en desarrollo, arquitectura, inteligencia artificial y analítica.',
-          summaryToggle: 'Ver credenciales complementarias (Ciberseguridad & Compliance)',
-          catAml: '◈ Cumplimiento y Delitos Financieros', aml1: 'Prevención de lavado de activos.', aml2: 'Tipologías y monitoreo transaccional.',
-          catSec: '◇ Ciberseguridad & Infraestructura', sec1: 'Criptografía y mitigación de riesgos digitales.', sec2: 'Gestión estratégica de seguridad.', sec3: 'Evaluación de vulnerabilidades y pentesting.', sec4: 'Soporte técnico, sistemas operativos y redes.',
+          catDev: '⌘ Desarrollo & Arquitectura', dev1: 'Patrones de diseño, escalabilidad y código limpio.', dev2: 'Programación orientada a objetos y algoritmos.', dev3: 'Desarrollo ágil de productos digitales asistido por IA.', dev4: 'Automatizaciones low-code e integración de procesos.',
           catAi: '◎ Inteligencia Artificial & Ética', ai1: 'Gobernanza, marcos operativos y ética algorítmica.', ai2: 'Fundamentos de IA y conceptos de machine learning.',
           catData: '▦ Datos y Analítica', data1: 'Modelado avanzado con DAX y visualización de datos.', data2: 'Análisis estratégico e inteligencia de negocio.', data3: 'Procesamiento masivo, MapReduce y ecosistemas distribuidos.', data4: 'Transformación de datos y paneles empresariales.',
-          catDev: '⌘ Desarrollo & Arquitectura', dev1: 'Patrones de diseño, escalabilidad y código limpio.', dev2: 'Programación orientada a objetos y algoritmos.', dev3: 'Desarrollo ágil de productos digitales asistido por IA.', dev4: 'Automatizaciones low-code e integración de procesos.',
           catMgmt: '≋ Gestión, Marketing & Idiomas', mgmt1: 'Ciclo de vida y metodologías de gestión de proyectos.', mgmt5: 'Dominio de inglés C2 avanzado.',
+          catSec: '◇ Ciberseguridad & Infraestructura', sec1: 'Criptografía y mitigación de riesgos digitales.', sec2: 'Gestión estratégica de seguridad.', sec3: 'Evaluación de vulnerabilidades y pentesting.', sec4: 'Soporte técnico, sistemas operativos y redes.',
+          catAml: '◈ Cumplimiento y Delitos Financieros', aml1: 'Prevención de lavado de activos.', aml2: 'Tipologías y monitoreo transaccional.',
           footer: 'DIRIGIDO POR JPEG © 2026 — Todos los derechos reservados',
           author: 'Diseñado y Desarrollado por Juan Pablo Espinel Galvis'
         },
         en: {
           pageTitle: 'DIRECTED BY JPEG — Portfolio, Lab & Garage',
           brandTitle: 'DIRECTED BY JPEG',
-          availabilityText: 'Available for hire • Available for projects',
+          availabilityText: 'Available for hire',
           heroTitlePrefix: 'DIRECTED BY',
           heroTitleBrand: 'JPEG',
           heroEyebrow: 'DIGITAL EXPERIENCES · FRONTEND · AI · SYSTEMS',
@@ -1077,13 +1087,12 @@
           purposeTag1: 'PORTFOLIO', purposeTag2: 'LAB', purposeTag3: 'GARAGE',
           certTitle: 'Credentials & Certifications',
           certDesc: 'Validated technical competencies across software development, architecture, artificial intelligence, and analytics.',
-          summaryToggle: 'View complementary credentials (Cybersecurity & Compliance)',
-          catAml: '◈ Compliance & Financial Crimes', aml1: 'Anti-money laundering prevention.', aml2: 'Typologies and transaction monitoring.',
-          catSec: '◇ Cybersecurity & Infrastructure', sec1: 'Cryptography and digital risk mitigation.', sec2: 'Strategic security management.', sec3: 'Vulnerability assessment and pentesting.', sec4: 'Technical IT support and networking.',
+          catDev: '⌘ Development & Architecture', dev1: 'Software design patterns, scalability, and clean code.', dev2: 'Object-oriented programming and algorithms.', dev3: 'Agile AI-assisted digital product development.', dev4: 'Low-code workflow automations and integrations.',
           catAi: '◎ Artificial Intelligence & Ethics', ai1: 'Algorithmic governance and AI ethics.', ai2: 'AI fundamentals and core machine learning concepts.',
           catData: '▦ Data & Analytics', data1: 'Advanced DAX data modeling and visual dashboards.', data2: 'Strategic business intelligence analytics.', data3: 'Massive big data processing and distributed ecosystems.', data4: 'Data transformation and enterprise Power BI reporting.',
-          catDev: '⌘ Development & Architecture', dev1: 'Software design patterns, scalability, and clean code.', dev2: 'Object-oriented programming and algorithms.', dev3: 'Agile AI-assisted digital product development.', dev4: 'Low-code workflow automations and integrations.',
           catMgmt: '≋ Management, Marketing & Languages', mgmt1: 'Project management lifecycles and modern methodologies.', mgmt5: 'Advanced C2 English proficiency.',
+          catSec: '◇ Cybersecurity & Infrastructure', sec1: 'Cryptography and digital risk mitigation.', sec2: 'Strategic security management.', sec3: 'Vulnerability assessment and pentesting.', sec4: 'Technical IT support and networking.',
+          catAml: '◈ Compliance & Financial Crimes', aml1: 'Anti-money laundering prevention.', aml2: 'Typologies and transaction monitoring.',
           footer: 'DIRECTED BY JPEG © 2026 — All rights reserved',
           author: 'Designed & Developed by Juan Pablo Espinel Galvis'
         }
@@ -1128,7 +1137,7 @@
           'site-card-3-title':'site3Title','site-card-3-desc':'site3Desc',
           'site-card-4-title':'site4Title','site-card-4-desc':'site4Desc',
           'route-tag-1':'routeTag1','route-tag-2':'routeTag2','purpose-tag-1':'purposeTag1','purpose-tag-2':'purposeTag2','purpose-tag-3':'purposeTag3',
-          'cert-main-title':'certTitle','cert-main-desc':'certDesc','summary-toggle':'summaryToggle',
+          'cert-main-title':'certTitle','cert-main-desc':'certDesc',
           'cat-title-dev':'catDev','desc-dev-1':'dev1','desc-dev-2':'dev2','desc-dev-3':'dev3','desc-dev-4':'dev4',
           'cat-title-ai':'catAi','desc-ai-1':'ai1','desc-ai-2':'ai2',
           'cat-title-data':'catData','desc-data-1':'data1','desc-data-2':'data2','desc-data-3':'data3','desc-data-4':'data4',
@@ -1195,7 +1204,7 @@
       function drawParticles() {
         if (!ctx) return;
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = currentTheme === 'light' ? 'rgba(109, 40, 217, 0.25)' : 'rgba(139, 92, 246, 0.35)';
+        ctx.fillStyle = currentTheme === 'light' ? 'rgba(124, 58, 237, 0.25)' : 'rgba(139, 92, 246, 0.35)';
         for (const p of particles) {
           p.x += p.vx; p.y += p.vy;
           if (p.x < 0) p.x = width; if (p.x > width) p.x = 0;
