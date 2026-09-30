@@ -31,7 +31,15 @@
       --text-muted: #a6adbb;
       --border-color: rgba(255, 255, 255, 0.10);
       --header-bg: rgba(7, 7, 11, 0.85);
-      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.30), transparent 50%), radial-gradient(circle at 80% 30%, rgba(34, 211, 238, 0.18), transparent 40%), #090810;
+      
+      /* GRADIENTES PERSONALIZADOS POR PROYECTO */
+      --strip-prisma: radial-gradient(circle at 30% 40%, rgba(139, 92, 246, 0.28), transparent 50%), radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.15), transparent 40%), #07070b;
+      --strip-nexus: radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.25), transparent 45%), radial-gradient(circle at 85% 30%, rgba(14, 116, 144, 0.15), transparent 40%), #06090f;
+      --strip-hack: radial-gradient(circle at 70% 30%, rgba(244, 114, 182, 0.22), transparent 45%), radial-gradient(circle at 25% 80%, rgba(251, 146, 60, 0.14), transparent 40%), #0c070a;
+      --strip-store: radial-gradient(circle at 40% 60%, rgba(168, 85, 247, 0.24), transparent 50%), radial-gradient(circle at 90% 20%, rgba(236, 72, 153, 0.14), transparent 40%), #08060f;
+      --strip-cv: radial-gradient(circle at 60% 40%, rgba(16, 185, 129, 0.2), transparent 45%), radial-gradient(circle at 20% 70%, rgba(5, 150, 105, 0.12), transparent 40%), #060a08;
+      --strip-parroquia: radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.22), transparent 48%), radial-gradient(circle at 80% 80%, rgba(217, 119, 6, 0.14), transparent 42%), #0d0a06;
+
       --btn-bg: #ffffff;
       --btn-text: #000000;
       --footer-bg: #06070a;
@@ -49,7 +57,14 @@
       --text-muted: #57534e;
       --border-color: rgba(28, 25, 23, 0.12);
       --header-bg: rgba(248, 246, 240, 0.88);
-      --strip-gradient-prisma: radial-gradient(circle at 50% 50%, rgba(109, 40, 217, 0.12), transparent 60%), radial-gradient(circle at 80% 30%, rgba(2, 132, 199, 0.10), transparent 50%), #eae6dc;
+      
+      --strip-prisma: radial-gradient(circle at 30% 40%, rgba(109, 40, 217, 0.12), transparent 60%), #f3eee3;
+      --strip-nexus: radial-gradient(circle at 20% 50%, rgba(2, 132, 199, 0.12), transparent 60%), #eae6dc;
+      --strip-hack: radial-gradient(circle at 70% 30%, rgba(190, 24, 93, 0.1), transparent 60%), #f4e8eb;
+      --strip-store: radial-gradient(circle at 40% 60%, rgba(109, 40, 217, 0.1), transparent 60%), #efe9f4;
+      --strip-cv: radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.1), transparent 60%), #eaf1ed;
+      --strip-parroquia: radial-gradient(circle at 50% 40%, rgba(217, 119, 6, 0.12), transparent 60%), #f5efe3;
+
       --btn-bg: #1c1917;
       --btn-text: #f8f6f0;
       --footer-bg: #e7e3d8;
@@ -281,63 +296,7 @@
       background: rgba(109, 40, 217, 0.06);
     }
 
-    /* TECH TICKER (MARQUEE INFINITO) */
-    .tech-ticker-section {
-      padding: 50px 0;
-      border-bottom: 1px solid var(--border-color);
-      overflow: hidden;
-      background: rgba(0,0,0,0.15);
-    }
-    body.light-theme .tech-ticker-section {
-      background: rgba(0,0,0,0.02);
-    }
-    .ticker-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .ticker-row {
-      display: flex;
-      width: max-content;
-      gap: 24px;
-      animation: marquee 35s linear infinite;
-    }
-    .ticker-row.reverse {
-      animation-direction: reverse;
-      animation-duration: 40s;
-    }
-    .ticker-row.fast {
-      animation-duration: 28s;
-    }
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: var(--card-bg);
-      font: 700 0.75rem 'Fira Code', monospace;
-      color: var(--text-muted);
-      opacity: 0.55;
-      backdrop-filter: blur(8px);
-      white-space: nowrap;
-      transition: opacity 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-    }
-    .ticker-item:hover {
-      opacity: 1;
-      color: var(--text-main);
-      border-color: var(--accent-secondary);
-    }
-    .ticker-item span.dot {
-      color: var(--accent-color);
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* PROYECTOS (TIER LIST / FLAGSHIP) */
+    /* PROYECTOS (TIER LIST Y GRADIENTES ÚNICOS) */
     .section-container { max-width: 1220px; margin: 0 auto; padding: 65px 24px; }
     .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 60px; padding-bottom: 30px; }
     .section-kicker { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2px; color: var(--accent-secondary); text-transform: uppercase; }
@@ -346,28 +305,32 @@
 
     .project-v2 {
       position: relative;
-      min-height: 360px;
-      padding: 50px 24px;
+      min-height: 380px;
+      padding: 60px 24px;
       display: flex;
       justify-content: center;
       align-items: center;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .project-index { position: absolute; left: 30px; top: 32px; font: 700 0.7rem 'Fira Code', monospace; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .project-index { position: absolute; left: 35px; top: 35px; font: 700 0.75rem 'Fira Code', monospace; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
     .project-index span { color: var(--accent-secondary); }
+    
+    /* BADGE FLAGSHIP DESTACADO */
     .tier-badge-flagship {
       position: absolute;
-      right: 30px;
+      right: 35px;
       top: 32px;
-      font: 700 0.65rem 'Fira Code', monospace;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(139, 92, 246, 0.15);
+      font: 800 0.7rem 'Fira Code', monospace;
+      padding: 6px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(34, 211, 238, 0.2));
       border: 1px solid var(--accent-color);
-      color: var(--accent-secondary);
-      letter-spacing: 1px;
+      color: var(--text-main);
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 20px var(--accent-glow);
     }
+
     .strip-content { max-width: 820px; text-align: center; position: relative; z-index: 5; }
     .project-title { font-size: clamp(2.3rem, 5vw, 4rem); font-family: 'Manrope', sans-serif; font-weight: 800; margin: 12px 0 8px; }
     .project-title a { color: var(--text-main); text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.3em; }
@@ -379,19 +342,20 @@
     .badge-status { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border-color); border-radius: 999px; padding: 5px 12px; font: 700 0.6rem 'Fira Code', monospace; color: var(--text-muted); background: rgba(255, 255, 255, 0.025); margin-bottom: 10px; }
     body.light-theme .badge-status { background: rgba(28, 25, 23, 0.03); }
     .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.8); }
-    .badge-project::before { content: "✦"; color: var(--accent-secondary); }
+    .badge-project::before { content: "✦"; color: #f59e0b; }
 
-    .capabilities { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-    .capabilities span { border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 999px; color: var(--text-muted); font: 600 0.58rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.025); }
+    .capabilities { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .capabilities span { border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 999px; color: var(--text-muted); font: 600 0.6rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.03); display: inline-flex; align-items: center; gap: 5px; }
     body.light-theme .capabilities span { background: rgba(28, 25, 23, 0.03); }
+    .cap-icon { color: var(--accent-secondary); font-size: 0.7rem; }
 
-    /* FONDOS PROYECTOS */
-    .strip-prisma { background: var(--strip-gradient-prisma); }
-    .strip-nexus { background: radial-gradient(circle at 35% 40%, rgba(34, 211, 238, 0.16), transparent 35%), var(--bg-dark); }
-    .strip-hackacademy { background: radial-gradient(circle at 70% 50%, rgba(244, 114, 182, 0.13), transparent 35%), var(--bg-dark); }
-    .strip-jpegstore { background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.15), transparent 35%), var(--bg-dark); }
-    .strip-cv { background: radial-gradient(circle at 65% 50%, rgba(16, 185, 129, 0.13), transparent 35%), var(--bg-dark); }
-    .strip-parroquia { background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.10), transparent 35%), var(--bg-dark); }
+    /* APLICACIÓN DE GRADIENTES ÚNICOS POR PROYECTO */
+    .strip-prisma { background: var(--strip-prisma); }
+    .strip-nexus { background: var(--strip-nexus); }
+    .strip-hackacademy { background: var(--strip-hack); }
+    .strip-jpegstore { background: var(--strip-store); }
+    .strip-cv { background: var(--strip-cv); }
+    .strip-parroquia { background: var(--strip-parroquia); }
 
     /* CONTACTO */
     .contact-card-v2 { border: 1px solid var(--border-color); border-radius: 24px; padding: 36px; background: var(--card-bg); backdrop-filter: blur(16px); max-width: 880px; margin: 0 auto; }
@@ -450,14 +414,8 @@
       justify-content: space-between;
     }
     details.cert-accordion summary::-webkit-details-marker { display: none; }
-    details.cert-accordion summary::after {
-      content: '+';
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-    details.cert-accordion[open] summary::after {
-      content: '-';
-    }
+    details.cert-accordion summary::after { content: '+'; font-size: 1.2rem; font-weight: 800; }
+    details.cert-accordion[open] summary::after { content: '-'; }
     .accordion-content {
       margin-top: 16px;
       padding-top: 16px;
@@ -465,6 +423,61 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
+    }
+
+    /* TECH TICKER (MARQUEE INFINITO AL FINAL) */
+    .tech-ticker-section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+      background: rgba(0,0,0,0.2);
+    }
+    body.light-theme .tech-ticker-section {
+      background: rgba(0,0,0,0.025);
+    }
+    .ticker-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ticker-row {
+      display: flex;
+      width: max-content;
+      gap: 20px;
+      animation: marquee 40s linear infinite;
+    }
+    .ticker-row.reverse {
+      animation-direction: reverse;
+      animation-duration: 45s;
+    }
+    .ticker-row.fast {
+      animation-duration: 32s;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      font: 700 0.72rem 'Fira Code', monospace;
+      color: var(--text-muted);
+      opacity: 0.65;
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      transition: opacity 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+    .ticker-item:hover {
+      opacity: 1;
+      color: var(--text-main);
+      border-color: var(--accent-secondary);
+    }
+    .ticker-item span.dot { color: var(--accent-color); }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     footer { padding: 28px 6%; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--footer-muted); background: var(--footer-bg); margin-top: auto; font-family: 'Fira Code', monospace; }
@@ -536,41 +549,7 @@
       </div>
     </section>
 
-    <!-- TECH TICKER (MARQUEE INFINITO) -->
-    <section class="tech-ticker-section" aria-label="Tecnologías y Herramientas">
-      <div class="ticker-container">
-        <div class="ticker-row">
-          <div class="ticker-item"><span class="dot">✦</span> Notion</div>
-          <div class="ticker-item"><span class="dot">✦</span> Power BI</div>
-          <div class="ticker-item"><span class="dot">✦</span> VS Code</div>
-          <div class="ticker-item"><span class="dot">✦</span> Vercel</div>
-          <div class="ticker-item"><span class="dot">✦</span> Git &amp; GitHub</div>
-          <div class="ticker-item"><span class="dot">✦</span> Postman</div>
-          <div class="ticker-item"><span class="dot">✦</span> Jira</div>
-          <div class="ticker-item"><span class="dot">✦</span> Notion</div>
-          <div class="ticker-item"><span class="dot">✦</span> Power BI</div>
-          <div class="ticker-item"><span class="dot">✦</span> VS Code</div>
-          <div class="ticker-item"><span class="dot">✦</span> Vercel</div>
-          <div class="ticker-item"><span class="dot">✦</span> Git &amp; GitHub</div>
-        </div>
-        <div class="ticker-row reverse fast">
-          <div class="ticker-item"><span class="dot">◆</span> Gemini AI</div>
-          <div class="ticker-item"><span class="dot">◆</span> Claude</div>
-          <div class="ticker-item"><span class="dot">◆</span> N8N Automation</div>
-          <div class="ticker-item"><span class="dot">◆</span> Supabase</div>
-          <div class="ticker-item"><span class="dot">◆</span> JavaScript ES6+</div>
-          <div class="ticker-item"><span class="dot">◆</span> CSS Grid &amp; Flex</div>
-          <div class="ticker-item"><span class="dot">◆</span> HTML5 Semántico</div>
-          <div class="ticker-item"><span class="dot">◆</span> Gemini AI</div>
-          <div class="ticker-item"><span class="dot">◆</span> Claude</div>
-          <div class="ticker-item"><span class="dot">◆</span> N8N Automation</div>
-          <div class="ticker-item"><span class="dot">◆</span> Supabase</div>
-          <div class="ticker-item"><span class="dot">◆</span> JavaScript ES6+</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. PROYECTOS (TIER LIST) -->
+    <!-- 2. PROYECTOS (TIER LIST & GRADIENTES ÚNICOS) -->
     <section id="proyectos" class="projects-section">
       <div class="section-container projects-heading">
         <div>
@@ -580,7 +559,7 @@
         </div>
       </div>
 
-      <!-- 01. PRISMA (FLAGSHIP / TIER S) -->
+      <!-- 01. PRISMA -->
       <article class="project-v2 strip-prisma">
         <div class="project-index"><span aria-hidden="true">◈</span> 01</div>
         <div class="tier-badge-flagship" id="tier-prisma-label">CORE SYSTEM · FLAGSHIP</div>
@@ -589,11 +568,15 @@
           <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
           <p class="project-kicker" id="kicker-prisma">Autoconocimiento Interactivo &amp; Exploración Profesional</p>
           <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
-          <div class="capabilities"><span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span><span id="cap-prisma-2">MEDICIÓN INDIRECTA</span><span id="cap-prisma-3">UX INTERACTIVA</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">✦</span> <span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span></span>
+            <span><span class="cap-icon">✦</span> <span id="cap-prisma-2">MEDICIÓN INDIRECTA</span></span>
+            <span><span class="cap-icon">✦</span> <span id="cap-prisma-3">UX INTERACTIVA</span></span>
+          </div>
         </div>
       </article>
 
-      <!-- 02. NEXUS (FLAGSHIP / TIER S) -->
+      <!-- 02. NEXUS -->
       <article class="project-v2 strip-nexus">
         <div class="project-index"><span aria-hidden="true">◇</span> 02</div>
         <div class="tier-badge-flagship" id="tier-nexus-label">CORE SYSTEM · FLAGSHIP</div>
@@ -602,7 +585,11 @@
           <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
           <p class="project-kicker" id="kicker-nexus">Inteligencia Artificial &amp; Sistemas Web Interactivos</p>
           <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
-          <div class="capabilities"><span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span><span id="cap-nexus-2">ARQUITECTURA SPA</span><span id="cap-nexus-3">CONTENIDO CON IA</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">❖</span> <span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span></span>
+            <span><span class="cap-icon">❖</span> <span id="cap-nexus-2">ARQUITECTURA SPA</span></span>
+            <span><span class="cap-icon">❖</span> <span id="cap-nexus-3">CONTENIDO CON IA</span></span>
+          </div>
         </div>
       </article>
 
@@ -614,7 +601,11 @@
           <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
           <p class="project-kicker" id="kicker-hack">Experiencia de Aprendizaje &amp; Educación Asistida por IA</p>
           <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
-          <div class="capabilities"><span id="cap-hack-1">UX EDUCATIVA</span><span id="cap-hack-2">FLUJOS DE MENTORÍA</span><span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">⚡</span> <span id="cap-hack-1">UX EDUCATIVA</span></span>
+            <span><span class="cap-icon">⚡</span> <span id="cap-hack-2">FLUJOS DE MENTORÍA</span></span>
+            <span><span class="cap-icon">⚡</span> <span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></span>
+          </div>
         </div>
       </article>
 
@@ -626,7 +617,11 @@
           <h2 class="project-title" id="title-store"><a href="https://jpeg-store.vercel.app/" target="_blank" rel="noopener">DIGITAL VAULT</a></h2>
           <p class="project-kicker" id="kicker-store">Recursos de IA, Ingeniería de Prompts &amp; Automatizaciones</p>
           <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
-          <div class="capabilities"><span id="cap-store-1">INGENIERÍA DE PROMPTS</span><span id="cap-store-2">FLUJOS CON IA</span><span id="cap-store-3">ARQUITECTURA DIGITAL</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">◈</span> <span id="cap-store-1">INGENIERÍA DE PROMPTS</span></span>
+            <span><span class="cap-icon">◈</span> <span id="cap-store-2">FLUJOS CON IA</span></span>
+            <span><span class="cap-icon">◈</span> <span id="cap-store-3">ARQUITECTURA DIGITAL</span></span>
+          </div>
         </div>
       </article>
 
@@ -638,11 +633,15 @@
           <h2 class="project-title" id="title-cv"><a href="https://cv-tau-gray.vercel.app/" target="_blank" rel="noopener">CURRICULUM VITAE</a></h2>
           <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
           <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
-          <div class="capabilities"><span id="cap-cv-1">MARCA PERSONAL</span><span id="cap-cv-2">UI RESPONSIVA</span><span id="cap-cv-3">NARRATIVA TÉCNICA</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">◆</span> <span id="cap-cv-1">MARCA PERSONAL</span></span>
+            <span><span class="cap-icon">◆</span> <span id="cap-cv-2">UI RESPONSIVA</span></span>
+            <span><span class="cap-icon">◆</span> <span id="cap-cv-3">NARRATIVA TÉCNICA</span></span>
+          </div>
         </div>
       </article>
 
-      <!-- 06. PARROQUIA -->
+      <!-- 06. PARROQUIA (GRADIENTE CÁLIDO) -->
       <article class="project-v2 strip-parroquia">
         <div class="project-index"><span aria-hidden="true">✦</span> 06</div>
         <div class="strip-content">
@@ -650,7 +649,11 @@
           <h2 class="project-title" id="title-parroquia"><a href="https://parroquia-wheat.vercel.app/" target="_blank" rel="noopener">NUESTRA SEÑORA DE LA MEDALLA MILAGROSA</a></h2>
           <p class="project-kicker" id="kicker-parroquia">Proyecto Web Institucional · Accesibilidad &amp; Comunidad</p>
           <p class="project-desc" id="desc-parroquia">Proyecto web institucional enfocado en accesibilidad, arquitectura clara de información comunitaria y diseño incluyente.</p>
-          <div class="capabilities"><span id="cap-parish-1">UX ACCESIBLE</span><span id="cap-parish-2">UI MULTILINGÜE</span><span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></div>
+          <div class="capabilities">
+            <span><span class="cap-icon">♥</span> <span id="cap-parish-1">UX ACCESIBLE</span></span>
+            <span><span class="cap-icon">♥</span> <span id="cap-parish-2">UI MULTILINGÜE</span></span>
+            <span><span class="cap-icon">♥</span> <span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></span>
+          </div>
         </div>
       </article>
     </section>
@@ -743,9 +746,7 @@
       </div>
       
       <div class="cert-columns-layout">
-        <!-- Columna 1: Desarrollo & Arquitectura y IA -->
         <div>
-          <!-- 1. Desarrollo -->
           <div class="cert-category-box">
             <h3 id="cat-title-dev">⌘ Desarrollo &amp; Arquitectura</h3>
             <ul class="cert-list">
@@ -772,7 +773,6 @@
             </ul>
           </div>
 
-          <!-- 2. IA -->
           <div class="cert-category-box">
             <h3 id="cat-title-ai">◎ Inteligencia Artificial &amp; Ética</h3>
             <ul class="cert-list">
@@ -790,9 +790,7 @@
           </div>
         </div>
 
-        <!-- Columna 2: Datos y Gestión -->
         <div>
-          <!-- 3. Datos -->
           <div class="cert-category-box">
             <h3 id="cat-title-data">▦ Datos y Analítica</h3>
             <ul class="cert-list">
@@ -819,7 +817,6 @@
             </ul>
           </div>
 
-          <!-- 4. Gestión & Idiomas -->
           <div class="cert-category-box">
             <h3 id="cat-title-mgmt">≋ Gestión, Marketing &amp; Idiomas</h3>
             <ul class="cert-list">
@@ -837,7 +834,7 @@
           </div>
         </div>
 
-        <!-- ACORDEÓN DE CREDENCIALES COMPLEMENTARIAS (Ciberseguridad y Cumplimiento) -->
+        <!-- ACORDEÓN DE CREDENCIALES COMPLEMENTARIAS -->
         <div class="cert-accordion-wrapper">
           <details class="cert-accordion">
             <summary id="summary-toggle">Ver credenciales complementarias (Ciberseguridad &amp; Compliance)</summary>
@@ -891,6 +888,49 @@
         </div>
       </div>
     </div>
+
+    <!-- 6. TECH TICKER (MARQUEE INFINITO AL FINAL CON STACK COMPLETO) -->
+    <section class="tech-ticker-section" aria-label="Tecnologías y Herramientas">
+      <div class="ticker-container">
+        <div class="ticker-row">
+          <div class="ticker-item"><span class="dot">✦</span> Notion</div>
+          <div class="ticker-item"><span class="dot">✦</span> Power BI</div>
+          <div class="ticker-item"><span class="dot">✦</span> VS Code</div>
+          <div class="ticker-item"><span class="dot">✦</span> Vercel</div>
+          <div class="ticker-item"><span class="dot">✦</span> Git &amp; GitHub</div>
+          <div class="ticker-item"><span class="dot">✦</span> Postman</div>
+          <div class="ticker-item"><span class="dot">✦</span> Jira</div>
+          <div class="ticker-item"><span class="dot">✦</span> Google Docs</div>
+          <div class="ticker-item"><span class="dot">✦</span> Google Drive</div>
+          <div class="ticker-item"><span class="dot">✦</span> Google Gmail</div>
+          <div class="ticker-item"><span class="dot">✦</span> Google Tasks</div>
+          <div class="ticker-item"><span class="dot">✦</span> Google Sheets</div>
+          <div class="ticker-item"><span class="dot">✦</span> Notion</div>
+          <div class="ticker-item"><span class="dot">✦</span> Power BI</div>
+          <div class="ticker-item"><span class="dot">✦</span> VS Code</div>
+          <div class="ticker-item"><span class="dot">✦</span> Vercel</div>
+          <div class="ticker-item"><span class="dot">✦</span> Git &amp; GitHub</div>
+        </div>
+        <div class="ticker-row reverse fast">
+          <div class="ticker-item"><span class="dot">◆</span> Gemini AI</div>
+          <div class="ticker-item"><span class="dot">◆</span> Claude</div>
+          <div class="ticker-item"><span class="dot">◆</span> N8N Automation</div>
+          <div class="ticker-item"><span class="dot">◆</span> Supabase</div>
+          <div class="ticker-item"><span class="dot">◆</span> Excel</div>
+          <div class="ticker-item"><span class="dot">◆</span> Word</div>
+          <div class="ticker-item"><span class="dot">◆</span> ChatGPT</div>
+          <div class="ticker-item"><span class="dot">◆</span> Facebook Marketplace</div>
+          <div class="ticker-item"><span class="dot">◆</span> Antigravity</div>
+          <div class="ticker-item"><span class="dot">◆</span> Cursor</div>
+          <div class="ticker-item"><span class="dot">◆</span> Gemini AI</div>
+          <div class="ticker-item"><span class="dot">◆</span> Claude</div>
+          <div class="ticker-item"><span class="dot">◆</span> N8N Automation</div>
+          <div class="ticker-item"><span class="dot">◆</span> Supabase</div>
+          <div class="ticker-item"><span class="dot">◆</span> Excel</div>
+          <div class="ticker-item"><span class="dot">◆</span> Word</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -927,8 +967,8 @@
           projectsDesc: 'Seis piezas digitales ordenadas por impacto, arquitectura y experimentación técnica.',
           badgeLive: 'DESPLIEGUE ACTIVO',
           badgeProject: 'PROYECTO SIN FINES DE LUCRO',
-          tierPrismaLabel: 'CORE SYSTEM · FLAGSHIP',
-          tierNexusLabel: 'CORE SYSTEM · FLAGSHIP',
+          tierPrismaLabel: 'SISTEMA CENTRAL · INSIGNIA',
+          tierNexusLabel: 'SISTEMA CENTRAL · INSIGNIA',
           kickerPrisma: 'Autoconocimiento Interactivo & Exploración Profesional',
           descPrisma: 'Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.',
           kickerNexus: 'Inteligencia Artificial & Sistemas Web Interactivos',
@@ -953,7 +993,7 @@
           btnEmailText: 'Correo',
           humanKicker: 'NOTA HUMANA',
           humanTitle: 'Recuerda que esto lo hizo un humano y puede cometer errores.',
-          humanDesc: 'Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio. Si tienes alguna idea o implementación, será muy bien recibida.',
+          humanDesc: 'Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio.',
           siteKicker: 'DETRÁS DE LA PÁGINA',
           siteTitle: 'Cómo está construida',
           siteDesc: 'Una mirada técnica a la arquitectura, rendimiento y principios de ingeniería de este sitio.',
