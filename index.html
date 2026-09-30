@@ -32,7 +32,7 @@
       --border-color: rgba(255, 255, 255, 0.10);
       --header-bg: rgba(7, 7, 11, 0.85);
       
-      /* GRADIENTES PERSONALIZADOS POR PROYECTO */
+      /* GRADIENTES OSCUROS (DARK MODE) */
       --strip-prisma: radial-gradient(circle at 30% 40%, rgba(139, 92, 246, 0.28), transparent 50%), radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.15), transparent 40%), #07070b;
       --strip-nexus: radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.25), transparent 45%), radial-gradient(circle at 85% 30%, rgba(14, 116, 144, 0.15), transparent 40%), #06090f;
       --strip-hack: radial-gradient(circle at 70% 30%, rgba(244, 114, 182, 0.22), transparent 45%), radial-gradient(circle at 25% 80%, rgba(251, 146, 60, 0.14), transparent 40%), #0c070a;
@@ -58,12 +58,13 @@
       --border-color: rgba(28, 25, 23, 0.12);
       --header-bg: rgba(248, 246, 240, 0.88);
       
-      --strip-prisma: radial-gradient(circle at 30% 40%, rgba(109, 40, 217, 0.12), transparent 60%), #f3eee3;
-      --strip-nexus: radial-gradient(circle at 20% 50%, rgba(2, 132, 199, 0.12), transparent 60%), #eae6dc;
-      --strip-hack: radial-gradient(circle at 70% 30%, rgba(190, 24, 93, 0.1), transparent 60%), #f4e8eb;
-      --strip-store: radial-gradient(circle at 40% 60%, rgba(109, 40, 217, 0.1), transparent 60%), #efe9f4;
-      --strip-cv: radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.1), transparent 60%), #eaf1ed;
-      --strip-parroquia: radial-gradient(circle at 50% 40%, rgba(217, 119, 6, 0.12), transparent 60%), #f5efe3;
+      /* GRADIENTES CLAROS VIVOS Y DIFERENCIADOS (LIGHT MODE) */
+      --strip-prisma: linear-gradient(135deg, rgba(139, 92, 246, 0.10), rgba(34, 211, 238, 0.05)), #f1ebf8;
+      --strip-nexus: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(14, 116, 144, 0.06)), #e6f2f7;
+      --strip-hack: linear-gradient(135deg, rgba(244, 114, 182, 0.12), rgba(251, 146, 60, 0.08)), #f9eee9;
+      --strip-store: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.06)), #f2eaf5;
+      --strip-cv: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.06)), #e8f4ef;
+      --strip-parroquia: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(217, 119, 6, 0.08)), #f7efe1;
 
       --btn-bg: #1c1917;
       --btn-text: #f8f6f0;
@@ -296,7 +297,7 @@
       background: rgba(109, 40, 217, 0.06);
     }
 
-    /* PROYECTOS (TIER LIST Y GRADIENTES ÚNICOS) */
+    /* PROYECTOS (TIER LIST & GRADIENTES ÚNICOS) */
     .section-container { max-width: 1220px; margin: 0 auto; padding: 65px 24px; }
     .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 60px; padding-bottom: 30px; }
     .section-kicker { font: 700 0.67rem 'Fira Code', monospace; letter-spacing: 2px; color: var(--accent-secondary); text-transform: uppercase; }
@@ -316,7 +317,7 @@
     .project-index { position: absolute; left: 35px; top: 35px; font: 700 0.75rem 'Fira Code', monospace; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
     .project-index span { color: var(--accent-secondary); }
     
-    /* BADGE FLAGSHIP DESTACADO */
+    /* BADGE TOP DISTINTIVO */
     .tier-badge-flagship {
       position: absolute;
       right: 35px;
@@ -345,11 +346,11 @@
     .badge-project::before { content: "✦"; color: #f59e0b; }
 
     .capabilities { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-    .capabilities span { border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 999px; color: var(--text-muted); font: 600 0.6rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.03); display: inline-flex; align-items: center; gap: 5px; }
+    .capabilities span { border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 999px; color: var(--text-muted); font: 600 0.6rem 'Fira Code', monospace; background: rgba(255, 255, 255, 0.03); display: inline-flex; align-items: center; gap: 6px; }
     body.light-theme .capabilities span { background: rgba(28, 25, 23, 0.03); }
-    .cap-icon { color: var(--accent-secondary); font-size: 0.7rem; }
+    .cap-icon { color: var(--accent-secondary); font-size: 0.75rem; }
 
-    /* APLICACIÓN DE GRADIENTES ÚNICOS POR PROYECTO */
+    /* FONDOS Y GRADIENTES */
     .strip-prisma { background: var(--strip-prisma); }
     .strip-nexus { background: var(--strip-nexus); }
     .strip-hackacademy { background: var(--strip-hack); }
@@ -549,7 +550,7 @@
       </div>
     </section>
 
-    <!-- 2. PROYECTOS (TIER LIST & GRADIENTES ÚNICOS) -->
+    <!-- 2. PROYECTOS (TOP 3 & TIER LIST) -->
     <section id="proyectos" class="projects-section">
       <div class="section-container projects-heading">
         <div>
@@ -559,52 +560,53 @@
         </div>
       </div>
 
-      <!-- 01. PRISMA -->
+      <!-- 01. PRISMA (TOP 1) -->
       <article class="project-v2 strip-prisma">
         <div class="project-index"><span aria-hidden="true">◈</span> 01</div>
-        <div class="tier-badge-flagship" id="tier-prisma-label">CORE SYSTEM · FLAGSHIP</div>
+        <div class="tier-badge-flagship" id="tier-prisma-label">⭐ TOP 01 · FLAGSHIP</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-prisma">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-prisma"><a href="https://prisma-green-zeta.vercel.app/" target="_blank" rel="noopener">PRISMA</a></h2>
           <p class="project-kicker" id="kicker-prisma">Autoconocimiento Interactivo &amp; Exploración Profesional</p>
           <p class="project-desc" id="desc-prisma">Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">✦</span> <span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span></span>
-            <span><span class="cap-icon">✦</span> <span id="cap-prisma-2">MEDICIÓN INDIRECTA</span></span>
-            <span><span class="cap-icon">✦</span> <span id="cap-prisma-3">UX INTERACTIVA</span></span>
+            <span><span class="cap-icon">🎯</span> <span id="cap-prisma-1">EVALUACIÓN ADAPTATIVA</span></span>
+            <span><span class="cap-icon">🔍</span> <span id="cap-prisma-2">MEDICIÓN INDIRECTA</span></span>
+            <span><span class="cap-icon">✨</span> <span id="cap-prisma-3">UX INTERACTIVA</span></span>
           </div>
         </div>
       </article>
 
-      <!-- 02. NEXUS -->
+      <!-- 02. NEXUS (TOP 2) -->
       <article class="project-v2 strip-nexus">
         <div class="project-index"><span aria-hidden="true">◇</span> 02</div>
-        <div class="tier-badge-flagship" id="tier-nexus-label">CORE SYSTEM · FLAGSHIP</div>
+        <div class="tier-badge-flagship" id="tier-nexus-label">⭐ TOP 02 · CORE SYSTEM</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-nexus">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-nexus"><a href="https://nexus-hazel-kappa.vercel.app/" target="_blank" rel="noopener">NEXUS</a></h2>
           <p class="project-kicker" id="kicker-nexus">Inteligencia Artificial &amp; Sistemas Web Interactivos</p>
           <p class="project-desc" id="desc-nexus">Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">❖</span> <span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span></span>
-            <span><span class="cap-icon">❖</span> <span id="cap-nexus-2">ARQUITECTURA SPA</span></span>
-            <span><span class="cap-icon">❖</span> <span id="cap-nexus-3">CONTENIDO CON IA</span></span>
+            <span><span class="cap-icon">🤖</span> <span id="cap-nexus-1">SISTEMAS INTERACTIVOS</span></span>
+            <span><span class="cap-icon">⚙️</span> <span id="cap-nexus-2">ARQUITECTURA SPA</span></span>
+            <span><span class="cap-icon">📊</span> <span id="cap-nexus-3">CONTENIDO CON IA</span></span>
           </div>
         </div>
       </article>
 
-      <!-- 03. HACK ACADEMY -->
+      <!-- 03. HACK ACADEMY (TOP 3 - REPLICABLE) -->
       <article class="project-v2 strip-hackacademy">
         <div class="project-index"><span aria-hidden="true">≋</span> 03</div>
+        <div class="tier-badge-flagship" id="tier-hack-label">⚡ TOP 03 · EDTECH LAB</div>
         <div class="strip-content">
           <span class="badge-status badge-live" id="badge-hack">DESPLIEGUE ACTIVO</span>
           <h2 class="project-title" id="title-hack"><a href="https://hackacademy.vercel.app/" target="_blank" rel="noopener">HACK ACADEMY</a></h2>
           <p class="project-kicker" id="kicker-hack">Experiencia de Aprendizaje &amp; Educación Asistida por IA</p>
-          <p class="project-desc" id="desc-hack">Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.</p>
+          <p class="project-desc" id="desc-hack">Plataforma educativa modular con mentoría e inglés práctico, diseñada con una arquitectura adaptable lista para replicar en múltiples categorías o implementaciones a medida.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">⚡</span> <span id="cap-hack-1">UX EDUCATIVA</span></span>
-            <span><span class="cap-icon">⚡</span> <span id="cap-hack-2">FLUJOS DE MENTORÍA</span></span>
-            <span><span class="cap-icon">⚡</span> <span id="cap-hack-3">APRENDIZAJE ASISTIDO POR IA</span></span>
+            <span><span class="cap-icon">📚</span> <span id="cap-hack-1">UX EDUCATIVA</span></span>
+            <span><span class="cap-icon">👥</span> <span id="cap-hack-2">FLUJOS DE MENTORÍA</span></span>
+            <span><span class="cap-icon">💡</span> <span id="cap-hack-3">PLANTILLA REPLICABLE · IA</span></span>
           </div>
         </div>
       </article>
@@ -618,9 +620,9 @@
           <p class="project-kicker" id="kicker-store">Recursos de IA, Ingeniería de Prompts &amp; Automatizaciones</p>
           <p class="project-desc" id="desc-store">Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">◈</span> <span id="cap-store-1">INGENIERÍA DE PROMPTS</span></span>
-            <span><span class="cap-icon">◈</span> <span id="cap-store-2">FLUJOS CON IA</span></span>
-            <span><span class="cap-icon">◈</span> <span id="cap-store-3">ARQUITECTURA DIGITAL</span></span>
+            <span><span class="cap-icon">🛠️</span> <span id="cap-store-1">INGENIERÍA DE PROMPTS</span></span>
+            <span><span class="cap-icon">🔄</span> <span id="cap-store-2">FLUJOS CON IA</span></span>
+            <span><span class="cap-icon">🏛️</span> <span id="cap-store-3">ARQUITECTURA DIGITAL</span></span>
           </div>
         </div>
       </article>
@@ -634,14 +636,14 @@
           <p class="project-kicker" id="kicker-cv">Perfil Profesional &amp; Portafolio Técnico</p>
           <p class="project-desc" id="desc-cv">Hoja de vida interactiva que reúne trayectoria, competencias, credenciales y proyectos clave en una experiencia web directa.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">◆</span> <span id="cap-cv-1">MARCA PERSONAL</span></span>
-            <span><span class="cap-icon">◆</span> <span id="cap-cv-2">UI RESPONSIVA</span></span>
-            <span><span class="cap-icon">◆</span> <span id="cap-cv-3">NARRATIVA TÉCNICA</span></span>
+            <span><span class="cap-icon">🌟</span> <span id="cap-cv-1">MARCA PERSONAL</span></span>
+            <span><span class="cap-icon">📱</span> <span id="cap-cv-2">UI RESPONSIVA</span></span>
+            <span><span class="cap-icon">📝</span> <span id="cap-cv-3">NARRATIVA TÉCNICA</span></span>
           </div>
         </div>
       </article>
 
-      <!-- 06. PARROQUIA (GRADIENTE CÁLIDO) -->
+      <!-- 06. PARROQUIA -->
       <article class="project-v2 strip-parroquia">
         <div class="project-index"><span aria-hidden="true">✦</span> 06</div>
         <div class="strip-content">
@@ -650,9 +652,9 @@
           <p class="project-kicker" id="kicker-parroquia">Proyecto Web Institucional · Accesibilidad &amp; Comunidad</p>
           <p class="project-desc" id="desc-parroquia">Proyecto web institucional enfocado en accesibilidad, arquitectura clara de información comunitaria y diseño incluyente.</p>
           <div class="capabilities">
-            <span><span class="cap-icon">♥</span> <span id="cap-parish-1">UX ACCESIBLE</span></span>
-            <span><span class="cap-icon">♥</span> <span id="cap-parish-2">UI MULTILINGÜE</span></span>
-            <span><span class="cap-icon">♥</span> <span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></span>
+            <span><span class="cap-icon">♿</span> <span id="cap-parish-1">UX ACCESIBLE</span></span>
+            <span><span class="cap-icon">🌐</span> <span id="cap-parish-2">UI MULTILINGÜE</span></span>
+            <span><span class="cap-icon">🤝</span> <span id="cap-parish-3">INFORMACIÓN COMUNITARIA</span></span>
           </div>
         </div>
       </article>
@@ -697,7 +699,7 @@
           <div>
             <div class="section-kicker" id="human-kicker">NOTA HUMANA</div>
             <h3 id="human-title">Recuerda que esto lo hizo un humano y puede cometer errores.</h3>
-            <p id="human-desc">Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio. Si tienes alguna idea o implementación, será muy bien recibida.</p>
+            <p id="human-desc">Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio.</p>
           </div>
         </div>
       </div>
@@ -738,7 +740,7 @@
       </div>
     </section>
 
-    <!-- 5. CERTIFICACIONES CON CURADURÍA Y ACORDEÓN -->
+    <!-- 5. CERTIFICACIONES CON ACORDEÓN -->
     <div id="certificaciones" class="section-container">
       <div class="section-header">
         <h2 class="section-title" id="cert-main-title">Credenciales y Certificaciones</h2>
@@ -889,7 +891,7 @@
       </div>
     </div>
 
-    <!-- 6. TECH TICKER (MARQUEE INFINITO AL FINAL CON STACK COMPLETO) -->
+    <!-- 6. TECH TICKER (MARQUEE INFINITO AL FINAL) -->
     <section class="tech-ticker-section" aria-label="Tecnologías y Herramientas">
       <div class="ticker-container">
         <div class="ticker-row">
@@ -967,14 +969,15 @@
           projectsDesc: 'Seis piezas digitales ordenadas por impacto, arquitectura y experimentación técnica.',
           badgeLive: 'DESPLIEGUE ACTIVO',
           badgeProject: 'PROYECTO SIN FINES DE LUCRO',
-          tierPrismaLabel: 'SISTEMA CENTRAL · INSIGNIA',
-          tierNexusLabel: 'SISTEMA CENTRAL · INSIGNIA',
+          tierPrismaLabel: '⭐ TOP 01 · FLAGSHIP',
+          tierNexusLabel: '⭐ TOP 02 · CORE SYSTEM',
+          tierHackLabel: '⚡ TOP 03 · EDTECH LAB',
           kickerPrisma: 'Autoconocimiento Interactivo & Exploración Profesional',
           descPrisma: 'Experiencia interactiva de autoconocimiento y exploración profesional que busca patrones a través de decisiones indirectas, evidencia cruzada y evaluación adaptativa.',
           kickerNexus: 'Inteligencia Artificial & Sistemas Web Interactivos',
           descNexus: 'Radar de inteligencia artificial, finanzas, herramientas web interactivas y recursos técnicos reunidos en una experiencia digital de arquitectura SPA.',
           kickerHack: 'Experiencia de Aprendizaje & Educación Asistida por IA',
-          descHack: 'Plataforma educativa enfocada en mentoría personalizada, inglés práctico, ritmo de aprendizaje y herramientas de IA aplicadas al proceso.',
+          descHack: 'Plataforma educativa modular con mentoría e inglés práctico, diseñada con una arquitectura adaptable lista para replicar en múltiples categorías o implementaciones a medida.',
           kickerStore: 'Recursos de IA, Ingeniería de Prompts & Automatizaciones',
           descStore: 'Bóveda digital de recursos, manuales de ingeniería de prompts, optimización de flujos con IA y arquitecturas orientadas a la automatización.',
           kickerCv: 'Perfil Profesional & Portafolio Técnico',
@@ -983,7 +986,7 @@
           descParroquia: 'Proyecto web institucional enfocado en accesibilidad, arquitectura clara de información comunitaria y diseño incluyente.',
           capPrisma1: 'EVALUACIÓN ADAPTATIVA', capPrisma2: 'MEDICIÓN INDIRECTA', capPrisma3: 'UX INTERACTIVA',
           capNexus1: 'SISTEMAS INTERACTIVOS', capNexus2: 'ARQUITECTURA SPA', capNexus3: 'CONTENIDO CON IA',
-          capHack1: 'UX EDUCATIVA', capHack2: 'FLUJOS DE MENTORÍA', capHack3: 'APRENDIZAJE ASISTIDO POR IA',
+          capHack1: 'UX EDUCATIVA', capHack2: 'FLUJOS DE MENTORÍA', capHack3: 'PLANTILLA REPLICABLE · IA',
           capStore1: 'INGENIERÍA DE PROMPTS', capStore2: 'FLUJOS CON IA', capStore3: 'ARQUITECTURA DIGITAL',
           capCv1: 'MARCA PERSONAL', capCv2: 'UI RESPONSIVA', capCv3: 'NARRATIVA TÉCNICA',
           capParish1: 'UX ACCESIBLE', capParish2: 'UI MULTILINGÜE', capParish3: 'INFORMACIÓN COMUNITARIA',
@@ -993,7 +996,7 @@
           btnEmailText: 'Correo',
           humanKicker: 'NOTA HUMANA',
           humanTitle: 'Recuerda que esto lo hizo un humano y puede cometer errores.',
-          humanDesc: 'Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba para que podamos hacer el cambio.',
+          humanDesc: 'Si tienes algún feedback, puedes escribirme a través de cualquiera de los contactos de arriba.',
           siteKicker: 'DETRÁS DE LA PÁGINA',
           siteTitle: 'Cómo está construida',
           siteDesc: 'Una mirada técnica a la arquitectura, rendimiento y principios de ingeniería de este sitio.',
@@ -1035,14 +1038,15 @@
           projectsDesc: 'Six digital pieces ordered by impact, architecture, and technical experimentation.',
           badgeLive: 'LIVE DEPLOYMENT',
           badgeProject: 'NON-PROFIT PROJECT',
-          tierPrismaLabel: 'CORE SYSTEM · FLAGSHIP',
-          tierNexusLabel: 'CORE SYSTEM · FLAGSHIP',
+          tierPrismaLabel: '⭐ TOP 01 · FLAGSHIP',
+          tierNexusLabel: '⭐ TOP 02 · CORE SYSTEM',
+          tierHackLabel: '⚡ TOP 03 · EDTECH LAB',
           kickerPrisma: 'Interactive Self-Discovery & Career Exploration',
           descPrisma: 'An interactive self-discovery and career exploration experience built around indirect decisions, crossed evidence and adaptive assessment.',
           kickerNexus: 'AI Intelligence & Interactive Web Systems',
           descNexus: 'A radar for artificial intelligence, finance, interactive web tools and technical resources brought together in a focused SPA experience.',
           kickerHack: 'Learning Experience & AI-Assisted Education',
-          descHack: 'An educational platform focused on personalized mentoring, practical English, learning pace and AI-assisted tools.',
+          descHack: 'A modular educational platform with mentoring and practical English, designed with an adaptable architecture ready to replicate across multiple categories or custom builds.',
           kickerStore: 'AI Resources, Prompt Engineering & Workflow Systems',
           descStore: 'A digital vault of resources, prompt engineering guides, AI workflow optimization and automation-oriented architectures.',
           kickerCv: 'Professional Profile & Technical Portfolio',
@@ -1051,7 +1055,7 @@
           descParroquia: 'Institutional web project focused on accessibility, clear community information architecture, and inclusive design.',
           capPrisma1: 'ADAPTIVE ASSESSMENT', capPrisma2: 'INDIRECT MEASUREMENT', capPrisma3: 'INTERACTIVE UX',
           capNexus1: 'INTERACTIVE SYSTEMS', capNexus2: 'SPA ARCHITECTURE', capNexus3: 'AI CONTENT',
-          capHack1: 'EDTECH UX', capHack2: 'MENTORING FLOWS', capHack3: 'AI-ASSISTED LEARNING',
+          capHack1: 'EDTECH UX', capHack2: 'MENTORING FLOWS', capHack3: 'REPLICABLE TEMPLATE · AI',
           capStore1: 'PROMPT ENGINEERING', capStore2: 'AI WORKFLOWS', capStore3: 'DIGITAL ARCHITECTURE',
           capCv1: 'PERSONAL BRAND', capCv2: 'RESPONSIVE UI', capCv3: 'TECHNICAL STORYTELLING',
           capParish1: 'ACCESSIBLE UX', capParish2: 'MULTILINGUAL UI', capParish3: 'COMMUNITY INFORMATION',
@@ -1061,7 +1065,7 @@
           btnEmailText: 'Email',
           humanKicker: 'HUMAN NOTE',
           humanTitle: 'Remember: a human made this, and humans can make mistakes.',
-          humanDesc: 'If you have any feedback, write to me through any of the contacts above so we can improve it.',
+          humanDesc: 'If you have any feedback, write to me through any of the contacts above.',
           siteKicker: 'UNDER THE HOOD',
           siteTitle: 'How this site works',
           siteDesc: 'A concise technical look at the architecture, performance, and engineering principles of this site.',
@@ -1103,7 +1107,7 @@
           'availability-text':'availabilityText','hero-title-prefix':'heroTitlePrefix','hero-title-brand':'heroTitleBrand','hero-eyebrow':'heroEyebrow','hero-tagline':'heroTagline','hero-intro':'heroIntro','hero-cta-text':'heroCta',
           'nav-inicio':'navHome','nav-projects':'navProjects','nav-contact':'navContact','nav-site':'navSite','nav-cert':'navCert',
           'projects-kicker':'projectsKicker','projects-title':'projectsTitle','projects-desc':'projectsDesc',
-          'tier-prisma-label':'tierPrismaLabel','tier-nexus-label':'tierNexusLabel',
+          'tier-prisma-label':'tierPrismaLabel','tier-nexus-label':'tierNexusLabel','tier-hack-label':'tierHackLabel',
           'kicker-prisma':'kickerPrisma','desc-prisma':'descPrisma',
           'kicker-nexus':'kickerNexus','desc-nexus':'descNexus',
           'kicker-hack':'kickerHack','desc-hack':'descHack',
